@@ -1,0 +1,8 @@
+{
+  "name": "aldenwitt.com",
+  "version": "0.0.0",
+  "description": "The personal website for Alden Witt.",
+  "private": false,
+  "dependencies": {
+  }
+}
