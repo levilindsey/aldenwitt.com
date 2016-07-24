@@ -7,6 +7,30 @@
   <title><%= APP_TITLE %></title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicons for browsers -->
+  <link rel="icon"
+        type="image/png"
+        href="favicon-16x16.png"
+        sizes="16x16">
+  <link rel="icon"
+        type="image/png"
+        href="favicon-32x32.png"
+        sizes="32x32">
+
+  <!-- Icons for showing on the home screens of Android and iOS devices -->
+  <link href="http://aldenwitt.com/apple-touch-icon.png"
+        rel="apple-touch-icon">
+  <link href="http://aldenwitt.com/apple-touch-icon-76x76.png"
+        rel="apple-touch-icon"
+        sizes="76x76">
+  <link href="http://aldenwitt.com/apple-touch-icon-120x120.png"
+        rel="apple-touch-icon"
+        sizes="120x120">
+  <link href="http://aldenwitt.com/apple-touch-icon-152x152.png"
+        rel="apple-touch-icon"
+        sizes="152x152">
+
   <!-- inject:css -->
   <!-- endinject -->
 </head>
@@ -40,8 +64,7 @@
   <script>
   System.import('<%= BOOTSTRAP_MODULE %>')
     .catch(function (e) {
-      console.error(e,
-        'Report this error at https://github.com/mgechev/angular2-seed/issues');
+      console.error(e, 'Bootstrap error');
     });
   </script>
   <% } %>
