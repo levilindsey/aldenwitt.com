@@ -138,28 +138,34 @@ export class SeedConfig {
    * `index.html`.
    * @type {string}
    */
-  APP_TITLE = 'Welcome to angular2-seed!';
+  APP_TITLE = 'Alden Witt';
 
   /**
-   * The base folder of the applications source files.
+   * The base folder of the application's source files.
    * @type {string}
    */
   APP_SRC = `src/${this.APP_CLIENT}`;
 
   /**
-   * The folder of the applications asset files.
+   * The folder of the application's asset files.
    * @type {string}
    */
   ASSETS_SRC = `${this.APP_SRC}/assets`;
 
   /**
-   * The folder of the applications css files.
+   * The folder of the application's favicon and device icon files.
+   * @type {string}
+   */
+  FAVICONS_SRC = `${this.ASSETS_SRC}/images/favicons`;
+
+  /**
+   * The folder of the application's css files.
    * @type {string}
    */
   CSS_SRC = `${this.APP_SRC}/css`;
 
   /**
-   * The directory of the applications tools
+   * The directory of the application's tools.
    * @type {string}
    */
   TOOLS_DIR = 'tools';
@@ -204,6 +210,12 @@ export class SeedConfig {
    * @type {string}
    */
   APP_DEST = this.ENV === ENVIRONMENTS.DEVELOPMENT ? this.DEV_DEST : this.PROD_DEST;
+
+  /**
+   * The folder for the favicon files, corresponding to the current environment.
+   * @type {string}
+   */
+  FAVICON_DEST = this.ENV === ENVIRONMENTS.DEVELOPMENT ? `${this.DEV_DEST}/` : '';
 
   /**
    * The folder for the built CSS files.
