@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, animate, state, style, transition, trigger } from '@angular/core';
 import { REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 
 import { NameListService } from '../shared/index';
@@ -11,7 +11,19 @@ import { NameListService } from '../shared/index';
   selector: 'sd-home',
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.css'],
-  directives: [REACTIVE_FORM_DIRECTIVES]
+  directives: [REACTIVE_FORM_DIRECTIVES],
+  animations: [
+    trigger('slideState', [
+      state('in', style({transform: 'translateX(0) translateY(0)'})),
+      transition('void => *', [
+        style({transform: 'translateY(100%)'}),
+        animate(300)
+      ]),
+      transition('* => void', [
+        animate(250, style({transform: 'translateX(-100%)'}))
+      ])
+    ])
+  ]
 })
 export class HomeComponent implements OnInit {
 

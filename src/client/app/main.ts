@@ -3,7 +3,6 @@ import { disableDeprecatedForms, provideForms } from '@angular/forms';
 import { enableProdMode } from '@angular/core';
 import { bootstrap } from '@angular/platform-browser-dynamic';
 
-import { APP_ROUTER_PROVIDERS } from './app.routes';
 import { AppComponent } from './app.component';
 
 if ('<%= ENV %>' === 'prod') { enableProdMode(); }
@@ -15,7 +14,7 @@ if ('<%= ENV %>' === 'prod') { enableProdMode(); }
 bootstrap(AppComponent, [
   disableDeprecatedForms(),
   provideForms(),
-  APP_ROUTER_PROVIDERS,
+//  APP_ROUTER_PROVIDERS, // TODO
   {
     provide: APP_BASE_HREF,
     useValue: '<%= APP_BASE %>'
