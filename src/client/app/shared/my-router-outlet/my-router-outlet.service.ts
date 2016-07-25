@@ -12,6 +12,8 @@ import 'rxjs/add/operator/catch';
  */
 @Injectable()
 export class MyRouterService {
+  constructor() {}
+
   // TODO
 
   // /**

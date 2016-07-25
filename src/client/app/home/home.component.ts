@@ -16,11 +16,11 @@ import { NameListService } from '../shared/index';
     trigger('slideState', [
       state('in', style({transform: 'translateX(0) translateY(0)'})),
       transition('void => *', [
-        style({transform: 'translateY(100%)'}),
+        style({transform: 'translateY(500px)'}),
         animate(300)
       ]),
       transition('* => void', [
-        animate(250, style({transform: 'translateX(-100%)'}))
+        animate(250, style({transform: 'translateX(500px)'}))
       ])
     ])
   ]
@@ -31,13 +31,7 @@ export class HomeComponent implements OnInit {
   errorMessage: string;
   names: any[] = [];
 
-  /**
-   * Creates an instance of the HomeComponent with the injected
-   * NameListService.
-   *
-   * @param {NameListService} nameListService - The injected NameListService.
-   */
-  constructor(public nameListService: NameListService) {}
+  constructor() {}
 
   /**
    * Get the names OnInit
@@ -50,11 +44,11 @@ export class HomeComponent implements OnInit {
    * Handle the nameListService observable
    */
   getNames() {
-    this.nameListService.get()
-                     .subscribe(
-                       names => this.names = names,
-                       error =>  this.errorMessage = <any>error
-                       );
+    // this.nameListService.get()
+    //                  .subscribe(
+    //                    names => this.names = names,
+    //                    error =>  this.errorMessage = <any>error
+    //                    );
   }
 
   /**

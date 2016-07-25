@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HTTP_PROVIDERS } from '@angular/http';
 
-import { Config, NameListService, MyRouterOutletComponent, NavbarComponent, ToolbarComponent } from './shared/index';
+import { Config, MyRouterService, NameListService, MyRouterOutletComponent, NavbarComponent, ToolbarComponent } from './shared/index';
 
 /**
  * This class represents the main application component. Within the @Routes annotation is the configuration of the
@@ -10,9 +10,9 @@ import { Config, NameListService, MyRouterOutletComponent, NavbarComponent, Tool
 @Component({
   moduleId: module.id,
   selector: 'sd-app',
-  viewProviders: [NameListService, HTTP_PROVIDERS],
+  viewProviders: [MyRouterService, NameListService, HTTP_PROVIDERS],
   templateUrl: 'app.component.html',
-  directives: [NavbarComponent, ToolbarComponent]
+  directives: [MyRouterOutletComponent, NavbarComponent, ToolbarComponent]
 })
 export class AppComponent {
   constructor() {

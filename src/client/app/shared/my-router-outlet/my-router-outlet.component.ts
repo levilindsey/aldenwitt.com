@@ -10,7 +10,8 @@ import {HomeComponent} from '../../home/home.component';
  */
 @Component({
   moduleId: module.id,
-  selector: 'my-router-outlet'
+  selector: 'my-router-outlet',
+  template: ''
 })
 export class MyRouterOutletComponent {
   private oldComponentRef:ComponentRef<Type>;
@@ -23,10 +24,10 @@ export class MyRouterOutletComponent {
     if (this.oldComponentRef) {
       this.oldComponentRef.destroy();
     }
-    this.loader.loadNextToLocation(HomeComponent, this.containerRef).then((ref:ComponentRef<Type>) => {
+    this.loader.loadNextToLocation(HomeComponent, this.containerRef).then((ref:ComponentRef) => {
       this.oldComponentRef = ref;
     });
-    return Promise.resolve();// TODO: look up how to actually handle the Promise/PromiseController pair
+    // return Promise.resolve();
   }
 
   // TODO
