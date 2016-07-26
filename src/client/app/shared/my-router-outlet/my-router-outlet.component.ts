@@ -1,6 +1,5 @@
 import {Component, ComponentRef, DynamicComponentLoader, ViewContainerRef, Type} from '@angular/core';
-import {MyRouterService} from './my-router-outlet.service';
-import {HomeComponent} from '../../home/home.component';
+import {MyRouterService} from './router.service';
 
 /**
  * This class represents a custom router outlet component.
@@ -16,19 +15,17 @@ import {HomeComponent} from '../../home/home.component';
 export class MyRouterOutletComponent {
   private oldComponentRef:ComponentRef<Type>;
 
-  constructor(private routerService: MyRouterService, private loader: DynamicComponentLoader, private containerRef: ViewContainerRef) {
-    this.handleRouteChange();
+  constructor(private routerService: MyRouterService, private loader: DynamicComponentLoader,
+              private containerRef: ViewContainerRef) {
+    routerService.registerRouteListener(this.handleRouteChange.bind(this));
   }
 
-  handleRouteChange(): Promise<void> {
+  handleRouteChange(path : String, component : any) {
     if (this.oldComponentRef) {
       this.oldComponentRef.destroy();
     }
-    this.loader.loadNextToLocation(HomeComponent, this.containerRef).then((ref:ComponentRef) => {
+    this.loader.loadNextToLocation(component, this.containerRef).then((ref:ComponentRef) => {
       this.oldComponentRef = ref;
     });
-    // return Promise.resolve();
   }
-
-  // TODO
 }

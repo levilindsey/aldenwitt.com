@@ -1,6 +1,6 @@
-import { Component, provide } from '@angular/core';
-import { TestComponentBuilder } from '@angular/compiler/testing';
-import { disableDeprecatedForms, provideForms } from '@angular/forms';
+import {Component, provide} from '@angular/core';
+import {TestComponentBuilder} from '@angular/compiler/testing';
+import {disableDeprecatedForms, provideForms} from '@angular/forms';
 import {
   async,
   inject
@@ -11,11 +11,11 @@ import {
   Http,
   HTTP_PROVIDERS
 } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
-import { getDOM } from '@angular/platform-browser/src/dom/dom_adapter';
+import {MockBackend} from '@angular/http/testing';
+import {getDOM} from '@angular/platform-browser/src/dom/dom_adapter';
 
-import { NameListService } from '../shared/index';
-import { HomeComponent } from './home.component';
+import {NameListService} from '../shared/index';
+import {HomeComponent} from './home.component';
 
 export function main() {
   describe('Home component', () => {

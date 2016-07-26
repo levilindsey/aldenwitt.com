@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { disableDeprecatedForms, provideForms } from '@angular/forms';
-import { TestComponentBuilder } from '@angular/compiler/testing';
+import {Component} from '@angular/core';
+import {disableDeprecatedForms, provideForms} from '@angular/forms';
+import {TestComponentBuilder} from '@angular/compiler/testing';
 
 import {
   addProviders,
@@ -13,9 +13,9 @@ import {
 
 import {provideFakeRouter} from '../testing/router/router-testing-providers';
 
-import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
+import {AppComponent} from './app.component';
+import {HomeComponent} from './home/home.component';
+import {AboutComponent} from './about/about.component';
 
 export function main() {
 

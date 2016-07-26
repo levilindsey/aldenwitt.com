@@ -1,15 +1,13 @@
-// TODO
+import {MyRouterService, RouteConfig} from './shared/index';
+import {AboutComponent} from './about/index';
+import {HomeComponent} from './home/index';
 
-// import { provideRouter, RouterConfig } from '@angular/router';
-//
-// import { AboutRoutes } from './about/index';
-// import { HomeRoutes } from './home/index';
-//
-// const routes: RouterConfig = [
-//   ...HomeRoutes,
-//   ...AboutRoutes
-// ];
-//
-// export const APP_ROUTER_PROVIDERS = [
-//   provideRouter(routes),
-// ];
+var routeConfig = new RouteConfig({
+  '/': HomeComponent,
+  'home': HomeComponent,
+  'about': AboutComponent
+});
+
+export const ROUTER_PROVIDERS = [
+  {provide: RouteConfig, useValue: routeConfig}
+];

@@ -1,13 +1,13 @@
-import { TestComponentBuilder } from '@angular/compiler/testing';
-import { disableDeprecatedForms, provideForms } from '@angular/forms';
-import { Component } from '@angular/core';
+import {TestComponentBuilder} from '@angular/compiler/testing';
+import {disableDeprecatedForms, provideForms} from '@angular/forms';
+import {Component} from '@angular/core';
 import {
   inject,
   async
 } from '@angular/core/testing';
-import { getDOM } from '@angular/platform-browser/src/dom/dom_adapter';
+import {getDOM} from '@angular/platform-browser/src/dom/dom_adapter';
 
-import { AboutComponent } from './about.component';
+import {AboutComponent} from './about.component';
 
 export function main() {
   describe('About component', () => {

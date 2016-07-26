@@ -1,10 +1,10 @@
-import { provide, ReflectiveInjector } from '@angular/core';
-import { disableDeprecatedForms, provideForms } from '@angular/forms';
-import { BaseRequestOptions, ConnectionBackend, Http, HTTP_PROVIDERS, Response, ResponseOptions } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
-import { Observable } from 'rxjs/Observable';
+import {provide, ReflectiveInjector} from '@angular/core';
+import {disableDeprecatedForms, provideForms} from '@angular/forms';
+import {BaseRequestOptions, ConnectionBackend, Http, HTTP_PROVIDERS, Response, ResponseOptions} from '@angular/http';
+import {MockBackend} from '@angular/http/testing';
+import {Observable} from 'rxjs/Observable';
 
-import { NameListService } from './name-list.service';
+import {NameListService} from './name-list.service';
 
 export function main() {
   describe('NameList Service', () => {
@@ -36,7 +36,7 @@ export function main() {
       let connection: any;
       backend.connections.subscribe((c: any) => connection = c);
       initialResponse = nameListService.get();
-      connection.mockRespond(new Response(new ResponseOptions({ body: '["Dijkstra", "Hopper"]' })));
+      connection.mockRespond(new Response(new ResponseOptions({body: '["Dijkstra", "Hopper"]'})));
     });
 
     it('should return an Observable when get called', () => {

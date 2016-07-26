@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {MyRouterService} from '../my-router-outlet/index';
 
 /**
  * This class represents the navigation bar component.
@@ -10,4 +11,14 @@ import { Component } from '@angular/core';
   styleUrls: ['navbar.component.css'],
   directives: []
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+  constructor(private routerService : MyRouterService) {}
+
+  onHomeClicked() {
+    this.routerService.goToRoute('home');
+  }
+
+  onAboutClicked() {
+    this.routerService.goToRoute('about');
+  }
+}
