@@ -64,7 +64,7 @@ export function main() {
     }),
   ],
   selector: 'test-cmp',
-  template: '<sd-home></sd-home>',
+  template: '<alden-home></alden-home>',
   directives: [HomeComponent]
 })
 class TestComponent {}

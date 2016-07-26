@@ -50,7 +50,7 @@ export function main() {
 
 @Component({
   selector: 'test-cmp',
-  template: '<sd-app></sd-app>',
+  template: '<alden-app></alden-app>',
   directives: [AppComponent]
 })
 class TestComponent {

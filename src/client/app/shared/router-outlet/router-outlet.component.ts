@@ -1,5 +1,6 @@
 import {Component, ComponentRef, DynamicComponentLoader, ViewContainerRef, Type} from '@angular/core';
 import {RouterService} from './router.service';
+import {RouteDefinition} from './route-config.model';
 
 /**
  * This class represents a custom router outlet component.
@@ -18,13 +19,15 @@ export class RouterOutletComponent {
   constructor(private routerService: RouterService, private loader: DynamicComponentLoader,
               private containerRef: ViewContainerRef) {
     routerService.registerRouteListener(this.handleRouteChange.bind(this));
+
+    // FIXME: Check whatever the current route is, and render that.
   }
 
-  handleRouteChange(path : string, component : any) {
+  handleRouteChange(def: RouteDefinition) {
     if (this.oldComponentRef) {
       this.oldComponentRef.destroy();
     }
-    this.loader.loadNextToLocation(component, this.containerRef).then((ref:ComponentRef) => {
+    this.loader.loadNextToLocation(def.component, this.containerRef).then((ref:ComponentRef<any>) => {
       this.oldComponentRef = ref;
     });
   }

@@ -32,6 +32,6 @@ export function main() {
 @Component({
   selector: 'test-cmp',
   directives: [AboutComponent],
-  template: '<sd-about></sd-about>'
+  template: '<alden-about></alden-about>'
 })
 class TestComponent {}

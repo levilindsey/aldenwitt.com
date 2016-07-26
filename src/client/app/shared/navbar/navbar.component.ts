@@ -7,7 +7,7 @@ import {RouterLinkDirective} from '../router-outlet/index';
  */
 @Component({
   moduleId: module.id,
-  selector: 'sd-navbar',
+  selector: 'alden-navbar',
   templateUrl: 'navbar.component.html',
   styleUrls: ['navbar.component.css'],
   directives: [RouterLinkDirective]

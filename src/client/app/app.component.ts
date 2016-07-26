@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {HTTP_PROVIDERS} from '@angular/http';
 
-import {Config, RouterService, NameListService, RouterOutletComponent, NavbarComponent, ToolbarComponent} from './shared/index';
+import {Config, ROUTE_CONFIG, RouteConfig, RouterService, NameListService, RouterOutletComponent, NavbarComponent, ToolbarComponent} from './shared/index';
 
 /**
  * This class represents the main application component. Within the @Routes annotation is the configuration of the
@@ -9,13 +9,14 @@ import {Config, RouterService, NameListService, RouterOutletComponent, NavbarCom
  */
 @Component({
   moduleId: module.id,
-  selector: 'sd-app',
+  selector: 'alden-app',
   viewProviders: [RouterService, NameListService, HTTP_PROVIDERS],
   templateUrl: 'app.component.html',
   directives: [RouterOutletComponent, NavbarComponent, ToolbarComponent]
 })
 export class AppComponent {
-  constructor() {
+  constructor(@Inject(ROUTE_CONFIG) routeConfig: RouteConfig, routerService: RouterService) {
     console.log('Environment config', Config);
+    routerService.initialize(routeConfig);
   }
 }

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import {RouteConfig} from './route-config.model';
+import {RouteConfig, RouteDefinition} from './route-config.model';
 
 /**
  * This class provides the MyRouter service that enables custom routing behavior.
@@ -13,25 +13,55 @@ import {RouteConfig} from './route-config.model';
 @Injectable()
 export class RouterService {
   private routeChangeStream = new Subject();
-  private routes = new Map<String, any>();
+  private routes = new Map<String, RouteDefinition>();
+  private isNavigationInProgress: boolean;
 
-  constructor(routeConfig: RouteConfig) {
+  initialize(routeConfig: RouteConfig) {
     // Register a statically defined configuration of default routes.
-    Object.keys(routeConfig.config).forEach((path: string) =>
-        this.routes.set(path, routeConfig.config[path]));
+    routeConfig.forEach((def: RouteDefinition) => this.routes.set(def.name, def));
+
+    // Listen for URL hash changes.
+    window.addEventListener('hashchange', this.handleUrlChange.bind(this));
+
+    // Navigate to the initial route.
+    this.handleUrlChange();
   }
 
   registerRouteListener(callback: RouteChangeHandler) {
-    this.routeChangeStream.subscribe(path => callback(path, this.routes.get(path)));
+    this.routeChangeStream.subscribe(callback);
   }
 
-  registerRoute(path: string, component: any) {
-    this.routes.set(path, component);
+  registerRoute(def: RouteDefinition) {
+    this.routes.set(def.name, def);
   }
 
-  goToRoute(path: string) {
-    this.routeChangeStream.next(path);
+  goToRoute(routeName: string) {
+    this.isNavigationInProgress = true;
+    let routeDefinition = this.routes.get(routeName);
+    location.hash = routeDefinition.path;
+    this.routeChangeStream.next(routeDefinition);
+  }
+
+  private handleUrlChange() {
+    // Don't handle URL changes that were triggered internally.
+    if (this.isNavigationInProgress) {
+      this.isNavigationInProgress = false;
+      return;
+    }
+
+    let path = location.hash.slice(1) || '/';
+
+    let matchingDefinition;
+    this.routes.forEach(def => {
+      if (def.path === path) {
+        matchingDefinition = def;
+      }
+    });
+
+    if (matchingDefinition) {
+      this.goToRoute(matchingDefinition.name);
+    }
   }
 }
 
-type RouteChangeHandler = (path: string, component: any) => void;
+type RouteChangeHandler = (def: RouteDefinition) => void;

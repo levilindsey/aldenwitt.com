@@ -8,7 +8,6 @@ import {RouterService} from './router.service';
  * simultaneous animation of the old and new routes together.
  */
 @Directive({
-  moduleId: module.id,
   selector: '[routerLink]'
 })
 export class RouterLinkDirective {
