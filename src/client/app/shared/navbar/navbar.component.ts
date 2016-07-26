@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
-import {MyRouterService} from '../my-router-outlet/index';
+import {RouterService} from '../router-outlet/index';
+import {RouterLinkDirective} from '../router-outlet/index';
 
 /**
  * This class represents the navigation bar component.
@@ -9,16 +10,7 @@ import {MyRouterService} from '../my-router-outlet/index';
   selector: 'sd-navbar',
   templateUrl: 'navbar.component.html',
   styleUrls: ['navbar.component.css'],
-  directives: []
+  directives: [RouterLinkDirective]
 })
 export class NavbarComponent {
-  constructor(private routerService : MyRouterService) {}
-
-  onHomeClicked() {
-    this.routerService.goToRoute('home');
-  }
-
-  onAboutClicked() {
-    this.routerService.goToRoute('about');
-  }
 }

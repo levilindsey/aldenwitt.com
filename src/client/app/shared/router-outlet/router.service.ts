@@ -11,13 +11,13 @@ import {RouteConfig} from './route-config.model';
  * simultaneous animation of the old and new routes together.
  */
 @Injectable()
-export class MyRouterService {
+export class RouterService {
   private routeChangeStream = new Subject();
   private routes = new Map<String, any>();
 
   constructor(routeConfig: RouteConfig) {
     // Register a statically defined configuration of default routes.
-    Object.keys(routeConfig.config).forEach((path: String) =>
+    Object.keys(routeConfig.config).forEach((path: string) =>
         this.routes.set(path, routeConfig.config[path]));
   }
 
@@ -25,13 +25,13 @@ export class MyRouterService {
     this.routeChangeStream.subscribe(path => callback(path, this.routes.get(path)));
   }
 
-  registerRoute(path: String, component: any) {
+  registerRoute(path: string, component: any) {
     this.routes.set(path, component);
   }
 
-  goToRoute(path: String) {
+  goToRoute(path: string) {
     this.routeChangeStream.next(path);
   }
 }
 
-type RouteChangeHandler = (path: String, component: any) => void;
+type RouteChangeHandler = (path: string, component: any) => void;

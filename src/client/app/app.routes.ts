@@ -1,4 +1,4 @@
-import {MyRouterService, RouteConfig} from './shared/index';
+import {RouteConfig} from './shared/index';
 import {AboutComponent} from './about/index';
 import {HomeComponent} from './home/index';
 
