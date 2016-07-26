@@ -16,6 +16,9 @@ export class RouterService {
   private routes = new Map<String, RouteDefinition>();
   private isNavigationInProgress: boolean;
 
+
+  currentRoute: RouteDefinition;
+
   initialize(routeConfig: RouteConfig) {
     // Register a statically defined configuration of default routes.
     routeConfig.forEach((def: RouteDefinition) => this.routes.set(def.name, def));
@@ -38,6 +41,7 @@ export class RouterService {
   goToRoute(routeName: string) {
     this.isNavigationInProgress = true;
     let routeDefinition = this.routes.get(routeName);
+    this.currentRoute = routeDefinition;
     location.hash = routeDefinition.path;
     this.routeChangeStream.next(routeDefinition);
   }

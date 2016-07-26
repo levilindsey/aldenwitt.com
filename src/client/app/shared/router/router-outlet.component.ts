@@ -20,7 +20,8 @@ export class RouterOutletComponent {
               private containerRef: ViewContainerRef) {
     routerService.registerRouteListener(this.handleRouteChange.bind(this));
 
-    // FIXME: Check whatever the current route is, and render that.
+    // Render the initial route.
+    this.handleRouteChange(routerService.currentRoute);
   }
 
   handleRouteChange(def: RouteDefinition) {

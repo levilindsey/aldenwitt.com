@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {RouterService} from '../router-outlet/index';
-import {RouterLinkDirective} from '../router-outlet/index';
+import {RouterService} from '../router/index';
+import {RouterLinkDirective} from '../router/index';
 
 /**
  * This class represents the navigation bar component.
