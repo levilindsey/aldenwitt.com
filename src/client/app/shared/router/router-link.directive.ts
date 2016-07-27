@@ -11,13 +11,13 @@ import {RouterService} from './router.service';
   selector: '[routerLink]'
 })
 export class RouterLinkDirective {
-  constructor(private routerService: RouterService) {}
+  constructor(private router: RouterService) {}
 
   @Input('routerLink')
   path: string;
 
   @HostListener('click')
   onClick() {
-    this.routerService.goToRoute(this.path);
+    this.router.goToRoute(this.path);
   }
 }

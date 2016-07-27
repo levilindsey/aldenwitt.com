@@ -1,3 +1,4 @@
+import {Injectable} from '@angular/core';
 import {FrameLatencyProfiler} from './frame-latency-profiler';
 import {PersistentAnimationJob} from './persistent-animation-job';
 import {TransientAnimationJob} from './transient-animation-job';
@@ -17,8 +18,9 @@ let _LATENCY_LOG_LABEL = 'Animation frame period';
  * - starting and stopping transient animation jobs,
  * - capping time step durations at a max threshold.
  */
+@Injectable()
 export class AnimatorService {
-  private jobs:AnimationJob[] = [];
+  private jobs: AnimationJob[] = [];
   private previousTime: number = window.performance && window.performance.now() || 0;
   private isPaused: boolean = true;
   private requestAnimationFrameId: number;

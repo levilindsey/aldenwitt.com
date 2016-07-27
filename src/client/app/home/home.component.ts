@@ -1,5 +1,8 @@
 import {Component} from '@angular/core';
+import {AnimatorService} from '../shared/animation/index';
 import {RouteDefinition, RouterService} from '../shared/router/index';
+import {PageSlideInJob} from './page-slide-in.animation-job';
+import {PageSlideOutJob} from './page-slide-out.animation-job';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -11,15 +14,16 @@ import {RouteDefinition, RouterService} from '../shared/router/index';
   styleUrls: ['home.component.css']
 })
 export class HomeComponent {// FIXME: Move the slideState setting and route listening logic to a common parent class.
-  constructor(routerService: RouterService) {
+  constructor(private animator: AnimatorService, router: RouterService) {
     // Animate in.
-    // FIXME
+    this.animator.startJob(new PageSlideInJob());// FIXME
 
-    routerService.registerRouteListener(this.handleRouteChange.bind(this));
+    router.registerRouteListener(this.handleRouteChange.bind(this));
   }
 
   handleRouteChange(routeDefinition: RouteDefinition) {
     // Animate out.
+    this.animator.startJob(new PageSlideOutJob());
     // FIXME:
     // - Add my custom animation module.
     // - Create custom page-slide-in and page-slide-out animation jobs.

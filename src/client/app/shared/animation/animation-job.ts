@@ -7,7 +7,7 @@ export abstract class AnimationJob {
   protected startTime: DOMHighResTimeStamp = 0;
   protected isComplete: boolean = true;
 
-  constructor(private onComplete?: Function) {}
+  constructor(protected onComplete?: Function) {}
 
   /**
    * Indicates whether this AnimationJob is complete.
@@ -36,7 +36,7 @@ export abstract class AnimationJob {
    *
    * This is called from the overall animation loop.
    */
-  abstract draw();
+  draw() {}
 
   /**
    * Handles any necessary state for this AnimationJob being finished.

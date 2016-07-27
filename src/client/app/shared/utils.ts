@@ -269,6 +269,19 @@ export function setTransform(element: HTMLElement, transform: string) {
 }
 
 /**
+ * Creates a string for the CSS transform property from the given translations, rotation, and scale.
+ *
+ * @param {number} translationX In pixels.
+ * @param {number} translationY In pixels.
+ * @param {number} [rotation=0] In radians.
+ * @param {number} [scale=1]
+ */
+export function createTransformString(translationX: number, translationY: number,
+                                      rotation: number = 0, scale: number = 1) {
+  // FIXME
+}
+
+/**
  * Returns a copy of the given array with its contents re-arranged in a random order.
  *
  * The original array is left in its original order.

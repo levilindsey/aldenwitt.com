@@ -19,12 +19,12 @@ export class RouterOutletComponent {
   private currComponentRef:ComponentRef<Type>;
   private prevComponentRef:ComponentRef<Type>;
 
-  constructor(private routerService: RouterService, private loader: DynamicComponentLoader,
+  constructor(private router: RouterService, private loader: DynamicComponentLoader,
               private containerRef: ViewContainerRef) {
-    routerService.registerRouteListener(this.handleRouteChange.bind(this));
+    router.registerRouteListener(this.handleRouteChange.bind(this));
 
     // Render the initial route.
-    this.handleRouteChange(routerService.currentRoute);
+    this.handleRouteChange(router.currentRoute);
   }
 
   handleRouteChange(def: RouteDefinition) {
