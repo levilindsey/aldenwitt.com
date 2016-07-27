@@ -1,7 +1,5 @@
-import {Component, OnInit, animate, state, style, transition, trigger} from '@angular/core';
-import {REACTIVE_FORM_DIRECTIVES} from '@angular/forms';
-
-import {NameListService} from '../shared/index';
+import {Component} from '@angular/core';
+import {RouteDefinition, RouterService} from '../shared/router/index';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -10,56 +8,21 @@ import {NameListService} from '../shared/index';
   moduleId: module.id,
   selector: 'alden-home',
   templateUrl: 'home.component.html',
-  styleUrls: ['home.component.css'],
-  directives: [REACTIVE_FORM_DIRECTIVES],
-  animations: [
-    trigger('slideState', [
-      state('in', style({transform: 'translateX(0) translateY(0)'})),
-      transition('void => *', [
-        style({transform: 'translateY(500px)'}),
-        animate(300)
-      ]),
-      transition('* => void', [
-        animate(250, style({transform: 'translateX(500px)'}))
-      ])
-    ])
-  ]
+  styleUrls: ['home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {// FIXME: Move the slideState setting and route listening logic to a common parent class.
+  constructor(routerService: RouterService) {
+    // Animate in.
+    // FIXME
 
-  newName: string = '';
-  errorMessage: string;
-  names: any[] = [];
-
-  constructor() {}
-
-  /**
-   * Get the names OnInit
-   */
-  ngOnInit() {
-    this.getNames();
+    routerService.registerRouteListener(this.handleRouteChange.bind(this));
   }
 
-  /**
-   * Handle the nameListService observable
-   */
-  getNames() {
-    // this.nameListService.get()
-    //                  .subscribe(
-    //                    names => this.names = names,
-    //                    error =>  this.errorMessage = <any>error
-    //                    );
+  handleRouteChange(routeDefinition: RouteDefinition) {
+    // Animate out.
+    // FIXME:
+    // - Add my custom animation module.
+    // - Create custom page-slide-in and page-slide-out animation jobs.
+    // - Call the jobs from the constructor and here.
   }
-
-  /**
-   * Pushes a new name onto the names array
-   * @return {boolean} false to prevent default form submit behavior to refresh the page.
-   */
-  addName(): boolean {
-    // TODO: implement nameListService.post
-    this.names.push(this.newName);
-    this.newName = '';
-    return false;
-  }
-
 }

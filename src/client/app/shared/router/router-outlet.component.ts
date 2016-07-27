@@ -2,6 +2,8 @@ import {Component, ComponentRef, DynamicComponentLoader, ViewContainerRef, Type}
 import {RouterService} from './router.service';
 import {RouteDefinition} from './route-config.model';
 
+const MAX_VIEW_ANIMATION_DURATION = 500;
+
 /**
  * This class represents a custom router outlet component.
  *
@@ -14,7 +16,8 @@ import {RouteDefinition} from './route-config.model';
   template: ''
 })
 export class RouterOutletComponent {
-  private oldComponentRef:ComponentRef<Type>;
+  private currComponentRef:ComponentRef<Type>;
+  private prevComponentRef:ComponentRef<Type>;
 
   constructor(private routerService: RouterService, private loader: DynamicComponentLoader,
               private containerRef: ViewContainerRef) {
@@ -25,11 +28,25 @@ export class RouterOutletComponent {
   }
 
   handleRouteChange(def: RouteDefinition) {
-    if (this.oldComponentRef) {
-      this.oldComponentRef.destroy();
+    this.loader.loadNextToLocation(def.component, this.containerRef)
+      .then((ref:ComponentRef<any>) => {
+        // Clean up any old component that may not have finished animating out.
+        this.destroyPreviousComponent();
+
+        this.prevComponentRef = this.currComponentRef;
+        this.currComponentRef = ref;
+
+        // Clean up the old component after letting it animate out.
+        setTimeout(() => {
+          this.destroyPreviousComponent();
+        }, MAX_VIEW_ANIMATION_DURATION);
+      });
+  }
+
+  private destroyPreviousComponent() {
+    if (this.prevComponentRef) {
+      this.prevComponentRef.destroy();
+      this.prevComponentRef = null;
     }
-    this.loader.loadNextToLocation(def.component, this.containerRef).then((ref:ComponentRef<any>) => {
-      this.oldComponentRef = ref;
-    });
   }
 }

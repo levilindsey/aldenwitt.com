@@ -1,0 +1,83 @@
+@import '../css/main';
+
+$note-pad-padding-left: 120px;
+$note-pad-line-spacing: 28px;
+$note-pad-width: 1000px;
+$note-pad-height: 1504px;
+
+:host {
+  background-color: #7c4a31;
+  display: block;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0;
+
+  > .title {
+    margin: 0 auto;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  h1,
+  h2 {
+    margin: 0;
+  }
+
+  h1 {
+    font-size: font-size(xxxl);
+  }
+
+  h2 {
+    font-size: font-size(xxl);
+  }
+}
+
+.note-pad {
+  background: repeating-linear-gradient(
+      to bottom,
+      #346fb2,
+      #346fb2 1px,
+      #e7ca5f 2px,
+      #e7ca5f
+  );
+  background-size: 100% $note-pad-line-spacing;
+  display: flex;
+  flex-direction: column;
+  height: $note-pad-height;
+  margin: 40px auto;
+  padding-left: $note-pad-padding-left;
+  position: relative;
+  width: $note-pad-width;
+}
+
+.note-pad::before {
+  border: 1px solid #aa0000;
+  border-bottom-width: 0;
+  border-top-width: 0;
+  content: '';
+  display: block;
+  width: 3px;
+  height: 100%;
+  left: $note-pad-padding-left;
+  position: absolute;
+  z-index: 1;
+}
+
+.body-area {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+alden-side-menu {
+  width: 304px;
+}
+
+.page-area {
+  position: relative;
+  width: 640px;
+}

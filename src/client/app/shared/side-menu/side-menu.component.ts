@@ -7,10 +7,10 @@ import {RouterLinkDirective} from '../router/index';
  */
 @Component({
   moduleId: module.id,
-  selector: 'alden-navbar',
-  templateUrl: 'navbar.component.html',
-  styleUrls: ['navbar.component.css'],
+  selector: 'alden-side-menu',
+  templateUrl: 'side-menu.component.html',
+  styleUrls: ['side-menu.component.css'],
   directives: [RouterLinkDirective]
 })
-export class NavbarComponent {
+export class SideMenuComponent {
 }

@@ -15,13 +15,18 @@ export class RouterService {
   private routeChangeStream = new Subject();
   private routes = new Map<String, RouteDefinition>();
   private isNavigationInProgress: boolean;
-
+  private defaultRoute: RouteDefinition;
 
   currentRoute: RouteDefinition;
 
   initialize(routeConfig: RouteConfig) {
     // Register a statically defined configuration of default routes.
-    routeConfig.forEach((def: RouteDefinition) => this.routes.set(def.name, def));
+    routeConfig.forEach((def: RouteDefinition) => {
+      this.routes.set(def.name, def);
+      if (def.isDefault) {
+        this.defaultRoute = def;
+      }
+    });
 
     // Listen for URL hash changes.
     window.addEventListener('hashchange', this.handleUrlChange.bind(this));
@@ -40,7 +45,7 @@ export class RouterService {
 
   goToRoute(routeName: string) {
     this.isNavigationInProgress = true;
-    let routeDefinition = this.routes.get(routeName);
+    let routeDefinition = this.routes.get(routeName) || this.defaultRoute;
     this.currentRoute = routeDefinition;
     location.hash = routeDefinition.path;
     this.routeChangeStream.next(routeDefinition);
@@ -53,18 +58,16 @@ export class RouterService {
       return;
     }
 
-    let path = location.hash.slice(1) || '/';
+    let path = location.hash.slice(1) || '';
 
-    let matchingDefinition;
+    let matchingDefinition: RouteDefinition;
     this.routes.forEach(def => {
       if (def.path === path) {
         matchingDefinition = def;
       }
     });
 
-    if (matchingDefinition) {
-      this.goToRoute(matchingDefinition.name);
-    }
+    this.goToRoute(matchingDefinition && matchingDefinition.name || '');
   }
 }
 

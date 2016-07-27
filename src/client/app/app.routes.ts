@@ -4,7 +4,7 @@ import {HomeComponent} from './home/index';
 
 export const ROUTER_PROVIDERS = [
   {provide: ROUTE_CONFIG, useValue: [
-    {name: 'home', path: '/', component: HomeComponent},
+    {name: 'home', path: '', component: HomeComponent, isDefault: true},
     {name: 'about', path: 'about', component: AboutComponent},
   ]}
 ];

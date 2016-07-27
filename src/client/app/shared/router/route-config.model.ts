@@ -7,5 +7,6 @@ export type RouteConfig = RouteDefinition[];
 export interface RouteDefinition {
   name: string,
   path: string,
-  component: any
+  component: any,
+  isDefault?: boolean
 }

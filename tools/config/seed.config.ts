@@ -283,6 +283,7 @@ export class SeedConfig {
   NPM_DEPENDENCIES: InjectableDependency[] = [
     { src: 'zone.js/dist/zone.js', inject: 'libs' },
     { src: 'core-js/client/shim.min.js', inject: 'shims' },
+    { src: 'web-animations-js/web-animations.min.js', inject: 'libs' },
     { src: 'systemjs/dist/system.src.js', inject: 'shims', env: ENVIRONMENTS.DEVELOPMENT },
     { src: 'rxjs/bundles/Rx.js', inject: 'libs', env: ENVIRONMENTS.DEVELOPMENT }
   ];

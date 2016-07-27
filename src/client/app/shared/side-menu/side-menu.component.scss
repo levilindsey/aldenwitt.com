@@ -1,0 +1,23 @@
+@import '../../../css/main';
+
+:host {
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+}
+
+nav a {
+  color: #444444;
+  font-size: font-size(xl);
+  font-weight: bold;
+  line-height: 48px;
+
+  &:hover {
+    color: #000000;
+  }
+  &:active {
+    color: #666666;
+  }
+}

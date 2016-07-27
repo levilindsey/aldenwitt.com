@@ -33,7 +33,8 @@ $font-sizes: (
   m: 16px,
   l: 18px,
   xl: 22px,
-  xxl: 32px,
+  xxl: 48px,
+  xxxl: 100px,
 );
 
 //@font-face {
@@ -54,6 +55,18 @@ $font-sizes: (
 
 @function font-size($size-name) {
   @return map-get($font-sizes, $size-name);
+}
+
+@mixin normal-shadow() {
+  box-shadow: 0 0 14px 0 rgba(color(gray-1), 0.3);
+}
+
+@mixin high-shadow() {
+  box-shadow: 0 0 28px 0 rgba(color(gray-1), 0.3);
+}
+
+@mixin low-shadow() {
+  box-shadow: 0 0 6px 0 rgba(color(gray-1), 0.3);
 }
 
 // --- General style reset --- //
@@ -84,10 +97,10 @@ button {
 html,
 body,
 alden-app {
-  position: relative;
-  width: 100%;
   height: 100%;
   overflow: hidden;
+  position: relative;
+  width: 100%;
 }
 
 ul {
@@ -98,7 +111,6 @@ ul {
 
 html {
   font-size: font-size(m);
-  line-height: font-size(m);
 }
 
 body {
