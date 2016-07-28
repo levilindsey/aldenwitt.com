@@ -1,8 +1,12 @@
-import {Component, ComponentRef, DynamicComponentLoader, ViewContainerRef, Type} from '@angular/core';
+import {
+  Component, ComponentRef, DynamicComponentLoader, ViewContainerRef, Type,
+  OnDestroy
+} from '@angular/core';
 import {RouterService} from './router.service';
 import {RouteDefinition} from './route-config.model';
+import {Subscription} from 'rxjs/Subscription';
 
-const MAX_VIEW_ANIMATION_DURATION = 500;
+const MAX_VIEW_ANIMATION_DURATION = 5000;
 
 /**
  * This class represents a custom router outlet component.
@@ -15,16 +19,17 @@ const MAX_VIEW_ANIMATION_DURATION = 500;
   selector: 'router-outlet',
   template: ''
 })
-export class RouterOutletComponent {
-  private currComponentRef:ComponentRef<Type>;
-  private prevComponentRef:ComponentRef<Type>;
+export class RouterOutletComponent implements OnDestroy {
+  private currComponentRef: ComponentRef<Type>;
+  private prevComponentRef: ComponentRef<Type>;
+  private routeSubscription: Subscription;
 
   constructor(private router: RouterService, private loader: DynamicComponentLoader,
               private containerRef: ViewContainerRef) {
-    router.registerRouteListener(this.handleRouteChange.bind(this));
+    this.routeSubscription = this.router.registerRouteListener(this.handleRouteChange.bind(this));
 
     // Render the initial route.
-    this.handleRouteChange(router.currentRoute);
+    this.handleRouteChange(this.router.currentRoute);
   }
 
   handleRouteChange(def: RouteDefinition) {
@@ -48,5 +53,9 @@ export class RouterOutletComponent {
       this.prevComponentRef.destroy();
       this.prevComponentRef = null;
     }
+  }
+
+  ngOnDestroy() {
+    this.router.unregisterRouteListener(this.routeSubscription);
   }
 }

@@ -21,8 +21,8 @@ let _LATENCY_LOG_LABEL = 'Animation frame period';
 @Injectable()
 export class AnimatorService {
   private jobs: AnimationJob[] = [];
-  private previousTime: number = window.performance && window.performance.now() || 0;
-  private isPaused: boolean = true;
+  private previousTime: number;
+  private _isPaused: boolean = true;
   private requestAnimationFrameId: number;
   private latencyProfiler: FrameLatencyProfiler =
     new FrameLatencyProfiler(_FRAME_LATENCY_LOG_PERIOD, _FRAME_DURATION_WARNING_THRESHOLD,
@@ -34,18 +34,18 @@ export class AnimatorService {
   startJob(job: AnimationJob) {
     // Is this a restart?
     if (!job.isComplete) {
-      console.debug(`Restarting AnimationJob: ${job.constructor.name}`);
+      console.debug(`Restarting AnimationJob: ${job.constructor.name} ${job.index}`);// FIXME
 
       if (job instanceof PersistentAnimationJob) {
         job.reset();
       } else {
-        job.finish(true);
-        job.start(this.previousTime);
+        job.finish();
+        job.start(window.performance.now());
       }
     } else {
-      console.debug(`Starting AnimationJob: ${job.constructor.name}`);
+      console.debug(`Starting AnimationJob: ${job.constructor.name} ${job.index} current jobs count:${this.jobs.length}`);// FIXME
 
-      job.start(this.previousTime);
+      job.start(window.performance.now());
       this.jobs.push(job);
     }
 
@@ -56,10 +56,8 @@ export class AnimatorService {
    * Cancels the given AnimationJob.
    */
   cancelJob(job: AnimationJob) {
-    console.debug(`Cancelling AnimationJob: ${job.constructor.name}`);
-
-    job.finish(true);
-    this.removeJob(job);
+    console.debug(`Cancelling AnimationJob: ${job.constructor.name} ${job.index}`);// FIXME
+    job.finish();
   }
 
   /**
@@ -76,7 +74,7 @@ export class AnimatorService {
   }
 
   get isPaused(): boolean {
-    return this.isPaused;
+    return this._isPaused;
   }
 
   pause() {
@@ -99,15 +97,14 @@ export class AnimatorService {
 
     // Large delays between frames can cause lead to instability in the system, so this caps them to
     // a max threshold.
-    deltaTime = deltaTime > _DELTA_TIME_UPPER_THRESHOLD ?
-        _DELTA_TIME_UPPER_THRESHOLD : deltaTime;
+    deltaTime = deltaTime > _DELTA_TIME_UPPER_THRESHOLD ? _DELTA_TIME_UPPER_THRESHOLD : deltaTime;
 
     this.previousTime = currentTime;
 
-    if (!this.isPaused) {
+    if (!this._isPaused) {
+      this.requestAnimationFrameId = window.requestAnimationFrame(this.animationLoop.bind(this));
       this.updateJobs(currentTime, deltaTime);
       this.drawJobs();
-      this.requestAnimationFrameId = window.requestAnimationFrame(t => this.animationLoop(t));
     }
   }
 
@@ -115,23 +112,22 @@ export class AnimatorService {
    * Updates all of the active AnimationJobs.
    */
   private updateJobs(currentTime: DOMHighResTimeStamp, deltaTime: DOMHighResTimeStamp) {
-    let i, count, job;
-
-    for (i = 0, count = this.jobs.length; i < count; i += 1) {
-      job = this.jobs[i];
-
-      // Check whether the job is transient and has reached its end.
-      if (job instanceof TransientAnimationJob && job.endTime < currentTime) {
-        job.finish(false);
-      } else {
-        job.update(currentTime, deltaTime);
-      }
+    for (let i = 0, count = this.jobs.length; i < count; i += 1) {
+      let job = this.jobs[i];
 
       // Remove jobs from the list after they are complete
       if (job.isComplete) {
         this.removeJob(job, i);
         i--;
         count--;
+        continue;
+      }
+
+      // Check whether the job is transient and has reached its end.
+      if (job instanceof TransientAnimationJob && job.endTime < currentTime) {
+        job.finish();
+      } else {
+        job.update(currentTime, deltaTime);
       }
     }
   }
@@ -140,12 +136,15 @@ export class AnimatorService {
    * Removes the given job from the collection of active, animating jobs.
    */
   private removeJob(job: AnimationJob, index: number = -1) {
-    let count;
-
+    console.debug(`Removing AnimationJob: ${job.constructor.name} ${job.index} current jobs count:${this.jobs.length}`);// FIXME
+    // if (job.index === 18) {
+    //   debugger;// FIXME
+    // }
     if (index >= 0) {
       this.jobs.splice(index, 1);
     } else {
-      for (index = 0, count = this.jobs.length; index < count; index += 1) {
+      let count = this.jobs.length;
+      for (index = 0; index < count; index += 1) {
         if (this.jobs[index] === job) {
           this.jobs.splice(index, 1);
           break;
@@ -155,7 +154,7 @@ export class AnimatorService {
 
     // Stop the animation loop when there are no more jobs to animate
     if (this.jobs.length === 0) {
-      this.isPaused = true;
+      this.stopAnimationLoop();
     }
   }
 
@@ -163,9 +162,7 @@ export class AnimatorService {
    * Draws all of the active AnimationJobs.
    */
   private drawJobs() {
-    let i, count;
-
-    for (i = 0, count = this.jobs.length; i < count; i += 1) {
+    for (let i = 0, count = this.jobs.length; i < count; i += 1) {
       this.jobs[i].draw();
     }
   }
@@ -176,20 +173,13 @@ export class AnimatorService {
    * This method is idempotent.
    */
   private startAnimationLoop() {
-    this.isPaused = false;
+    this._isPaused = false;
 
     // Only actually start the loop if it isn't already running and the page has focus.
     if (!this.requestAnimationFrameId && !document.hidden) {
       this.latencyProfiler.start();
-      this.requestAnimationFrameId =
-          window.requestAnimationFrame(t => _firstAnimationLoop.call(this, t));
-    }
-
-    // TODO: I originally used this because I didn't know about performance.now(). I should now be
-    // able to replace this.
-    function _firstAnimationLoop(currentTime: DOMHighResTimeStamp) {
-      this.previousTime = currentTime;
-      this.requestAnimationFrameId = window.requestAnimationFrame(t => this.animationLoop(t));
+      this.previousTime = window.performance.now();
+      this.requestAnimationFrameId = window.requestAnimationFrame(this.animationLoop.bind(this));
     }
   }
 
@@ -197,7 +187,8 @@ export class AnimatorService {
    * Stops the animation loop.
    */
   private stopAnimationLoop() {
-    this.isPaused = true;
+    console.debug(`stopAnimationLoop`);// FIXME
+    this._isPaused = true;
     window.cancelAnimationFrame(this.requestAnimationFrameId);
     this.requestAnimationFrameId = null;
     this.latencyProfiler.stop();

@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
+import {Subscription} from 'rxjs/Subscription';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {RouteConfig, RouteDefinition} from './route-config.model';
@@ -35,8 +36,12 @@ export class RouterService {
     this.handleUrlChange();
   }
 
-  registerRouteListener(callback: RouteChangeHandler) {
-    this.routeChangeStream.subscribe(callback);
+  registerRouteListener(callback: RouteChangeHandler): Subscription {
+    return this.routeChangeStream.subscribe(callback);
+  }
+
+  unregisterRouteListener(subscription: Subscription) {
+    subscription.unsubscribe();
   }
 
   registerRoute(def: RouteDefinition) {

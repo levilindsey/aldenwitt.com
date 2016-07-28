@@ -1,0 +1,12 @@
+@import '../../css/main';
+
+:host {
+  display: block;
+  position: absolute;
+}
+
+.page-content {
+  background-color: #d8d1b6;
+  padding: 32px;
+  @include normal-shadow();
+}

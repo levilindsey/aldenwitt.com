@@ -8,5 +8,5 @@ export abstract class PersistentAnimationJob extends AnimationJob {
     super(onComplete);
   }
 
-  abstract reset();
+  abstract reset(): void;
 }

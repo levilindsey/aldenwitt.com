@@ -8,7 +8,8 @@
  * @param {Array.<string>} [classes] The classes to give the new element.
  * @returns {HTMLElement} The new element.
  */
-export function createElement(tagName: string, parent: HTMLElement, id: string, classes: string[]): HTMLElement {
+export function createElement(tagName: string, parent: HTMLElement, id: string, classes: string[]):
+    HTMLElement {
   let element = document.createElement(tagName);
   if (parent) {
     parent.appendChild(element);
@@ -32,14 +33,15 @@ export function addClass(element: HTMLElement, className: string) {
   element.setAttribute('class', element.className + ' ' + className);
 }
 
+// FIXME: rewrite getDocumentOffset using element.getBoundingClientRect() and window.pageXOffset (and copy to other projects)
 /**
- * Gets the coordinates of the element relative to the top-left corner of the page.
+ * Gets the coordinates of the element relative to the top-left corner of the overall document.
  *
  * @param {HTMLElement} element The element to get the coordinates of.
  * @returns {{x: number, y: number}} The coordinates of the element relative to the top-left
  * corner of the page.
  */
-export function getPageOffset(element: HTMLElement): {x: number, y: number} {
+export function getDocumentOffset(element: HTMLElement): {x: number, y: number} {
   let x = 0, y = 0;
   while (element) {
     x += element.offsetLeft;
@@ -226,6 +228,8 @@ export let inverseEasingFunctions = {
   easeInOutQuad: t => t < 0.5 ? Math.sqrt(t * 0.5) : 1 - 0.70710678 * Math.sqrt(1 - t)
 };
 
+export type EasingFunction = (t: number) => number;
+
 /**
  * Calculates the x and y coordinates represented by the given Bezier curve at the given
  * percentage.
@@ -277,8 +281,8 @@ export function setTransform(element: HTMLElement, transform: string) {
  * @param {number} [scale=1]
  */
 export function createTransformString(translationX: number, translationY: number,
-                                      rotation: number = 0, scale: number = 1) {
-  // FIXME
+                                      rotation: number = 0, scale: number = 1): string {
+  return `translate(${translationX}px, ${translationY}px) rotate(${rotation}rad) scale(${scale})`;
 }
 
 /**
@@ -541,19 +545,20 @@ export function debounce(fn: Function, delay: number, immediate: boolean): Funct
   };
 }
 
-export function error(message: string, error: Error, shouldThrowAnError: boolean = true,
+export function error(message: string | string[], error: Error, shouldThrowAnError: boolean = true,
                shouldInformTheUser: boolean = false) {
   let stackTrace;
 
   // Create an array from the message.
+  let messages: string[];
   if (!(message instanceof Array)) {
-    message = message ? [message] : [];
+    messages = message ? [message as string] : [];
   }
 
   // Get info from the error object.
   if (error instanceof Error) {
     stackTrace = error.stack;
-    message.push(error.message);
+    messages.push(error.message);
   } else {
     if (error) {
       console.warn(`A non-error object was thrown: ${typeof error}.`);
@@ -561,25 +566,25 @@ export function error(message: string, error: Error, shouldThrowAnError: boolean
     stackTrace = getStackTrace();
   }
 
-  if (message.length === 0) {
-    message.push('An error occurred');
+  if (messages.length === 0) {
+    messages.push('An error occurred');
   }
 
-  message = _interleave(message, '\n');
+  messages = _interleave(messages, '\n');
 
-  console.error(...message, '\n', stackTrace);
+  console.error(...messages, '\n', stackTrace);
 
-  message = message.join('');
+  message = messages.join('');
 
   if (shouldInformTheUser) {
-    alert(message);
+    alert(message as string);
   }
   if (shouldThrowAnError) {
-    throw new Error(message);
+    throw new Error(message as string);
   }
 }
 
-function _interleave(array: Array | string, delimiter: any): Array {
+function _interleave(array: Array<any> | string, delimiter: any): Array<any> {
   let result = new Array(array.length * 2 - 1);
   if (array.length) {
     result.push(array[0]);
@@ -594,7 +599,7 @@ function _interleave(array: Array | string, delimiter: any): Array {
 /**
  * Loads the given src for the given image.
  */
-export function loadImageSrc(image: HTMLImageElement, src: string): Promise<HTMLImageElement, Error> {
+export function loadImageSrc(image: HTMLImageElement, src: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
     console.debug(`Loading image: ${src}`);
 
@@ -609,7 +614,7 @@ export function loadImageSrc(image: HTMLImageElement, src: string): Promise<HTML
 /**
  * Loads text from the given URL.
  */
-export function loadText(url: string): Promise<string, Error> {
+export function loadText(url: string): Promise<string> {
   return new Promise((resolve, reject) => {
     let xhr = new XMLHttpRequest();
 
@@ -627,8 +632,8 @@ export function loadText(url: string): Promise<string, Error> {
 /**
  * Loads a JSON object from the given URL.
  */
-export function loadJson(url: string): Promise<Object, Error> {
-  return loadText(url).then(jsonText => JSON.parse(jsonText));
+export function loadJson(url: string): Promise<Object> {
+  return loadText(url).then((jsonText: string) => JSON.parse(jsonText));
 }
 
 /**
@@ -695,7 +700,7 @@ export function handlePageFocusChange(focusChangeHandler: Function) {
  * Creates an array with all the consecutive numbers from start (inclusive) to end (exclusive).
  */
 export function range(start: number, end: number): number[] {
-  let r = [];
+  let r: number[] = [];
   for (let i = 0, j = start; j < end; i++, j++) {
     r[i] = j;
   }

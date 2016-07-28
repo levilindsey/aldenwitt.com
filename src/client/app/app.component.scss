@@ -51,6 +51,7 @@ header {
   padding-left: $note-pad-padding-left;
   position: relative;
   width: $note-pad-width;
+  @include normal-shadow();
 }
 
 .note-pad::before {

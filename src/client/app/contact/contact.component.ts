@@ -4,15 +4,15 @@ import {RouterService} from '../shared/router/index';
 import {SlidingPage} from '../shared/sliding-page/index';
 
 /**
- * This class represents the lazy loaded HomeComponent.
+ * This class represents the lazy loaded ContactComponent.
  */
 @Component({
   moduleId: module.id,
-  selector: 'alden-home',
-  templateUrl: 'home.component.html',
-  styleUrls: ['home.component.css']
+  selector: 'alden-contact',
+  templateUrl: 'contact.component.html',
+  styleUrls: ['contact.component.css']
 })
-export class HomeComponent extends SlidingPage implements OnDestroy {
+export class ContactComponent extends SlidingPage implements OnDestroy {// FIXME: not showing up with correct template???????
   constructor(pageElementRef: ElementRef, animator: AnimatorService, router: RouterService) {
     super(pageElementRef, animator, router);
   }

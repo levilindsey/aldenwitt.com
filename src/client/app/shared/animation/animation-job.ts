@@ -1,20 +1,16 @@
 import {DOMHighResTimeStamp} from './animator.service';
 
+var count = 0;// FIXME
+
 /**
  * An AnimationJob is used with the animator controller to update and re-draw something each frame.
  */
 export abstract class AnimationJob {
   protected startTime: DOMHighResTimeStamp = 0;
-  protected isComplete: boolean = true;
+  isComplete: boolean = true;
+  index;
 
-  constructor(protected onComplete?: Function) {}
-
-  /**
-   * Indicates whether this AnimationJob is complete.
-   */
-  get isComplete(): boolean {
-    return this.isComplete;
-  }
+  constructor(protected onComplete?: Function) {this.index = count++;}
 
   /**
    * Sets this AnimationJob as started.
@@ -29,7 +25,7 @@ export abstract class AnimationJob {
    *
    * This is called from the overall animation loop.
    */
-  abstract update(currentTime: DOMHighResTimeStamp, deltaTime: DOMHighResTimeStamp);
+  abstract update(currentTime: DOMHighResTimeStamp, deltaTime: DOMHighResTimeStamp): void;
 
   /**
    * Draws the current state of this AnimationJob.
@@ -41,9 +37,10 @@ export abstract class AnimationJob {
   /**
    * Handles any necessary state for this AnimationJob being finished.
    */
-  finish(isCancelled: boolean) {
-    console.log(`${this.constructor.name} ${isCancelled ? 'cancelled' : 'completed'}`);
-
+  finish() {
+    // if (this.index === 18) {
+    //   debugger;// FIXME
+    // }
     this.isComplete = true;
 
     if (this.onComplete) {

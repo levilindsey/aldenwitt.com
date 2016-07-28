@@ -15,10 +15,10 @@ import {provideFakeRouter} from '../testing/router/router-testing-providers';
 
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
-import {AboutComponent} from './about/about.component';
+import {BioComponent} from './bio/bio.component';
+import {ContactComponent} from './contact/contact.component';
 
 export function main() {
-
   describe('App component', () => {
     // Disable old forms
     let providerArr: any[];
@@ -29,7 +29,8 @@ export function main() {
       // Support for testing component that uses Router
       let config:RouterConfig = [
         {path: '', component: HomeComponent},
-        {path: 'about', component: AboutComponent}
+        {path: 'bio', component: BioComponent}
+        {path: 'contact', component: ContactComponent}
       ];
 
       addProviders([
@@ -42,7 +43,7 @@ export function main() {
         tcb.overrideProviders(TestComponent, providerArr)
           .createAsync(TestComponent)
           .then((fixture) => {
-            expect(fixture.nativeElement.innerText.indexOf('HOME')).toBeTruthy();
+            expect(fixture.nativeElement.innerText.indexOf('Home')).toBeTruthy();
           });
       })));
   });

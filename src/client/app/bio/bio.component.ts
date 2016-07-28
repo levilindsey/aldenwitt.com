@@ -4,15 +4,15 @@ import {RouterService} from '../shared/router/index';
 import {SlidingPage} from '../shared/sliding-page/index';
 
 /**
- * This class represents the lazy loaded HomeComponent.
+ * This class represents the lazy loaded BioComponent.
  */
 @Component({
   moduleId: module.id,
-  selector: 'alden-home',
-  templateUrl: 'home.component.html',
-  styleUrls: ['home.component.css']
+  selector: 'alden-bio',
+  templateUrl: 'bio.component.html',
+  styleUrls: ['bio.component.css']
 })
-export class HomeComponent extends SlidingPage implements OnDestroy {
+export class BioComponent extends SlidingPage implements OnDestroy {
   constructor(pageElementRef: ElementRef, animator: AnimatorService, router: RouterService) {
     super(pageElementRef, animator, router);
   }
