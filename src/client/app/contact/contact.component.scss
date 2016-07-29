@@ -1,12 +1,54 @@
 @import '../../css/main';
 
+// Polaroid picture cards have overall dimensions of 3.5x4.25. The actual pictures are 3x3.125.
+$polaroid-card-aspect-ratio: 3.5 / 4.25;
+$polaroid-image-aspect-ratio: 3 / 3.125;
+
+$polaroid-width: 630px;
+$polaroid-padding: 20px;
+
+$polaroid-height: ($polaroid-width - $polaroid-padding * 2) / $polaroid-card-aspect-ratio;
+$polaroid-image-width: $polaroid-width - $polaroid-padding * 2;
+$polaroid-image-height: $polaroid-image-width / $polaroid-image-aspect-ratio;
+
 :host {
-  display: block;
-  position: absolute;
+  @include page();
 }
 
 .page-content {
-  background-color: #d8d1b6;
-  padding: 32px;
+  background-color: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  height: $polaroid-height;
+  padding: $polaroid-padding $polaroid-padding 0 $polaroid-padding;
+  width: $polaroid-width - $polaroid-padding * 2;
   @include normal-shadow();
+}
+
+.img-wrapper {
+  flex: 0 0 auto;
+  height: $polaroid-image-height;
+  overflow: hidden;
+  position: relative;
+  width: $polaroid-image-width;
+}
+
+img {
+  position: absolute;
+  margin: auto;
+  min-height: 100%;
+  min-width: 100%;
+  top: -500%;
+  right: -500%;
+  bottom: -500%;
+  left: -500%;
+}
+
+.caption {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  font-size: font-size(xl);
+  text-align: center;
 }

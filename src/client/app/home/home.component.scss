@@ -1,8 +1,7 @@
 @import '../../css/main';
 
 :host {
-  display: block;
-  position: absolute;
+  @include page();
 }
 
 .page-content {

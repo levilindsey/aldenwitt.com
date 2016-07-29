@@ -5,8 +5,8 @@ import {ContactComponent} from './contact/contact.component';
 
 export const ROUTER_PROVIDERS = [
   {provide: ROUTE_CONFIG, useValue: [
-    {name: 'home', path: '', component: HomeComponent, isDefault: true},
-    {name: 'bio', path: 'bio', component: BioComponent},
-    {name: 'contact', path: 'contact', component: ContactComponent},
+    {name: 'home', path: '', label: 'Home', component: HomeComponent, isDefault: true},
+    {name: 'bio', path: 'bio', label: 'Bio', component: BioComponent},
+    {name: 'contact', path: 'contact', label: 'Contact', component: ContactComponent},
   ]}
 ];

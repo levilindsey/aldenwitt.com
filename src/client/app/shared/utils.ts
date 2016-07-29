@@ -330,7 +330,7 @@ export function getScaleFromTransform(element: HTMLElement): number {
 function _getPartFromTransform(element: HTMLElement, regexp: RegExp): number {
   let style = element.style;
   let transform = style.transform || style.webkitTransform || style.mozTransform;
-  let result = transform.match(regexp);
+  let result = transform ? transform.match(regexp) : null;
   return result ? parseFloat(result[1]) : 0;
 }
 

@@ -1,6 +1,5 @@
-import {Component} from '@angular/core';
-import {RouterService} from '../router/index';
-import {RouterLinkDirective} from '../router/index';
+import {Component, Inject} from '@angular/core';
+import {ROUTE_CONFIG, RouteConfig, RouterLinkDirective, RouterService} from '../router/index';
 
 /**
  * This class represents the navigation bar component.
@@ -13,4 +12,6 @@ import {RouterLinkDirective} from '../router/index';
   directives: [RouterLinkDirective]
 })
 export class SideMenuComponent {
+  constructor(@Inject(ROUTE_CONFIG) public routeConfig: RouteConfig,
+              public router: RouterService) {}
 }

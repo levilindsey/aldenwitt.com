@@ -1,5 +1,11 @@
 <nav>
-  <a routerLink="home">Home</a>
-  <a routerLink="bio">Bio</a>
-  <a routerLink="contact">Contact</a>
+  <div *ngFor="let route of routeConfig">
+    <a *ngIf="router.currentRoute !== route"
+       routerLink="{{route.name}}">
+      {{route.label}}
+    </a>
+    <span *ngIf="router.currentRoute === route">
+      {{route.label}}
+    </span>
+  </div>
 </nav>

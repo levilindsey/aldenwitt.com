@@ -8,11 +8,16 @@ nav {
   flex-direction: column;
 }
 
-nav a {
-  color: #444444;
+a,
+span {
+  color: #080808;
   font-size: font-size(xl);
   font-weight: bold;
   line-height: 48px;
+}
+
+a {
+  color: #444444;
 
   &:hover {
     color: #000000;

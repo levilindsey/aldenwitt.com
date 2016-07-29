@@ -69,6 +69,15 @@ $font-sizes: (
   box-shadow: 0 0 6px 0 rgba(color(gray-1), 0.3);
 }
 
+@mixin page() {
+  display: block;
+  position: absolute;
+
+  h2 {
+    margin-bottom: 40px;
+  }
+}
+
 // --- General style reset --- //
 
 ul,
@@ -130,6 +139,7 @@ h5 {
 
 a {
   //  color: color(...);
+  cursor: pointer;
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -142,8 +152,4 @@ a:hover {
 }
 a:active {
   //  color: color(...);
-}
-
-[routerLink] {
-  cursor: pointer;
 }
