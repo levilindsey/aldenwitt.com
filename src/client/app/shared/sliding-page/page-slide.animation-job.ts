@@ -58,16 +58,17 @@ class PageSlideJob extends TransientAnimationJob {
 }
 
 export class PageSlideInJob extends PageSlideJob {
-  constructor(pageElement: HTMLElement, bodyElement: HTMLElement, endRotation: number) {
+  constructor(pageElement: HTMLElement, bodyElement: HTMLElement, endRotation: number, startRotation?: number, duration?: number) {
     let documentOffsetY = getDocumentOffset(pageElement).y;
     let startTranslationX = 50;
     let startTranslationY = bodyElement.clientHeight - documentOffsetY + 400;
-    let startRotation = Math.PI / 6;
+    let startRotation = typeof startRotation === 'number' ? startRotation : Math.PI / 6;
     let endTranslationX = 0;
     let endTranslationY = 0;
+    duration = typeof duration === 'number' ? duration : SLIDE_IN_DURATION;
 
     super(pageElement, startTranslationX, startTranslationY, startRotation, endTranslationX,
-        endTranslationY, endRotation, SLIDE_IN_DURATION);
+        endTranslationY, endRotation, duration);
   }
 }
 

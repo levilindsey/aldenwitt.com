@@ -36,7 +36,7 @@ export class RouterOutletComponent implements OnDestroy {
     this.loader.loadNextToLocation(def.component, this.containerRef)
       .then((ref:ComponentRef<any>) => {
         // Clean up any old component that may not have finished animating out.
-        this.destroyPreviousComponent();
+        this.destroyPreviousComponent(this.prevComponentRef);
 
         this.prevComponentRef = this.currComponentRef;
         this.currComponentRef = ref;

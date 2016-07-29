@@ -11,12 +11,12 @@ import {
   RouterConfig
 } from '@angular/router';
 
-import {provideFakeRouter} from '../testing/router/router-testing-providers';
+import {provideFakeRouter} from '../../testing/router/router-testing-providers';
 
 import {AppComponent} from './app.component';
-import {HomeComponent} from './home/home.component';
-import {BioComponent} from './bio/bio.component';
-import {ContactComponent} from './contact/contact.component';
+import {HomeComponent} from '../home/home.component';
+import {BioComponent} from '../bio/bio.component';
+import {ContactComponent} from '../contact/contact.component';
 
 export function main() {
   describe('App component', () => {
@@ -29,7 +29,7 @@ export function main() {
       // Support for testing component that uses Router
       let config:RouterConfig = [
         {path: '', component: HomeComponent},
-        {path: 'bio', component: BioComponent}
+        {path: 'bio', component: BioComponent},
         {path: 'contact', component: ContactComponent}
       ];
 

@@ -106,6 +106,7 @@ button {
 html,
 body,
 alden-app {
+  display: block;
   height: 100%;
   overflow: hidden;
   position: relative;
@@ -126,7 +127,7 @@ body {
   @include helvetica-stack();
 
   color: color(gray-1);
-  background-color: color(gray-5);
+  background-color: color(gray-3);
 }
 
 h1,
@@ -152,4 +153,18 @@ a:hover {
 }
 a:active {
   //  color: color(...);
+}
+
+.loading {
+  bottom: 0;
+  color: color(black);
+  font-size: font-size(xxl);
+  line-height: font-size(xxl);
+  height: font-size(xxl);
+  margin: auto;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  vertical-align: middle;
+  width: 100%;
 }
