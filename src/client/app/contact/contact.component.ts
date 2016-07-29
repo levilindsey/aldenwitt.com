@@ -12,7 +12,7 @@ import {SlidingPage} from '../shared/sliding-page/index';
   templateUrl: 'contact.component.html',
   styleUrls: ['contact.component.css']
 })
-export class ContactComponent extends SlidingPage implements OnDestroy {// FIXME: not showing up with correct template???????
+export class ContactComponent extends SlidingPage implements OnDestroy {
   constructor(pageElementRef: ElementRef, animator: AnimatorService, router: RouterService) {
     super(pageElementRef, animator, router);
   }

@@ -286,6 +286,55 @@ export function createTransformString(translationX: number, translationY: number
 }
 
 /**
+ * Extracts the translateX value from a CSS transform string.
+ *
+ * - This only works if the translate value is specified explicitly within the string (e.g., this
+ *   will not work if translateX is specified instead).
+ * - This returns the magnitude of the value regardless of the unit.
+ */
+export function getTranslateXFromTransform(element: HTMLElement): number {
+  return _getPartFromTransform(element, /translate\(([^),]+), ?[^)]+\)/);
+}
+
+/**
+ * Extracts the translateY value from a CSS transform string.
+ *
+ * - This only works if the translate value is specified explicitly within the string (e.g., this
+ *   will not work if translateY is specified instead).
+ * - This returns the magnitude of the value regardless of the unit.
+ */
+export function getTranslateYFromTransform(element: HTMLElement): number {
+  return _getPartFromTransform(element, /translate\([^),]+, ?([^)]+)\)/);
+}
+
+/**
+ * Extracts the rotate value from a CSS transform string.
+ *
+ * - This only works if the rotate value is specified explicitly within the string.
+ * - This returns the magnitude of the value regardless of the unit.
+ */
+export function getRotateFromTransform(element: HTMLElement): number {
+  return _getPartFromTransform(element, /rotate\(([^)]+)\)/);
+}
+
+/**
+ * Extracts the scale value from a CSS transform string.
+ *
+ * - This only works if the scale value is specified explicitly within the string.
+ * - This returns the magnitude of the value regardless of the unit.
+ */
+export function getScaleFromTransform(element: HTMLElement): number {
+  return _getPartFromTransform(element, /scale\(([^)]+)\)/);
+}
+
+function _getPartFromTransform(element: HTMLElement, regexp: RegExp): number {
+  let style = element.style;
+  let transform = style.transform || style.webkitTransform || style.mozTransform;
+  let result = transform.match(regexp);
+  return result ? parseFloat(result[1]) : 0;
+}
+
+/**
  * Returns a copy of the given array with its contents re-arranged in a random order.
  *
  * The original array is left in its original order.

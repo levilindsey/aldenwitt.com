@@ -34,16 +34,16 @@ export class AnimatorService {
   startJob(job: AnimationJob) {
     // Is this a restart?
     if (!job.isComplete) {
-      console.debug(`Restarting AnimationJob: ${job.constructor.name} ${job.index}`);// FIXME
+      console.debug(`Restarting AnimationJob: ${job.constructor.name}`);
 
       if (job instanceof PersistentAnimationJob) {
         job.reset();
       } else {
-        job.finish();
+        job.finish(true);
         job.start(window.performance.now());
       }
     } else {
-      console.debug(`Starting AnimationJob: ${job.constructor.name} ${job.index} current jobs count:${this.jobs.length}`);// FIXME
+      console.debug(`Starting AnimationJob: ${job.constructor.name}`);
 
       job.start(window.performance.now());
       this.jobs.push(job);
@@ -56,8 +56,8 @@ export class AnimatorService {
    * Cancels the given AnimationJob.
    */
   cancelJob(job: AnimationJob) {
-    console.debug(`Cancelling AnimationJob: ${job.constructor.name} ${job.index}`);// FIXME
-    job.finish();
+    console.debug(`Cancelling AnimationJob: ${job.constructor.name}`);
+    job.finish(true);
   }
 
   /**
@@ -125,7 +125,7 @@ export class AnimatorService {
 
       // Check whether the job is transient and has reached its end.
       if (job instanceof TransientAnimationJob && job.endTime < currentTime) {
-        job.finish();
+        job.finish(false);
       } else {
         job.update(currentTime, deltaTime);
       }
@@ -136,10 +136,7 @@ export class AnimatorService {
    * Removes the given job from the collection of active, animating jobs.
    */
   private removeJob(job: AnimationJob, index: number = -1) {
-    console.debug(`Removing AnimationJob: ${job.constructor.name} ${job.index} current jobs count:${this.jobs.length}`);// FIXME
-    // if (job.index === 18) {
-    //   debugger;// FIXME
-    // }
+    console.debug(`Removing AnimationJob: ${job.constructor.name}`);
     if (index >= 0) {
       this.jobs.splice(index, 1);
     } else {
@@ -187,7 +184,6 @@ export class AnimatorService {
    * Stops the animation loop.
    */
   private stopAnimationLoop() {
-    console.debug(`stopAnimationLoop`);// FIXME
     this._isPaused = true;
     window.cancelAnimationFrame(this.requestAnimationFrameId);
     this.requestAnimationFrameId = null;

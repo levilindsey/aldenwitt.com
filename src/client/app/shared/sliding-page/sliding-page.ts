@@ -13,7 +13,6 @@ const MAX_PAGE_ROTATION = Math.PI / 28;
  */
 export class SlidingPage implements OnDestroy {
   private pageElement: HTMLElement;
-  private rotation: number;
   private slideJob: TransientAnimationJob;
   private routeSubscription: Subscription;
 
@@ -21,20 +20,21 @@ export class SlidingPage implements OnDestroy {
               private router: RouterService) {
     this.pageElement = pageElementRef.nativeElement;
     let bodyElement: HTMLElement = document.querySelector('body') as HTMLElement;
-    this.rotation = randomFloatInRange(-MAX_PAGE_ROTATION, MAX_PAGE_ROTATION);
+    let rotation = randomFloatInRange(-MAX_PAGE_ROTATION, MAX_PAGE_ROTATION);
 
     // Animate in.
-    this.slideJob = new PageSlideInJob(this.pageElement, bodyElement, this.rotation);
+    this.slideJob = new PageSlideInJob(this.pageElement, bodyElement, rotation);
     this.animator.startJob(this.slideJob);
 
     this.routeSubscription = this.router.registerRouteListener(this.handleRouteChange.bind(this));
   }
 
   handleRouteChange(routeDefinition: RouteDefinition) {
+    this.router.unregisterRouteListener(this.routeSubscription);
     this.cancelPreviousAnimation();
 
     // Animate out.
-    this.slideJob = new PageSlideOutJob(this.pageElement, this.rotation);
+    this.slideJob = new PageSlideOutJob(this.pageElement);
     this.animator.startJob(this.slideJob);
   }
 

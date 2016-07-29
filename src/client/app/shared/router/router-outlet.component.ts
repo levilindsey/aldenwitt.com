@@ -42,16 +42,15 @@ export class RouterOutletComponent implements OnDestroy {
         this.currComponentRef = ref;
 
         // Clean up the old component after letting it animate out.
-        setTimeout(() => {
-          this.destroyPreviousComponent();
-        }, MAX_VIEW_ANIMATION_DURATION);
+        setTimeout(this.destroyPreviousComponent.bind(this, this.prevComponentRef),
+            MAX_VIEW_ANIMATION_DURATION);
       });
   }
 
-  private destroyPreviousComponent() {
-    if (this.prevComponentRef) {
-      this.prevComponentRef.destroy();
-      this.prevComponentRef = null;
+  private destroyPreviousComponent(prevComponentRef) {
+    if (prevComponentRef) {
+      prevComponentRef.destroy();
+      prevComponentRef = null;
     }
   }
 

@@ -1,11 +1,14 @@
 import {DOMHighResTimeStamp, TransientAnimationJob} from '../animation/index';
-import {createTransformString, easingFunctions, getDocumentOffset, setTransform} from '../utils';
+import {
+  createTransformString, easingFunctions, getDocumentOffset, setTransform,
+  getTranslateXFromTransform, getTranslateYFromTransform, getRotateFromTransform
+} from '../utils';
 
 // In milliseconds.
-const SLIDE_IN_DURATION = 3500;
-const SLIDE_OUT_DURATION = 2500;
+const SLIDE_IN_DURATION = 400;
+const SLIDE_OUT_DURATION = 700;
 
-class PageSlideJob extends TransientAnimationJob {// FIXME: Figure out why and fix the bug where the page sliding out is destroyed early
+class PageSlideJob extends TransientAnimationJob {
   private deltaTranslationX: number;
   private deltaTranslationY: number;
   private deltaRotation: number;
@@ -21,13 +24,16 @@ class PageSlideJob extends TransientAnimationJob {// FIXME: Figure out why and f
     this.deltaTranslationX = endTranslationX - startTranslationX;
     this.deltaTranslationY = endTranslationY - startTranslationY;
     this.deltaRotation = endRotation - startRotation;
-    super(duration, easingFunctions.easeInOutQuart);
+    super(duration, easingFunctions.easeInOutQuad);
   }
 
   update(currentTime: DOMHighResTimeStamp, deltaTime: DOMHighResTimeStamp) {
     let progress = (currentTime - this.startTime) / this.duration;
     progress = this.easingFunction(progress);
+    this.updateWithProgress(progress);
+  }
 
+  private updateWithProgress(progress: number) {
     this.currentTranslationX = this.deltaTranslationX * progress + this.startTranslationX;
     this.currentTranslationY = this.deltaTranslationY * progress + this.startTranslationY;
     this.currentRotation = this.deltaRotation * progress + this.startRotation;
@@ -38,13 +44,24 @@ class PageSlideJob extends TransientAnimationJob {// FIXME: Figure out why and f
         this.currentRotation);
     setTransform(this.pageElement, transform);
   }
+
+  finish(isCancelled: boolean) {
+    if (isCancelled) {
+      // Leave the page where it is, so that the slide-out animation can start at the current
+      // position.
+    } else {
+      // End the animation with the page at its destination.
+      this.updateWithProgress(1);
+      this.draw();
+    }
+  }
 }
 
 export class PageSlideInJob extends PageSlideJob {
   constructor(pageElement: HTMLElement, bodyElement: HTMLElement, endRotation: number) {
     let documentOffsetY = getDocumentOffset(pageElement).y;
     let startTranslationX = 50;
-    let startTranslationY = bodyElement.clientHeight - documentOffsetY + 40;
+    let startTranslationY = bodyElement.clientHeight - documentOffsetY + 400;
     let startRotation = Math.PI / 6;
     let endTranslationX = 0;
     let endTranslationY = 0;
@@ -55,11 +72,12 @@ export class PageSlideInJob extends PageSlideJob {
 }
 
 export class PageSlideOutJob extends PageSlideJob {
-  constructor(pageElement: HTMLElement, startRotation: number) {
+  constructor(pageElement: HTMLElement) {
+    let startTranslationX = getTranslateXFromTransform(pageElement);
+    let startTranslationY = getTranslateYFromTransform(pageElement);
+    let startRotation = getRotateFromTransform(pageElement);
     let documentOffsetX = getDocumentOffset(pageElement).x;
-    let startTranslationX = 0;
-    let startTranslationY = 0;
-    let endTranslationX = -(documentOffsetX + pageElement.clientWidth + 40);// FIXME: Check that clientWidth is correct (as opposed to offsetWidth)
+    let endTranslationX = -(documentOffsetX + pageElement.clientWidth + 400);// FIXME: Check that clientWidth is correct (as opposed to offsetWidth)
     let endTranslationY = 100;
     let endRotation = Math.PI / 6;
 
