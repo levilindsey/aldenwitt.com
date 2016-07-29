@@ -6,7 +6,7 @@ import {RouterService} from './router.service';
 import {RouteDefinition} from './route-config.model';
 import {Subscription} from 'rxjs/Subscription';
 
-const MAX_VIEW_ANIMATION_DURATION = 5000;
+const MAX_VIEW_ANIMATION_DURATION = 1000;
 
 /**
  * This class represents a custom router outlet component.

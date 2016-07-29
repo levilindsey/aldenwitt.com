@@ -5,6 +5,11 @@ import {PageSlideInJob, PageSlideOutJob} from './page-slide.animation-job';
 import {randomFloatInRange} from '../utils';
 import {Subscription} from 'rxjs/Subscription';
 
+// In milliseconds.
+const INITIAL_SLIDE_IN_DURATION = 700;
+const SLIDE_IN_DURATION = 400;
+const SLIDE_OUT_DURATION = 700;
+
 // In radians.
 const MAX_PAGE_ROTATION = Math.PI / 28;
 
@@ -23,7 +28,8 @@ export class SlidingPage implements OnDestroy {
     let rotation = randomFloatInRange(-MAX_PAGE_ROTATION, MAX_PAGE_ROTATION);
 
     // Animate in.
-    this.slideJob = new PageSlideInJob(this.pageElement, bodyElement, rotation);
+    let duration = router.isInitialRoute ? INITIAL_SLIDE_IN_DURATION :  SLIDE_IN_DURATION;
+    this.slideJob = new PageSlideInJob(this.pageElement, bodyElement, duration, rotation);
     this.animator.startJob(this.slideJob);
 
     this.routeSubscription = this.router.registerRouteListener(this.handleRouteChange.bind(this));
@@ -34,7 +40,7 @@ export class SlidingPage implements OnDestroy {
     this.cancelPreviousAnimation();
 
     // Animate out.
-    this.slideJob = new PageSlideOutJob(this.pageElement);
+    this.slideJob = new PageSlideOutJob(this.pageElement, SLIDE_OUT_DURATION);
     this.animator.startJob(this.slideJob);
   }
 

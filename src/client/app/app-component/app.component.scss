@@ -6,8 +6,15 @@ $note-pad-width: 1000px;
 $note-pad-height: 1504px;
 
 :host {
-  background-color: #7c4a31;
-  display: block;
+  overflow: auto;
+}
+
+.desk {
+  background: #7c4a31 url('assets/images/wood.jpg');
+  height: 100%;
+  min-height: 1600px;
+  padding: 40px 0;
+  width: 100%;
 }
 
 header {
@@ -47,7 +54,7 @@ header {
   display: flex;
   flex-direction: column;
   height: $note-pad-height;
-  margin: 40px auto;
+  margin: 0 auto;
   padding-left: $note-pad-padding-left;
   position: relative;
   width: $note-pad-width;

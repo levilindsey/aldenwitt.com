@@ -4,10 +4,6 @@ import {
   getTranslateXFromTransform, getTranslateYFromTransform, getRotateFromTransform
 } from '../utils';
 
-// In milliseconds.
-const SLIDE_IN_DURATION = 400;
-const SLIDE_OUT_DURATION = 700;
-
 class PageSlideJob extends TransientAnimationJob {
   private deltaTranslationX: number;
   private deltaTranslationY: number;
@@ -58,14 +54,14 @@ class PageSlideJob extends TransientAnimationJob {
 }
 
 export class PageSlideInJob extends PageSlideJob {
-  constructor(pageElement: HTMLElement, bodyElement: HTMLElement, endRotation: number, startRotation?: number, duration?: number) {
+  constructor(pageElement: HTMLElement, bodyElement: HTMLElement, duration: number,
+              endRotation: number, startRotation?: number) {
     let documentOffsetY = getDocumentOffset(pageElement).y;
     let startTranslationX = 50;
     let startTranslationY = bodyElement.clientHeight - documentOffsetY + 400;
     let startRotation = typeof startRotation === 'number' ? startRotation : Math.PI / 6;
     let endTranslationX = 0;
     let endTranslationY = 0;
-    duration = typeof duration === 'number' ? duration : SLIDE_IN_DURATION;
 
     super(pageElement, startTranslationX, startTranslationY, startRotation, endTranslationX,
         endTranslationY, endRotation, duration);
@@ -73,7 +69,7 @@ export class PageSlideInJob extends PageSlideJob {
 }
 
 export class PageSlideOutJob extends PageSlideJob {
-  constructor(pageElement: HTMLElement) {
+  constructor(pageElement: HTMLElement, duration: number) {
     let startTranslationX = getTranslateXFromTransform(pageElement);
     let startTranslationY = getTranslateYFromTransform(pageElement);
     let startRotation = getRotateFromTransform(pageElement);
@@ -83,6 +79,6 @@ export class PageSlideOutJob extends PageSlideJob {
     let endRotation = Math.PI / 6;
 
     super(pageElement, startTranslationX, startTranslationY, startRotation, endTranslationX,
-        endTranslationY, endRotation, SLIDE_OUT_DURATION);
+        endTranslationY, endRotation, duration);
   }
 }

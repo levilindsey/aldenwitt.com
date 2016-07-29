@@ -7,7 +7,7 @@ import {AnimatorService} from '../shared/animation/animator.service';
 import {PageSlideInJob} from '../shared/sliding-page/index';
 
 // In milliseconds.
-const SLIDE_IN_DURATION = 250;
+const SLIDE_IN_DURATION = 400;
 
 /**
  * This class represents the main application component. Within the @Routes annotation is the configuration of the
@@ -32,7 +32,7 @@ export class AppComponent implements AfterContentInit {
     let bodyElement: HTMLElement = document.querySelector('body') as HTMLElement;
 
     // Animate in.
-    let slideJob = new PageSlideInJob(pageElement, bodyElement, 0, Math.PI / 6, SLIDE_IN_DURATION);
+    let slideJob = new PageSlideInJob(pageElement, bodyElement, SLIDE_IN_DURATION, 0, Math.PI / 6);
     this.animator.startJob(slideJob);
   }
 }

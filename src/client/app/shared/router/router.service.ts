@@ -19,6 +19,7 @@ export class RouterService {
   private defaultRoute: RouteDefinition;
 
   currentRoute: RouteDefinition;
+  isInitialRoute: boolean = false;
 
   initialize(routeConfig: RouteConfig) {
     // Register a statically defined configuration of default routes.
@@ -51,6 +52,7 @@ export class RouterService {
   goToRoute(routeName: string) {
     this.isNavigationInProgress = true;
     let routeDefinition = this.routes.get(routeName) || this.defaultRoute;
+    this.isInitialRoute = !this.currentRoute;
     this.currentRoute = routeDefinition;
     location.hash = routeDefinition.path;
     this.routeChangeStream.next(routeDefinition);
