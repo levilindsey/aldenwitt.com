@@ -1,7 +1,7 @@
 import {Component, Inject, ElementRef, AfterContentInit} from '@angular/core';
 import {HTTP_PROVIDERS} from '@angular/http';
 import {
-  ROUTE_CONFIG, RouteConfig, RouterService, RouterOutletComponent, SideMenuComponent
+  ROUTE_CONFIG, RouteConfig, RouterService, RouterOutletComponent, NavListComponent
 } from '../shared/index';
 import {AnimatorService} from '../shared/animation/animator.service';
 import {PageSlideInJob} from '../shared/sliding-page/index';
@@ -19,7 +19,7 @@ const SLIDE_IN_DURATION = 400;
   viewProviders: [AnimatorService, RouterService, HTTP_PROVIDERS],
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
-  directives: [RouterOutletComponent, SideMenuComponent]
+  directives: [RouterOutletComponent, NavListComponent]
 })
 export class AppComponent implements AfterContentInit {
   constructor(private pageElementRef: ElementRef, private animator: AnimatorService,

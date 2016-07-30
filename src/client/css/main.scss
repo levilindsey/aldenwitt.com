@@ -75,8 +75,13 @@ $font-sizes: (
 
   h2 {
     margin-bottom: 40px;
+    text-align: center;
   }
 }
+
+$small-screen-width-threshold: 880px;
+$content-column-width-for-narrow-screens: 560px;
+$page-area-width-for-narrow-screens: $content-column-width-for-narrow-screens - 40px;
 
 // --- General style reset --- //
 

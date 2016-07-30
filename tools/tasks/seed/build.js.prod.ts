@@ -29,7 +29,7 @@ export = () => {
     .pipe(plugins.inlineNg2Template(INLINE_OPTIONS))
     .pipe(plugins.typescript(tsProject))
     .once('error', function () {
-      this.once('finish', () => process.exit(1));
+      // this.once('finish', () => process.exit(1));
     });
 
 

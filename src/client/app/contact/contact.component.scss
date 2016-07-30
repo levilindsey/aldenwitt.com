@@ -11,6 +11,13 @@ $polaroid-height: ($polaroid-width - $polaroid-padding * 2) / $polaroid-card-asp
 $polaroid-image-width: $polaroid-width - $polaroid-padding * 2;
 $polaroid-image-height: $polaroid-image-width / $polaroid-image-aspect-ratio;
 
+$polaroid-width-for-narrow-screens: $page-area-width-for-narrow-screens;
+$polaroid-padding-for-narrow-screens: 16px;
+
+$polaroid-height-for-narrow-screens: ($polaroid-width-for-narrow-screens - $polaroid-padding-for-narrow-screens * 2) / $polaroid-card-aspect-ratio;
+$polaroid-image-width-for-narrow-screens: $polaroid-width-for-narrow-screens - $polaroid-padding-for-narrow-screens * 2;
+$polaroid-image-height-for-narrow-screens: $polaroid-image-width-for-narrow-screens / $polaroid-image-aspect-ratio;
+
 :host {
   @include page();
 }
@@ -34,6 +41,7 @@ $polaroid-image-height: $polaroid-image-width / $polaroid-image-aspect-ratio;
 }
 
 img {
+  width: 100%;// TODO: This won't work for images that have greater width than height (fix this after also creating all the images that we'll use).
   position: absolute;
   margin: auto;
   min-height: 100%;
@@ -51,4 +59,21 @@ img {
   flex: 1;
   font-size: font-size(xl);
   text-align: center;
+}
+
+//
+// For narrow screens.
+//
+
+@media(max-width: $small-screen-width-threshold) {
+  .page-content {
+    height: $polaroid-height-for-narrow-screens;
+    padding: $polaroid-padding-for-narrow-screens $polaroid-padding-for-narrow-screens 0 $polaroid-padding-for-narrow-screens;
+    width: $polaroid-width-for-narrow-screens - $polaroid-padding-for-narrow-screens * 2;
+  }
+
+  .img-wrapper {
+    height: $polaroid-image-height-for-narrow-screens;
+    width: $polaroid-image-width-for-narrow-screens;
+  }
 }

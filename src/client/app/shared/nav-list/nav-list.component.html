@@ -1,0 +1,21 @@
+<nav>
+  <div *ngFor="let route of routeConfig">
+    <a *ngIf="router.currentRoute !== route"
+       routerLink="{{route.name}}">
+      {{route.label}}
+    </a>
+    <div *ngIf="router.currentRoute === route"
+         class="current-route-item">
+      <span>
+        {{route.label}}
+      </span>
+      <img class="route-indicator star"
+           src="assets/images/star.png"
+           alt="Current route indicator"
+           [ngStyle]="starRotationStyle"/>
+      <img class="route-indicator underline"
+           src="assets/images/underline.png"
+           alt="Current route indicator"/>
+    </div>
+  </div>
+</nav>

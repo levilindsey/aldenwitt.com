@@ -33,7 +33,6 @@ export function addClass(element: HTMLElement, className: string) {
   element.setAttribute('class', element.className + ' ' + className);
 }
 
-// FIXME: rewrite getDocumentOffset using element.getBoundingClientRect() and window.pageXOffset (and copy to other projects)
 /**
  * Gets the coordinates of the element relative to the top-left corner of the overall document.
  *

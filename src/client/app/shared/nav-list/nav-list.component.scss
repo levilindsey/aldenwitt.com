@@ -1,0 +1,85 @@
+@import '../../../css/main';
+
+:host {
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+}
+
+a,
+span {
+  color: #080808;
+  font-size: font-size(xl);
+  font-weight: bold;
+  line-height: 48px;
+}
+
+a {
+  color: #666666;
+  display: block;
+
+  &:hover {
+    color: #000000;
+  }
+  &:active {
+    color: #999999;
+  }
+}
+
+//
+// Show a vertical alignment for wide screens.
+//
+
+.current-route-item {
+  display: flex;
+  align-items: center;
+}
+
+.route-indicator {
+  &.star {
+    display: inline;
+    height: 32px;
+    margin-left: 12px;
+    position: relative;
+    top: -2px;
+  }
+  &.underline {
+    display: none;
+    width: 96px;
+  }
+}
+
+//
+// Show a horizontal alignment for narrow screens.
+//
+
+@media(max-width: $small-screen-width-threshold) {
+  nav {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  a,
+  .current-route-item {
+    width: 100px;
+  }
+
+  .current-route-item {
+    flex-direction: column;
+  }
+
+  a {
+    text-align: center;
+  }
+
+  .route-indicator {
+    &.star {
+      display: none;
+    }
+    &.underline {
+      display: inline;
+    }
+  }
+}

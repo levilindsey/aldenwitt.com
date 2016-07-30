@@ -74,7 +74,7 @@ export class PageSlideOutJob extends PageSlideJob {
     let startTranslationY = getTranslateYFromTransform(pageElement);
     let startRotation = getRotateFromTransform(pageElement);
     let documentOffsetX = getDocumentOffset(pageElement).x;
-    let endTranslationX = -(documentOffsetX + pageElement.clientWidth + 400);// FIXME: Check that clientWidth is correct (as opposed to offsetWidth)
+    let endTranslationX = -(documentOffsetX + pageElement.clientWidth + 400);
     let endTranslationY = 100;
     let endRotation = Math.PI / 6;
 
