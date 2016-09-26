@@ -1,4 +1,5 @@
 import {DOMHighResTimeStamp} from './animator.service';
+import Timer = NodeJS.Timer;
 
 /**
  * Keeps track of avg/min/max frame latencies over the last logging time period and periodically
@@ -9,7 +10,7 @@ export class FrameLatencyProfiler {
   private maxFrameLatency: number;
   private minFrameLatency: number;
   private avgFrameLatency: number;
-  private intervalId: number;
+  private intervalId: Timer;
 
   /**
    * @param {Number} logPeriod The period at which to print latency log messages. In milliseconds.
