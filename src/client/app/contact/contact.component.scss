@@ -1,29 +1,42 @@
 @import '../../css/main';
 
-$envelope-width: 660px;
-$top-padding: 80px;
-$left-padding: 70px;
-$right-padding: 72px;
+$top-padding: 100px;
+$left-padding: 90px;
+$right-padding: 92px;
 
-$envelope-image-aspect-ratio: 0.99404761904;
-$envelope-height: $envelope-width / $envelope-image-aspect-ratio;
+$max-napkin-width: 780px;
+
+$napkin-image-aspect-ratio: 0.99404761904;
 
 :host {
   @include page();
-  margin-top: -30px;
-  padding-left: 10px;
+  margin-top: -28px;
+}
+
+.card-background-image {
+  max-width: $max-napkin-width;
 }
 
 .page-content {
-  @include image-background('assets/images/napkin.png', $envelope-width, $envelope-height);
-  height: $envelope-height - $top-padding;
+  max-width: $max-napkin-width;
   padding: $top-padding $right-padding 0 $left-padding;
-  width: $envelope-width - ($left-padding + $right-padding);
 }
 
 @media(max-width: $small-screen-width-threshold) {
+  $napkin-width-small-screen: 780px;
+  $napkin-image-margin-top: -20px;
+
   :host {
-    padding-left: 0;
-    margin-left: -52px;
+    margin-top: 0;
+  }
+
+  .card-background-image {
+    margin-top: $napkin-image-margin-top;
+    width: $napkin-width-small-screen;
+  }
+
+  .page-content {
+    max-width: $napkin-width-small-screen - 170px;
+    padding: $top-padding + $napkin-image-margin-top 0 0;
   }
 }

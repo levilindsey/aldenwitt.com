@@ -1,8 +1,10 @@
 @import '../../css/main';
 
-$note-pad-padding-left: 60px;
 $note-pad-margin-top: -50px;
-$note-pad-width: 1000px;
+$note-pad-width: 1100px;
+
+$content-column-padding-left: 100px;
+$content-column-padding-right: 40px;
 
 $note-pad-image-aspect-ratio: 0.73967046894;
 $note-pad-height: $note-pad-width / $note-pad-image-aspect-ratio;
@@ -18,20 +20,23 @@ body,
   overflow: hidden;
 }
 
+.desk,
+.note-pad,
+.page-area {
+  width: 100%;
+}
+
 .desk {
   background: #7c4a31 url('assets/images/wood.jpg');
   background-size: cover;
   height: 100%;
   min-height: $desk-height;
-  min-width: 1000px;
-  padding: 0;
-  width: 100%;
 }
 
 header {
   display: flex;
   justify-content: center;
-  margin: -20px 0 24px;
+  margin: 8px 0 0 $content-column-padding-left - $content-column-padding-right;
 
   > .title {
     margin: 0 auto;
@@ -56,17 +61,19 @@ header {
 }
 
 .note-pad {
-  @include image-background('assets/images/notebook.png', $note-pad-width, $note-pad-height);
   display: flex;
   flex-direction: column;
   height: $note-pad-height;
   left: -100000px;
   margin: $note-pad-margin-top auto 0;
-  padding-left: $note-pad-padding-left;
+  max-width: $note-pad-width;
   position: absolute;
   right: -100000px;
-  width: $note-pad-width - ($note-pad-padding-left * 2);
   will-change: transform;
+}
+
+.card-background-image {
+  width: $note-pad-width;
 }
 
 .hidden {
@@ -79,7 +86,7 @@ header {
 
 .content-column {
   margin: 0 auto;
-  padding-top: 200px;
+  padding: 200px $content-column-padding-left 0 $content-column-padding-right;
   width: 100%;
   z-index: 2;
 }
@@ -87,16 +94,19 @@ header {
 .body-area {
   display: flex;
   flex-direction: row-reverse;
-  justify-content: space-between;
 }
 
 alden-nav-list {
-  width: 190px;
+  margin-top: 60px;
+  width: 180px;
 }
 
 .page-area {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   position: relative;
-  width: 640px;
 }
 
 //
@@ -104,8 +114,12 @@ alden-nav-list {
 //
 
 @media(max-width: $small-screen-width-threshold) {
+  .content-column {
+    padding: 200px 20px 0;
+  }
+
   header {
-    margin: -20px 0 14px;
+    margin: 8px 0 14px;
 
     h1,
     h1>img {
@@ -117,12 +131,6 @@ alden-nav-list {
     }
   }
 
-  .content-column {
-    position: relative;
-    left: -$note-pad-padding-left / 2;
-    width: $content-column-width-for-narrow-screens;
-  }
-
   .body-area {
     flex-direction: column;
     justify-content: flex-start;
@@ -131,11 +139,19 @@ alden-nav-list {
 
   alden-nav-list {
     width: 100%;
-    margin-bottom: 20px;
+    margin: 0;
   }
+}
 
-  .page-area {
-    position: relative;
-    width: calc(100% - 24px);
+@media(max-width: $extra-small-screen-width-threshold) {
+  header {
+    h1,
+    h1>img {
+      height: 100px;
+    }
+
+    h2 {
+      font-size: 32px;
+    }
   }
 }

@@ -1,28 +1,38 @@
 @import '../../css/main';
 
-$envelope-width: 520px;
-$top-padding: 48px;
-$left-padding: 54px;
-$right-padding: 74px;
+$top-padding: 98px;
+$left-padding: 74px;
+$right-padding: 94px;
+
+$max-envelope-width: 662px;
 
 $envelope-image-aspect-ratio: 0.75513933302;
-$envelope-height: $envelope-width / $envelope-image-aspect-ratio;
 
 :host {
   @include page();
-  margin-top: -30px;
-  padding-left: 80px;
+}
+
+.card-background-image {
+  max-height: 760px;
+  max-width: $max-envelope-width;
 }
 
 .page-content {
-  @include image-background('assets/images/envelope.png', $envelope-width, $envelope-height);
-  height: $envelope-height - $top-padding;
+  max-width: $max-envelope-width;
   padding: $top-padding $right-padding 0 $left-padding;
-  width: $envelope-width - ($left-padding + $right-padding);
 }
 
 @media(max-width: $small-screen-width-threshold) {
-  :host {
-    padding-left: 14px;
+  $envelope-width-small-screen: 640px;
+  $envelope-image-margin-top: 10px;
+
+  .card-background-image {
+    margin-top: $envelope-image-margin-top;
+    width: $envelope-width-small-screen;
+  }
+
+  .page-content {
+    max-width: $envelope-width-small-screen - 170px;
+    padding: $top-padding + $envelope-image-margin-top 0 0;
   }
 }

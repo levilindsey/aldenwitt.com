@@ -21,3 +21,13 @@ bootstrap(AppComponent, [
     useValue: '<%= APP_BASE %>'
   }
 ]);
+
+let APP_INFO_LOG_MESSAGES = [
+  '+------------------------------------------------------------------------+',
+  '| Copyright (c) 2016 Levi Lindsey and Alden Witt: All rights reserved.   |',
+  '| Levi Lindsey created this website (http://levi.codes).                 |',
+  '| This website uses Angular2, Typescript, and a custom animation module. |',
+  '+------------------------------------------------------------------------+'
+];
+
+APP_INFO_LOG_MESSAGES.forEach((message) => console.info(message));

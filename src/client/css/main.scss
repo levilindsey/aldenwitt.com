@@ -40,8 +40,8 @@ $colors: (
 
 // Sizes for Own Written.
 $font-sizes: (
-  xs: 22px,
-  s: 24px,
+  xs: 18px,
+  s: 22px,
   m: 26px,
   l: 28px,
   xl: 32px,
@@ -93,12 +93,16 @@ $font-sizes: (
 }
 
 @mixin page() {
-  display: block;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
+  width: 100%;
   will-change: transform;
 
   h2 {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     text-align: center;
   }
 }
@@ -109,10 +113,13 @@ $font-sizes: (
 }
 
 $small-screen-width-threshold: 880px;
-$content-column-width-for-narrow-screens: 560px;
-$page-area-width-for-narrow-screens: $content-column-width-for-narrow-screens - 40px;
+$extra-small-screen-width-threshold: 400px;
 
 // --- General style reset --- //
+
+/deep/ * {
+  box-sizing: border-box;
+}
 
 ul,
 ol,
@@ -131,7 +138,6 @@ h2,
 h3,
 h4,
 h5,
-img,
 button {
   margin: 0;
   padding: 0;
@@ -200,4 +206,23 @@ a:active {
   top: 0;
   vertical-align: middle;
   width: 100%;
+}
+
+/deep/ .card-background-image {
+  display: block;
+  left: -1000000px;
+  margin: 0 auto;
+  position: absolute;
+  right: -1000000px;
+  width: 100%;
+}
+
+/deep/ .page-content {
+  position: relative;
+}
+
+@media(max-width: $extra-small-screen-width-threshold) {
+  html {
+    font-size: font-size(s);
+  }
 }

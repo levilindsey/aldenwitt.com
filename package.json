@@ -37,7 +37,6 @@
     "email": "levi@levi.codes",
     "url": "https://levi.codes"
   },
-  "license": "MIT",
   "devDependencies": {
     "async": "^2.0.1",
     "autoprefixer": "^6.3.7",
