@@ -569,7 +569,7 @@ export function checkForIos(): boolean {
  * function will be called after it stops being called for N milliseconds. If immediate is passed,
  * trigger the function on the leading edge, instead of the trailing.
  */
-export function debounce(fn: Function, delay: number, immediate: boolean): Function {
+export function debounce(fn: Function, delay: number, immediate?: boolean = false): Function {
   let timeout;
 
   return () => {
@@ -657,6 +657,16 @@ export function loadImageSrc(image: HTMLImageElement, src: string): Promise<HTML
 
     image.src = src;
   });
+}
+
+/**
+ * Pre-caches the given images.
+ */
+export function preCacheImages(paths: string[]): Promise {
+  return Promise.all(paths.map((path: string) => {
+    let element: HTMLImageElement = new Image();
+    return loadImageSrc(element, path).then();
+  }));
 }
 
 /**

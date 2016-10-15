@@ -1,6 +1,6 @@
 import {DOMHighResTimeStamp, TransientAnimationJob} from '../animation/index';
 import {
-  createTransformString, easingFunctions, getDocumentOffset, setTransform,
+  createTransformString, easingFunctions, EasingFunction, getDocumentOffset, setTransform,
   getTranslateXFromTransform, getTranslateYFromTransform, getRotateFromTransform
 } from '../utils';
 
@@ -16,15 +16,16 @@ class PageSlideJob extends TransientAnimationJob {
   constructor(private pageElement: HTMLElement, private startTranslationX: number,
               private startTranslationY: number, private startRotation: number,
               endTranslationX: number, endTranslationY: number, endRotation: number,
-              duration: number) {
+              duration: number, delay: number,  easingFunctionOrName: EasingFunction | string) {
     this.deltaTranslationX = endTranslationX - startTranslationX;
     this.deltaTranslationY = endTranslationY - startTranslationY;
     this.deltaRotation = endRotation - startRotation;
-    super(duration, easingFunctions.easeInOutQuad);
+    super(duration, delay, easingFunctionOrName);
   }
 
   update(currentTime: DOMHighResTimeStamp, deltaTime: DOMHighResTimeStamp) {
-    let progress = (currentTime - this.startTime) / this.duration;
+    let progress = (currentTime - this.startTime - this.delay) / this.duration;
+    progress = progress < 0 ? 0 : progress;
     progress = this.easingFunction(progress);
     this.updateWithProgress(progress);
   }
@@ -54,7 +55,7 @@ class PageSlideJob extends TransientAnimationJob {
 }
 
 export class PageSlideInJob extends PageSlideJob {
-  constructor(pageElement: HTMLElement, bodyElement: HTMLElement, duration: number,
+  constructor(pageElement: HTMLElement, bodyElement: HTMLElement, duration: number, delay: number,
               endRotation: number, startRotation?: number) {
     let documentOffsetY = getDocumentOffset(pageElement).y;
     let startTranslationX = 50;
@@ -64,7 +65,7 @@ export class PageSlideInJob extends PageSlideJob {
     let endTranslationY = 0;
 
     super(pageElement, startTranslationX, startTranslationY, startRotation, endTranslationX,
-        endTranslationY, endRotation, duration);
+        endTranslationY, endRotation, duration, delay, easingFunctions.easeOutQuart);
   }
 }
 
@@ -76,9 +77,9 @@ export class PageSlideOutJob extends PageSlideJob {
     let documentOffsetX = getDocumentOffset(pageElement).x;
     let endTranslationX = -(documentOffsetX + pageElement.clientWidth + 400);
     let endTranslationY = 100;
-    let endRotation = Math.PI / 6;
+    let endRotation = Math.PI / 5;
 
     super(pageElement, startTranslationX, startTranslationY, startRotation, endTranslationX,
-        endTranslationY, endRotation, duration);
+        endTranslationY, endRotation, duration, 0, easingFunctions.easeInOutQuad);
   }
 }

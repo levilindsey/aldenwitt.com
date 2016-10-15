@@ -6,9 +6,9 @@ import {randomFloatInRange} from '../utils';
 import {Subscription} from 'rxjs/Subscription';
 
 // In milliseconds.
-const INITIAL_SLIDE_IN_DURATION = 700;
-const SLIDE_IN_DURATION = 400;
-const SLIDE_OUT_DURATION = 700;
+const INITIAL_SLIDE_IN_DURATION = 2200;
+const SLIDE_IN_DURATION = 1000;
+const SLIDE_OUT_DURATION = 1000;
 
 // In radians.
 const MAX_PAGE_ROTATION = Math.PI / 28;
@@ -25,11 +25,14 @@ export class SlidingPage implements OnDestroy {
               private router: RouterService) {
     this.pageElement = pageElementRef.nativeElement;
     let bodyElement: HTMLElement = document.querySelector('body') as HTMLElement;
-    let rotation = randomFloatInRange(-MAX_PAGE_ROTATION, MAX_PAGE_ROTATION);
+    let endRotation = randomFloatInRange(-MAX_PAGE_ROTATION, MAX_PAGE_ROTATION);
+    let startRotation = randomFloatInRange(MAX_PAGE_ROTATION, MAX_PAGE_ROTATION * 2) * 4;
+    startRotation = endRotation > 0 ? -startRotation : startRotation;
 
     // Animate in.
     let duration = router.isInitialRoute ? INITIAL_SLIDE_IN_DURATION :  SLIDE_IN_DURATION;
-    this.slideJob = new PageSlideInJob(this.pageElement, bodyElement, duration, rotation);
+    this.slideJob = new PageSlideInJob(this.pageElement, bodyElement, duration, 0, endRotation,
+      startRotation);
     this.animator.startJob(this.slideJob);
 
     this.routeSubscription = this.router.registerRouteListener(this.handleRouteChange.bind(this));

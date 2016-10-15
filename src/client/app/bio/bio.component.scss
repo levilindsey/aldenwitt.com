@@ -1,11 +1,28 @@
 @import '../../css/main';
 
+$envelope-width: 520px;
+$top-padding: 48px;
+$left-padding: 54px;
+$right-padding: 74px;
+
+$envelope-image-aspect-ratio: 0.75513933302;
+$envelope-height: $envelope-width / $envelope-image-aspect-ratio;
+
 :host {
   @include page();
+  margin-top: -30px;
+  padding-left: 80px;
 }
 
 .page-content {
-  background-color: #d8d1b6;
-  padding: 32px;
-  @include normal-shadow();
+  @include image-background('assets/images/envelope.png', $envelope-width, $envelope-height);
+  height: $envelope-height - $top-padding;
+  padding: $top-padding $right-padding 0 $left-padding;
+  width: $envelope-width - ($left-padding + $right-padding);
+}
+
+@media(max-width: $small-screen-width-threshold) {
+  :host {
+    padding-left: 14px;
+  }
 }

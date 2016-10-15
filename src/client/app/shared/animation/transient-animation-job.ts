@@ -1,6 +1,5 @@
 import {AnimationJob} from './animation-job';
 import {easingFunctions, EasingFunction} from '../utils';
-import {DOMHighResTimeStamp} from './animator.service';
 
 /**
  * A TransientAnimationJob is temporary and has a definite beginning and end.
@@ -8,7 +7,8 @@ import {DOMHighResTimeStamp} from './animator.service';
 export abstract class TransientAnimationJob extends AnimationJob {
   easingFunction: EasingFunction;
 
-  constructor(protected duration: number, easingFunctionOrName: EasingFunction | string,
+  constructor(protected duration: number, protected delay: number,
+              easingFunctionOrName: EasingFunction | string,
               onComplete?: Function) {
     super(onComplete);
 
@@ -18,7 +18,7 @@ export abstract class TransientAnimationJob extends AnimationJob {
   }
 
   get endTime(): number {
-    return this.startTime + this.duration;
+    return this.startTime + this.duration + this.delay;
   }
 
   init() {}

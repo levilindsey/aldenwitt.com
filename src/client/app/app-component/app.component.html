@@ -1,5 +1,7 @@
-<div class="desk">
-  <div class="note-pad">
+<div class="desk"
+     *ngIf="areAssetsLoaded">
+  <div class="note-pad"
+       [class.hidden]="!hasAnimationStarted">
     <div class="content-column">
       <header>
         <div class="title">

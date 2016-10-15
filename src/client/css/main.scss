@@ -72,11 +72,17 @@ $font-sizes: (
 @mixin page() {
   display: block;
   position: absolute;
+  will-change: transform;
 
   h2 {
     margin-bottom: 40px;
     text-align: center;
   }
+}
+
+@mixin image-background($url, $width, $height) {
+  background: url($url) no-repeat center center;
+  background-size: $width $height;
 }
 
 $small-screen-width-threshold: 880px;
@@ -113,7 +119,6 @@ body,
 alden-app {
   display: block;
   height: 100%;
-  overflow: hidden;
   position: relative;
   width: 100%;
 }
@@ -125,7 +130,7 @@ ul {
 }
 
 html {
-  font-size: font-size(m);
+  font-size: font-size(l);
 }
 
 body {

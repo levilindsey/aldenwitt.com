@@ -1,79 +1,29 @@
 @import '../../css/main';
 
-// Polaroid picture cards have overall dimensions of 3.5x4.25. The actual pictures are 3x3.125.
-$polaroid-card-aspect-ratio: 3.5 / 4.25;
-$polaroid-image-aspect-ratio: 3 / 3.125;
+$envelope-width: 660px;
+$top-padding: 80px;
+$left-padding: 70px;
+$right-padding: 72px;
 
-$polaroid-width: 630px;
-$polaroid-padding: 20px;
-
-$polaroid-height: ($polaroid-width - $polaroid-padding * 2) / $polaroid-card-aspect-ratio;
-$polaroid-image-width: $polaroid-width - $polaroid-padding * 2;
-$polaroid-image-height: $polaroid-image-width / $polaroid-image-aspect-ratio;
-
-$polaroid-width-for-narrow-screens: $page-area-width-for-narrow-screens;
-$polaroid-padding-for-narrow-screens: 16px;
-
-$polaroid-height-for-narrow-screens: ($polaroid-width-for-narrow-screens - $polaroid-padding-for-narrow-screens * 2) / $polaroid-card-aspect-ratio;
-$polaroid-image-width-for-narrow-screens: $polaroid-width-for-narrow-screens - $polaroid-padding-for-narrow-screens * 2;
-$polaroid-image-height-for-narrow-screens: $polaroid-image-width-for-narrow-screens / $polaroid-image-aspect-ratio;
+$envelope-image-aspect-ratio: 0.99404761904;
+$envelope-height: $envelope-width / $envelope-image-aspect-ratio;
 
 :host {
   @include page();
+  margin-top: -30px;
+  padding-left: 10px;
 }
 
 .page-content {
-  background-color: #f2f2f2;
-  display: flex;
-  flex-direction: column;
-  height: $polaroid-height;
-  padding: $polaroid-padding $polaroid-padding 0 $polaroid-padding;
-  width: $polaroid-width - $polaroid-padding * 2;
-  @include normal-shadow();
+  @include image-background('assets/images/napkin.png', $envelope-width, $envelope-height);
+  height: $envelope-height - $top-padding;
+  padding: $top-padding $right-padding 0 $left-padding;
+  width: $envelope-width - ($left-padding + $right-padding);
 }
-
-.img-wrapper {
-  flex: 0 0 auto;
-  height: $polaroid-image-height;
-  overflow: hidden;
-  position: relative;
-  width: $polaroid-image-width;
-}
-
-img {
-  width: 100%;// TODO: This won't work for images that have greater width than height (fix this after also creating all the images that we'll use).
-  position: absolute;
-  margin: auto;
-  min-height: 100%;
-  min-width: 100%;
-  top: -500%;
-  right: -500%;
-  bottom: -500%;
-  left: -500%;
-}
-
-.caption {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex: 1;
-  font-size: font-size(xl);
-  text-align: center;
-}
-
-//
-// For narrow screens.
-//
 
 @media(max-width: $small-screen-width-threshold) {
-  .page-content {
-    height: $polaroid-height-for-narrow-screens;
-    padding: $polaroid-padding-for-narrow-screens $polaroid-padding-for-narrow-screens 0 $polaroid-padding-for-narrow-screens;
-    width: $polaroid-width-for-narrow-screens - $polaroid-padding-for-narrow-screens * 2;
-  }
-
-  .img-wrapper {
-    height: $polaroid-image-height-for-narrow-screens;
-    width: $polaroid-image-width-for-narrow-screens;
+  :host {
+    padding-left: 0;
+    margin-left: -52px;
   }
 }
