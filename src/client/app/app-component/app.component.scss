@@ -31,7 +31,7 @@ body,
 header {
   display: flex;
   justify-content: center;
-  margin: 24px 0;
+  margin: -20px 0 24px;
 
   > .title {
     margin: 0 auto;
@@ -44,12 +44,14 @@ header {
     margin: 0;
   }
 
-  h1 {
-    font-size: font-size(xxxl);
+  h1,
+  h1>img {
+    height: 180px;
   }
 
   h2 {
     font-size: font-size(xxl);
+    margin-top: -22px;
   }
 }
 
