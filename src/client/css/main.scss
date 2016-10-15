@@ -27,19 +27,31 @@ $colors: (
   red-4: hsla(4, 36%, 80%, 1)
 );
 
+// Sizes for normal fonts.
+//$font-sizes: (
+//  xs: 12px,
+//  s: 14px,
+//  m: 16px,
+//  l: 18px,
+//  xl: 22px,
+//  xxl: 48px,
+//  xxxl: 100px,
+//);
+
+// Sizes for Own Written.
 $font-sizes: (
-  xs: 12px,
-  s: 14px,
+  xs: 22px,
+  s: 24px,
   m: 26px,
-  l: 18px,
-  xl: 22px,
-  xxl: 48px,
-  xxxl: 100px,
+  l: 28px,
+  xl: 32px,
+  xxl: 58px,
+  xxxl: 110px,
 );
 
 @font-face {
   font-family: 'Own Written';
-  src: url('../assets/fonts/own-written/Own Written.ttf') format('truetype');
+  src: url('../assets/fonts/own-written/own-written.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
