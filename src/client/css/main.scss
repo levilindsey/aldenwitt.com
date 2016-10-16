@@ -43,8 +43,8 @@ $font-sizes: (
   xs: 18px,
   s: 22px,
   m: 26px,
-  l: 28px,
-  xl: 32px,
+  l: 32px,
+  xl: 38px,
   xxl: 58px,
   xxxl: 110px,
 );
@@ -159,7 +159,7 @@ ul {
 }
 
 html {
-  font-size: font-size(m);
+  font-size: font-size(l);
 }
 
 body {
@@ -219,6 +219,12 @@ a:active {
 
 /deep/ .page-content {
   position: relative;
+}
+
+@media(max-width: $small-screen-width-threshold) {
+  html {
+    font-size: font-size(m);
+  }
 }
 
 @media(max-width: $extra-small-screen-width-threshold) {
