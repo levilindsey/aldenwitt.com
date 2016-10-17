@@ -10,6 +10,7 @@ $envelope-image-aspect-ratio: 0.75513933302;
 
 :host {
   @include page();
+  margin-top: -100px;
 }
 
 .card-background-image {

@@ -8,6 +8,8 @@ export interface RouteDefinition {
   name: string,
   path: string,
   label: string,
+  verticalNavImage: string,
+  horizontalNavImage: string,
   component: any,
   isDefault?: boolean
 }

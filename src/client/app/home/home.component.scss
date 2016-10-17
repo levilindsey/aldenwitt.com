@@ -10,7 +10,14 @@ $napkin-image-aspect-ratio: 0.99404761904;
 
 :host {
   @include page();
-  margin-top: -28px;
+  margin-top: -100px;
+
+  &:before {
+    content: '';
+    padding-bottom: (1 / $napkin-image-aspect-ratio) * 100%;
+    position: relative;
+    width: 100%;
+  }
 }
 
 .card-background-image {
@@ -20,6 +27,11 @@ $napkin-image-aspect-ratio: 0.99404761904;
 .page-content {
   max-width: $max-napkin-width;
   padding: $top-padding $right-padding 0 $left-padding;
+}
+
+p {
+  position: relative;
+  bottom: 150px;
 }
 
 @media(max-width: $small-screen-width-threshold) {

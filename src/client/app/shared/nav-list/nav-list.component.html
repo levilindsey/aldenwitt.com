@@ -1,20 +1,48 @@
-<nav>
+<nav class="vertical-nav">
   <div *ngFor="let route of routeConfig">
+
     <a *ngIf="router.currentRoute !== route"
        routerLink="{{route.name}}">
-      {{route.label}}
+
+      <img class="nav-text-image"
+           [src]="route.verticalNavTextImage"
+           alt="{{route.label}} route" />
     </a>
+
     <div *ngIf="router.currentRoute === route"
          class="current-route-item">
-      <span>
-        {{route.label}}
-      </span>
+
+      <img class="nav-text-image"
+           [src]="route.verticalNavTextImage"
+           alt="{{route.label}} route" />
+
       <img class="route-indicator star"
-           src="assets/images/star.png"
-           alt="Current route indicator"
-           [ngStyle]="starRotationStyle"/>
+           [src]="route.verticalNavIndicatorImage"
+           alt="Current route indicator"/>
+    </div>
+  </div>
+</nav>
+
+<nav class="horizontal-nav">
+  <div *ngFor="let route of routeConfig">
+
+    <a *ngIf="router.currentRoute !== route"
+       routerLink="{{route.name}}">
+
+      <img class="nav-text-image"
+           [src]="route.horizontalNavTextImage"
+           alt="{{route.label}} route" />
+    </a>
+
+    <div *ngIf="router.currentRoute === route"
+         class="current-route-item">
+
+      <img class="nav-text-image"
+           [src]="route.horizontalNavTextImage"
+           alt="{{route.label}} route" />
+
       <img class="route-indicator underline"
-           src="assets/images/underline.png"
+           [src]="route.horizontalNavIndicatorImage"
            alt="Current route indicator"/>
     </div>
   </div>

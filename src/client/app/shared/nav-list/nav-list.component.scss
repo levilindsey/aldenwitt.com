@@ -1,5 +1,7 @@
 @import '../../../css/main';
 
+$vertical-nav-item-height: 50px;
+
 :host {
 }
 
@@ -9,11 +11,11 @@ nav {
 }
 
 a,
-span {
+.current-route-item {
   color: #080808;
   font-size: font-size(xl);
   font-weight: bold;
-  line-height: 48px;
+  height: $vertical-nav-item-height;
 }
 
 a {
@@ -32,6 +34,27 @@ a {
 // Show a vertical alignment for wide screens.
 //
 
+.vertical-nav {
+  display: flex;
+
+  .nav-text-image {
+    height: $vertical-nav-item-height;
+  }
+
+  a,
+  .current-route-item {
+    margin-bottom: 12px;
+  }
+}
+
+.horizontal-nav {
+  display: none;
+
+  .nav-text-image {
+    height: $vertical-nav-item-height;
+  }
+}
+
 .current-route-item {
   display: flex;
   align-items: center;
@@ -40,13 +63,12 @@ a {
 .route-indicator {
   &.star {
     display: inline;
-    height: 32px;
+    height: $vertical-nav-item-height;
     margin-left: 12px;
     position: relative;
     top: -2px;
   }
   &.underline {
-    display: none;
     width: 96px;
   }
 }
@@ -56,6 +78,14 @@ a {
 //
 
 @media(max-width: $small-screen-width-threshold) {
+  .vertical-nav {
+    display: none;
+  }
+
+  .horizontal-nav {
+    display: flex;
+  }
+
   nav {
     flex-direction: row;
     justify-content: space-around;
@@ -73,14 +103,5 @@ a {
 
   a {
     text-align: center;
-  }
-
-  .route-indicator {
-    &.star {
-      display: none;
-    }
-    &.underline {
-      display: inline;
-    }
   }
 }

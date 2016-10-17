@@ -36,7 +36,7 @@ body,
 header {
   display: flex;
   justify-content: center;
-  margin: 8px 0 0 $content-column-padding-left - $content-column-padding-right;
+  margin: 32px 0 0 $content-column-padding-left - $content-column-padding-right;
 
   > .title {
     margin: 0 auto;
@@ -50,13 +50,30 @@ header {
   }
 
   h1,
-  h1>img {
+  .main-title {
     height: 180px;
   }
 
-  h2 {
-    font-size: font-size(xxl);
-    margin-top: -22px;
+  h1>img {
+    position: relative;
+  }
+
+  .doodle.left {
+    bottom: 16px;
+    height: 110px;
+    right: -30px;
+  }
+
+  .doodle.right {
+    bottom: 74px;
+    height: 76px;
+    left: -30px;
+  }
+
+  h2,
+  h2>img {
+    height: 100px;
+    margin-top: -8px;
   }
 }
 
@@ -84,6 +101,8 @@ header {
 // For wide screens.
 //
 
+$body-area-left-offset: -100px;
+
 .content-column {
   margin: 0 auto;
   padding: 200px $content-column-padding-left 0 $content-column-padding-right;
@@ -94,11 +113,12 @@ header {
 .body-area {
   display: flex;
   flex-direction: row-reverse;
+  margin-left: $body-area-left-offset;
 }
 
 alden-nav-list {
-  margin-top: 60px;
-  width: 180px;
+  min-width: 310px;
+  width: 310px;
 }
 
 .page-area {
@@ -122,12 +142,17 @@ alden-nav-list {
     margin: 8px 0 14px;
 
     h1,
-    h1>img {
+    .main-title {
       height: 120px;
     }
 
-    h2 {
-      font-size: 42px;
+    .doodle {
+      height: 100px;
+    }
+
+    h2,
+    h2>img {
+      height: 66px;
     }
   }
 
@@ -135,6 +160,7 @@ alden-nav-list {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    margin-left: 0;
   }
 
   alden-nav-list {
@@ -146,12 +172,17 @@ alden-nav-list {
 @media(max-width: $extra-small-screen-width-threshold) {
   header {
     h1,
-    h1>img {
+    .main-title {
       height: 100px;
     }
 
-    h2 {
-      font-size: 32px;
+    .doodle {
+      height: 80px;
+    }
+
+    h2,
+    h2>img {
+      height: 50px;
     }
   }
 }

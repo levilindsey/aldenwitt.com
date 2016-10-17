@@ -35,7 +35,7 @@ export class NavListComponent {
    * Update the route indicator star with a random rotation each time the route changes.
    */
   private handleRouteChange(route: RouteDefinition) {
-    let rotation = randomFloatInRange(-MAX_STAR_ROTATION, MAX_STAR_ROTATION);
-    this.starRotationStyle.transform = createTransformString(0, 0, rotation);
+    // let rotation = randomFloatInRange(-MAX_STAR_ROTATION, MAX_STAR_ROTATION);
+    // this.starRotationStyle.transform = createTransformString(0, 0, rotation);
   }
 }
