@@ -112,8 +112,8 @@ $font-sizes: (
   background-size: $width $height;
 }
 
-$medium-screen-width-threshold: 1086px;// TODO: Tweak this.
-$small-screen-width-threshold: 880px;
+$medium-screen-width-threshold: 1001px;// TODO: Tweak this.
+$small-screen-width-threshold: 1000px;// TODO: Set this back to 880, and fix the responsiveness
 $extra-small-screen-width-threshold: 400px;
 
 // --- General style reset --- //
@@ -209,7 +209,7 @@ a:active {
   width: 100%;
 }
 
-/deep/ .card-background-image {
+alden-app .desk /deep/ .card-background-image {
   display: block;
   left: -1000000px;
   margin: 0 auto;

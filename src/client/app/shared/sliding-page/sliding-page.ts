@@ -22,10 +22,12 @@ export class SlidingPage implements OnDestroy {
   private routeSubscription: Subscription;
 
   constructor(pageElementRef: ElementRef, private animator: AnimatorService,
-              private router: RouterService) {
+              private router: RouterService, endRotation?: number) {
     this.pageElement = pageElementRef.nativeElement;
     let bodyElement: HTMLElement = document.querySelector('body') as HTMLElement;
-    let endRotation = randomFloatInRange(-MAX_PAGE_ROTATION, MAX_PAGE_ROTATION);
+    endRotation = typeof endRotation === 'number'
+      ? endRotation
+      : randomFloatInRange(-MAX_PAGE_ROTATION, MAX_PAGE_ROTATION);
     let startRotation = randomFloatInRange(MAX_PAGE_ROTATION, MAX_PAGE_ROTATION * 2) * 4;
     startRotation = endRotation > 0 ? -startRotation : startRotation;
 

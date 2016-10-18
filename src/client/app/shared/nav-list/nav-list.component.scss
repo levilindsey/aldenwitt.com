@@ -1,6 +1,6 @@
 @import '../../../css/main';
 
-$vertical-nav-item-height: 50px;
+$vertical-nav-item-height: 44px;
 
 :host {
 }
@@ -49,9 +49,11 @@ a {
 
 .horizontal-nav {
   display: none;
+  position: relative;
+  z-index: 10;
 
   .nav-text-image {
-    height: $vertical-nav-item-height;
+    height: 40px;
   }
 }
 
@@ -84,21 +86,20 @@ a {
 
   .horizontal-nav {
     display: flex;
+
+    > div,
+    .current-route-item {
+      display: flex;
+      flex-direction: column;
+      width: 150px;
+      min-width: 150px;
+    }
   }
 
   nav {
     flex-direction: row;
     justify-content: space-around;
     padding: 0 40px;
-  }
-
-  a,
-  .current-route-item {
-    width: 100px;
-  }
-
-  .current-route-item {
-    flex-direction: column;
   }
 
   a {

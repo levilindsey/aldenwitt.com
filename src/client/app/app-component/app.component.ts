@@ -12,13 +12,30 @@ const SLIDE_IN_DURATION = 1200;
 const SLIDE_IN_DELAY = 300;
 
 const IMAGE_PATHS = [
+  'assets/images/sexy-songwriter.png',
+  // TODO: Keep these up-to-date!
+  'assets/images/alden-witt-title.png',
+  'assets/images/bio-header.png',
+  'assets/images/bio-nav-arrow.png',
+  'assets/images/bio-nav-no-arrow.png',
+  'assets/images/boat.png',
+  'assets/images/contact-header.png',
+  'assets/images/contact-nav-arrow.png',
+  'assets/images/contact-nav-no-arrow.png',
   'assets/images/envelope.png',
+  'assets/images/groceries.png',
+  'assets/images/home-nav-arrow.png',
+  'assets/images/home-nav-no-arrow.png',
   'assets/images/napkin.png',
   'assets/images/notebook.png',
-  'assets/images/wood.jpg',
-  // TODO: Replace these
-  'assets/images/star.png',
+  'assets/images/sexy-songwriter.png',
+  'assets/images/songwriter.png',
+  'assets/images/spaceship.png',
+  'assets/images/star-bio.png',
+  'assets/images/star-contact.png',
+  'assets/images/star-home.png',
   'assets/images/underline.png',
+  'assets/images/wood.jpg',
 ];
 
 /**
@@ -40,9 +57,11 @@ export class AppComponent {
   constructor(private pageElementRef: ElementRef, private animator: AnimatorService,
               @Inject(ROUTE_CONFIG) routeConfig: RouteConfig, router: RouterService) {
     preCacheImages(IMAGE_PATHS).then(() => {
-      this.areAssetsLoaded = true;
-      router.initialize(routeConfig);
-      setTimeout(() => this.slideIn(), 0);
+      setTimeout(() => {
+        this.areAssetsLoaded = true;
+        router.initialize(routeConfig);
+        setTimeout(() => this.slideIn(), 0);
+      }, 1000);
     });
   }
 

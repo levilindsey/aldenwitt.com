@@ -72,8 +72,12 @@ header {
 
   h2,
   h2>img {
-    height: 100px;
+    height: 110px;
     margin-top: -8px;
+  }
+
+  h2>img {
+    margin-right: 18px;
   }
 }
 
@@ -89,7 +93,8 @@ header {
   will-change: transform;
 }
 
-.card-background-image {
+:host .desk .card-background-image,
+.card-background-image > img:not(.groceries) {
   width: $note-pad-width;
 }
 
@@ -101,7 +106,15 @@ header {
 // For wide screens.
 //
 
-$body-area-left-offset: -100px;
+$body-area-left-offset: -140px;
+
+.groceries {
+  display: block;
+  height: 114px;
+  position: absolute;
+  top: 1070px;
+  left: 218px;
+}
 
 .content-column {
   margin: 0 auto;
@@ -117,8 +130,8 @@ $body-area-left-offset: -100px;
 }
 
 alden-nav-list {
-  min-width: 310px;
-  width: 310px;
+  min-width: 372px;
+  width: 332px;
 }
 
 .page-area {
@@ -135,7 +148,7 @@ alden-nav-list {
 
 @media(max-width: $small-screen-width-threshold) {
   .content-column {
-    padding: 200px 20px 0;
+    padding: 220px 20px 0;
   }
 
   header {
@@ -146,13 +159,25 @@ alden-nav-list {
       height: 120px;
     }
 
-    .doodle {
-      height: 100px;
+    .doodle.left {
+      bottom: 4px;
+      height: 82px;
+      right: -30px;
+    }
+
+    .doodle.right {
+      bottom: 44px;
+      height: 60px;
+      left: -24px;
     }
 
     h2,
     h2>img {
-      height: 66px;
+      height: 70px;
+    }
+
+    h2>img {
+      margin-right: 66px;
     }
   }
 
@@ -176,8 +201,16 @@ alden-nav-list {
       height: 100px;
     }
 
-    .doodle {
-      height: 80px;
+    .doodle.left {
+      bottom: 4px;
+      height: 72px;
+      right: -30px;
+    }
+
+    .doodle.right {
+      bottom: 38px;
+      height: 50px;
+      left: -20px;
     }
 
     h2,

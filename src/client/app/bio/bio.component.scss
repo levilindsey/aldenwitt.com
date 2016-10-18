@@ -4,17 +4,19 @@ $top-padding: 98px;
 $left-padding: 74px;
 $right-padding: 94px;
 
-$max-envelope-width: 662px;
+$max-envelope-width: 700px;
 
 $envelope-image-aspect-ratio: 0.75513933302;
 
 :host {
   @include page();
-  margin-top: -100px;
+  margin-top: -146px;
+  margin-left: 36px;
+  font-size: font-size(s);
 }
 
 .card-background-image {
-  max-height: 760px;
+  max-height: 860px;
   max-width: $max-envelope-width;
 }
 
@@ -26,6 +28,12 @@ $envelope-image-aspect-ratio: 0.75513933302;
 @media(max-width: $small-screen-width-threshold) {
   $envelope-width-small-screen: 640px;
   $envelope-image-margin-top: 10px;
+
+  :host {
+    margin-top: 0;
+    margin-left: 0;
+    font-size: font-size(xs);
+  }
 
   .card-background-image {
     margin-top: $envelope-image-margin-top;

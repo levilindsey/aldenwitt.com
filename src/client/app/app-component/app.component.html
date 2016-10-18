@@ -2,9 +2,14 @@
      *ngIf="areAssetsLoaded">
   <div class="note-pad"
        [class.hidden]="!hasAnimationStarted">
-    <img class="card-background-image"
-         src="assets/images/notebook.png"
-         alt="An notepad in the background" />
+    <div class="card-background-image">
+      <img src="assets/images/notebook.png"
+           alt="An notepad in the background" />
+
+      <img class="groceries"
+           src="assets/images/groceries.png"
+           alt="A in-progress list of groceries (milk, eggs, toothpaste, scotch)." />
+    </div>
 
     <div class="content-column">
       <header>

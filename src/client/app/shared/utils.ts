@@ -664,7 +664,7 @@ export function loadImageSrc(image: HTMLImageElement, src: string): Promise<HTML
  */
 export function preCacheImages(paths: string[]): Promise {
   return Promise.all(paths.map((path: string) => {
-    let element: HTMLImageElement = new Image();
+    let element = new Image();
     return loadImageSrc(element, path).then();
   }));
 }
