@@ -1,18 +1,19 @@
 @import '../../css/main';
 
 $top-padding: 100px;
-$left-padding: 90px;
-$right-padding: 92px;
+$left-padding: 30px;
+$right-padding: 30px;
 
-$max-polaroid-width: 680px;
+$polaroid-image-width: 120%;
+$max-polaroid-width: 662px;
 
 $polaroid-image-aspect-ratio: 0.99404761904;
 
 :host {
   @include page();
-  margin-left: 80px;
-  margin-top: -154px;
-  max-width: $max-polaroid-width;
+  font-size: font-size(l);
+  margin-left: 2px;
+  margin-top: -38px;
 
   &:before {
     content: '';
@@ -23,36 +24,41 @@ $polaroid-image-aspect-ratio: 0.99404761904;
 }
 
 .card-background-image {
-  max-width: $max-polaroid-width;
+  width: $polaroid-image-width;
 }
 
 .page-content {
-  max-width: $max-polaroid-width;
   padding: $top-padding $right-padding 0 $left-padding;
 }
 
 p {
   position: relative;
-  bottom: 130px;
+  bottom: 30px;
 }
 
 @media(max-width: $small-screen-width-threshold) {
-  $polaroid-width-small-screen: 780px;
-  $polaroid-image-margin-top: -20px;
+  $polaroid-width-small-screen: 110%;
 
   :host {
-    margin-top: 0;
+    margin-top: -12px;
     margin-left: 0;
-    width: 1100px;// TODO: HACK: Remove. This is $note-pad-width.
   }
 
   .card-background-image {
-    margin-top: $polaroid-image-margin-top;
-    //width: $polaroid-width-small-screen;
+    width: $polaroid-width-small-screen;
   }
 
   .page-content {
-    max-width: $polaroid-width-small-screen - 170px;
-    padding: $top-padding + $polaroid-image-margin-top 0 0;
+    padding: $top-padding 0 0;
+  }
+
+  p {
+    bottom: 80px;
+  }
+}
+
+@media(max-width: $extra-small-screen-width-threshold) {
+  :host {
+    font-size: font-size(m);
   }
 }

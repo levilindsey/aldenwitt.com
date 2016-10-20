@@ -1,14 +1,19 @@
 @import '../../css/main';
 
-$note-pad-margin-top: -50px;
-$note-pad-width: 1100px;
+$note-pad-margin-top: -74px;
+$note-pad-width: 1000px;
 
-$content-column-padding-left: 100px;
-$content-column-padding-right: 40px;
+$content-column-padding-left: 40px;
+$content-column-padding-right: 100px;
+
+$nav-list-width: 320px;
 
 $note-pad-image-aspect-ratio: 0.73967046894;
 $note-pad-height: $note-pad-width / $note-pad-image-aspect-ratio;
 $desk-height: $note-pad-height + $note-pad-margin-top;
+$content-column-width: $note-pad-width - $content-column-padding-left -
+    $content-column-padding-right;
+$page-area-width: $content-column-width - $nav-list-width;
 
 html,
 body,
@@ -27,7 +32,7 @@ body,
 }
 
 .desk {
-  background: #7c4a31 url('assets/images/wood.jpg');
+  background: #7c4a31 url('assets/images/wood.png');
   background-size: cover;
   height: 100%;
   min-height: $desk-height;
@@ -36,16 +41,18 @@ body,
 header {
   display: flex;
   justify-content: center;
-  margin: 32px 0 0 $content-column-padding-left - $content-column-padding-right;
+  margin-left: $content-column-padding-right - $content-column-padding-left;
 
   > .title {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
     margin: 0 auto;
     text-align: right;
     white-space: nowrap;
   }
 
-  h1,
-  h2 {
+  h1 {
     margin: 0;
   }
 
@@ -69,16 +76,6 @@ header {
     height: 76px;
     left: -30px;
   }
-
-  h2,
-  h2>img {
-    height: 110px;
-    margin-top: -8px;
-  }
-
-  h2>img {
-    margin-right: 18px;
-  }
 }
 
 .note-pad {
@@ -93,7 +90,7 @@ header {
   will-change: transform;
 }
 
-:host .desk .card-background-image,
+:host .note-pad>.card-background-image,
 .card-background-image > img:not(.groceries) {
   width: $note-pad-width;
 }
@@ -112,13 +109,13 @@ $body-area-left-offset: -140px;
   display: block;
   height: 114px;
   position: absolute;
-  top: 1070px;
-  left: 218px;
+  top: 970px;
+  left: 200px;
 }
 
 .content-column {
   margin: 0 auto;
-  padding: 200px $content-column-padding-left 0 $content-column-padding-right;
+  padding: 214px $content-column-padding-right 0 $content-column-padding-left;
   width: 100%;
   z-index: 2;
 }
@@ -126,17 +123,20 @@ $body-area-left-offset: -140px;
 .body-area {
   display: flex;
   flex-direction: row-reverse;
-  margin-left: $body-area-left-offset;
+  justify-content: flex-end;
+  margin-top: -8px;
+  width: 100%;
 }
 
 alden-nav-list {
-  min-width: 372px;
-  width: 332px;
+  flex: 1 1 $nav-list-width;
+  max-width: $nav-list-width;
 }
 
 .page-area {
   align-items: center;
   display: flex;
+  flex: 1 0 $page-area-width;
   flex-direction: column;
   justify-content: flex-start;
   position: relative;
@@ -170,15 +170,6 @@ alden-nav-list {
       height: 60px;
       left: -24px;
     }
-
-    h2,
-    h2>img {
-      height: 70px;
-    }
-
-    h2>img {
-      margin-right: 66px;
-    }
   }
 
   .body-area {
@@ -191,6 +182,8 @@ alden-nav-list {
   alden-nav-list {
     width: 100%;
     margin: 0;
+    flex: 1;
+    max-width: 100%;
   }
 }
 
@@ -211,11 +204,6 @@ alden-nav-list {
       bottom: 38px;
       height: 50px;
       left: -20px;
-    }
-
-    h2,
-    h2>img {
-      height: 50px;
     }
   }
 }

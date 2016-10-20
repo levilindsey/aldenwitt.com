@@ -2,10 +2,8 @@
 
 $vertical-nav-item-height: 44px;
 
-:host {
-}
-
-nav {
+nav,
+.nav-items {
   display: flex;
   flex-direction: column;
 }
@@ -37,6 +35,15 @@ a {
 .vertical-nav {
   display: flex;
 
+  h2,
+  h2>img {
+    width: 100%;
+  }
+
+  h2 {
+    margin: 0 0 -14px 4%;
+  }
+
   .nav-text-image {
     height: $vertical-nav-item-height;
   }
@@ -48,12 +55,37 @@ a {
 }
 
 .horizontal-nav {
+  align-items: center;
   display: none;
   position: relative;
   z-index: 10;
 
+  .nav-items {
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0 40px;
+  }
+
+  h2,
+  h2>img {
+    height: 80px;
+    margin: -8px 0 -10px 160px;
+  }
+
   .nav-text-image {
     height: 40px;
+  }
+
+  a {
+    text-align: center;
+  }
+
+  .nav-items > div,
+  .current-route-item {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    min-width: 150px;
   }
 }
 
@@ -86,23 +118,5 @@ a {
 
   .horizontal-nav {
     display: flex;
-
-    > div,
-    .current-route-item {
-      display: flex;
-      flex-direction: column;
-      width: 150px;
-      min-width: 150px;
-    }
-  }
-
-  nav {
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 0 40px;
-  }
-
-  a {
-    text-align: center;
   }
 }

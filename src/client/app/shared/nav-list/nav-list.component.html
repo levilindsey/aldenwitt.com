@@ -1,49 +1,63 @@
 <nav class="vertical-nav">
-  <div *ngFor="let route of routeConfig">
+  <h2>
+    <img src="assets/images/songwriter.png"
+         alt="Songwriter!" />
+  </h2>
 
-    <a *ngIf="router.currentRoute !== route"
-       routerLink="{{route.name}}">
+  <div class="nav-items">
+    <div *ngFor="let route of routeConfig">
 
-      <img class="nav-text-image"
-           [src]="route.verticalNavTextImage"
-           alt="{{route.label}} route" />
-    </a>
+      <a *ngIf="router.currentRoute !== route"
+         routerLink="{{route.name}}">
 
-    <div *ngIf="router.currentRoute === route"
-         class="current-route-item">
+        <img class="nav-text-image"
+             [src]="route.verticalNavTextImage"
+             alt="{{route.label}} route" />
+      </a>
 
-      <img class="nav-text-image"
-           [src]="route.verticalNavTextImage"
-           alt="{{route.label}} route" />
+      <div *ngIf="router.currentRoute === route"
+           class="current-route-item">
 
-      <img class="route-indicator star"
-           [src]="route.verticalNavIndicatorImage"
-           alt="Current route indicator"/>
+        <img class="nav-text-image"
+             [src]="route.verticalNavTextImage"
+             alt="{{route.label}} route" />
+
+        <img class="route-indicator star"
+             [src]="route.verticalNavIndicatorImage"
+             alt="Current route indicator"/>
+      </div>
     </div>
   </div>
 </nav>
 
 <nav class="horizontal-nav">
-  <div *ngFor="let route of routeConfig">
+  <h2>
+    <img src="assets/images/songwriter.png"
+         alt="Songwriter!" />
+  </h2>
 
-    <a *ngIf="router.currentRoute !== route"
-       routerLink="{{route.name}}">
+  <div class="nav-items">
+    <div *ngFor="let route of routeConfig">
 
-      <img class="nav-text-image"
-           [src]="route.horizontalNavTextImage"
-           alt="{{route.label}} route" />
-    </a>
+      <a *ngIf="router.currentRoute !== route"
+         routerLink="{{route.name}}">
 
-    <div *ngIf="router.currentRoute === route"
-         class="current-route-item">
+        <img class="nav-text-image"
+             [src]="route.horizontalNavTextImage"
+             alt="{{route.label}} route" />
+      </a>
 
-      <img class="nav-text-image"
-           [src]="route.horizontalNavTextImage"
-           alt="{{route.label}} route" />
+      <div *ngIf="router.currentRoute === route"
+           class="current-route-item">
 
-      <img class="route-indicator underline"
-           [src]="route.horizontalNavIndicatorImage"
-           alt="Current route indicator"/>
+        <img class="nav-text-image"
+             [src]="route.horizontalNavTextImage"
+             alt="{{route.label}} route" />
+
+        <img class="route-indicator underline"
+             [src]="route.horizontalNavIndicatorImage"
+             alt="Current route indicator"/>
+      </div>
     </div>
   </div>
 </nav>

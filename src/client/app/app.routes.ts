@@ -7,7 +7,7 @@ export const ROUTER_PROVIDERS = [
   {provide: ROUTE_CONFIG, useValue: [
     {
       name: 'home',
-      path: '',
+      path: 'home',
       label: 'Home',
       verticalNavTextImage: 'assets/images/home-nav-arrow.png',
       horizontalNavTextImage: 'assets/images/home-nav-no-arrow.png',

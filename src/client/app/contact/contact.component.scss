@@ -1,21 +1,28 @@
 @import '../../css/main';
 
 $top-padding: 100px;
-$left-padding: 90px;
-$right-padding: 92px;
+$left-padding: 30px;
+$right-padding: 30px;
 
-$max-napkin-width: 732px;
+$napkin-image-width: 180%;
+$max-napkin-width: 720px;
 
 $napkin-image-aspect-ratio: 0.99404761904;
 
 :host {
   @include page();
-  margin-top: -146px;
-  margin-left: 38px;
+  margin-left: -12px;
+  margin-top: -62px;
+  font-size: font-size(m);
+}
+
+h2 {
+  margin-bottom: 8px;
 }
 
 .card-background-image {
   max-width: $max-napkin-width;
+  width: $napkin-image-width;
 }
 
 .page-content {
@@ -24,21 +31,27 @@ $napkin-image-aspect-ratio: 0.99404761904;
 }
 
 @media(max-width: $small-screen-width-threshold) {
-  $napkin-width-small-screen: 780px;
-  $napkin-image-margin-top: -20px;
+  $napkin-width-small-screen: 130%;
 
   :host {
-    margin-top: 0;
     margin-left: 0;
+    margin-top: -12px;
   }
 
   .card-background-image {
-    margin-top: $napkin-image-margin-top;
+    //max-width: $napkin-width-small-screen;
     width: $napkin-width-small-screen;
   }
 
   .page-content {
-    max-width: $napkin-width-small-screen - 250px;
-    padding: $top-padding + $napkin-image-margin-top 0 0;
+    //max-width: $napkin-width-small-screen;
+    padding: $top-padding 100px 0 100px;
+    width: $napkin-width-small-screen;
+  }
+}
+
+@media(max-width: $extra-small-screen-width-threshold) {
+  :host {
+    font-size: font-size(s);
   }
 }
