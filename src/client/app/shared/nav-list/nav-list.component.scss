@@ -3,31 +3,22 @@
 $vertical-nav-item-height: 44px;
 $vertical-nav-min-width: 271px;
 
+$underline-width: 96px;
+
 nav,
 .nav-items {
   display: flex;
   flex-direction: column;
 }
 
-a,
-.current-route-item {
-  color: #080808;
-  font-size: font-size(xl);
-  font-weight: bold;
-  height: $vertical-nav-item-height;
-}
-
 a {
-  color: #666666;
   display: block;
   opacity: 0.72;
 
   &:hover {
-    color: #000000;
     opacity: 0.95;
   }
   &:active {
-    color: #999999;
     opacity: 0.6;
   }
 }
@@ -66,6 +57,7 @@ a {
 
   a,
   .current-route-item {
+    height: $vertical-nav-item-height;
     margin-bottom: 12px;
   }
 
@@ -91,8 +83,9 @@ a {
 
   .nav-items {
     flex-direction: row;
-    justify-content: space-around;
-    padding: 0 40px;
+    justify-content: space-between;
+    padding: 0 30px;
+    width: 100%;
   }
 
   h2,
@@ -112,8 +105,7 @@ a {
   .current-route-item {
     display: flex;
     flex-direction: column;
-    width: 150px;
-    min-width: 150px;
+    min-width: $underline-width;
   }
 }
 
@@ -131,7 +123,7 @@ a {
     top: -2px;
   }
   &.underline {
-    width: 96px;
+    width: $underline-width;
   }
 }
 
@@ -140,6 +132,12 @@ a {
 //
 
 @media(max-width: $small-screen-width-threshold) {
+  :host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .vertical-nav {
     display: none;
   }
@@ -148,7 +146,9 @@ a {
     display: flex;
   }
 
-  .top-bar {
+  .top-bar,
+  nav {
+    width: 100%;
     max-width: 540px;
   }
 
@@ -158,6 +158,8 @@ a {
   }
 }
 
+$xs-underline-width: 70px;
+
 @media(max-width: $extra-small-screen-width-threshold) {
   .horizontal-nav {
     h2,
@@ -166,22 +168,30 @@ a {
     }
 
     .nav-text-image {
-      height: 30px;
+      height: 24px;
+    }
+
+    .nav-items {
+      padding: 0;
     }
 
     .nav-items > div,
     .current-route-item {
-      width: 110px;
-      min-width: 110px;
+      min-width: $xs-underline-width;
     }
   }
 
-  .top-bar {
+  .top-bar,
+  nav {
     max-width: 354px;
   }
 
   .social-media-icons img {
     height: 20px;
     margin: 0 6px;
+  }
+
+  .route-indicator.underline {
+    width: $xs-underline-width;
   }
 }

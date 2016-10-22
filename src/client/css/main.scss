@@ -191,7 +191,8 @@ a:hover {
 a:visited:hover {
   color: color(purple-3);
 }
-a:active {
+a:active,
+a:visited:active {
   color: color(red-3);
 }
 
