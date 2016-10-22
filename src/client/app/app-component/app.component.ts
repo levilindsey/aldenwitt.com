@@ -35,7 +35,7 @@ const IMAGE_PATHS = [
   'assets/images/star-contact.png',
   'assets/images/star-home.png',
   'assets/images/underline.png',
-  'assets/images/wood.png',
+  'assets/images/wood.jpg',
 ];
 
 /**

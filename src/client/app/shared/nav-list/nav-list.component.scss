@@ -1,6 +1,7 @@
 @import '../../../css/main';
 
 $vertical-nav-item-height: 44px;
+$vertical-nav-min-width: 271px;
 
 nav,
 .nav-items {
@@ -19,12 +20,15 @@ a,
 a {
   color: #666666;
   display: block;
+  opacity: 0.72;
 
   &:hover {
     color: #000000;
+    opacity: 0.95;
   }
   &:active {
     color: #999999;
+    opacity: 0.6;
   }
 }
 
@@ -34,6 +38,7 @@ a {
 
 .vertical-nav {
   display: flex;
+  min-width: $vertical-nav-min-width;
 
   h2,
   h2>img {

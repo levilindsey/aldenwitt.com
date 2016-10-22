@@ -11,24 +11,21 @@ $polaroid-image-aspect-ratio: 0.99404761904;
 
 :host {
   @include page();
+  display: block;
   font-size: font-size(l);
   margin-left: 2px;
   margin-top: -38px;
-
-  &:before {
-    content: '';
-    padding-bottom: (1 / $polaroid-image-aspect-ratio) * 100%;
-    position: relative;
-    width: 100%;
-  }
 }
 
 .card-background-image {
   width: $polaroid-image-width;
 }
 
+$proportional-top-padding: calc(#{(1 / $polaroid-image-aspect-ratio) * 100%} + #{$top-padding});
+
 .page-content {
-  padding: $top-padding $right-padding 0 $left-padding;
+  padding: $proportional-top-padding $right-padding 0 $left-padding;
+  text-align: center;
 }
 
 p {
@@ -49,7 +46,7 @@ p {
   }
 
   .page-content {
-    padding: $top-padding 0 0;
+    padding: $proportional-top-padding 0 0;
   }
 
   p {

@@ -11,9 +11,11 @@ $colors: (
   gray-5: #f9f9f9,
 
   blue-1: hsla(227, 36%, 22%, 1),
-  blue-2: #2299EE,
-  blue-3: #77CCFF,
-  blue-4: hsla(227, 36%, 80%, 1),
+  blue-2: hsla(227, 36%, 32%, 1),
+  blue-3: hsla(227, 36%, 52%, 1),
+  blue-4: #2299EE,
+  blue-5: #77CCFF,
+  blue-6: hsla(227, 36%, 80%, 1),
 
   yellow-1: hsla(53, 36%, 22%, 1),
   yellow-2: #D6AF00,
@@ -24,7 +26,13 @@ $colors: (
   green-4: hsla(128, 36%, 80%, 1),
 
   red-1: hsla(4, 36%, 22%, 1),
-  red-4: hsla(4, 36%, 80%, 1)
+  red-2: hsla(4, 36%, 32%, 1),
+  red-3: hsla(4, 36%, 52%, 1),
+  red-4: hsla(4, 36%, 80%, 1),
+
+  purple-1: hsla(262, 36%, 22%, 1),
+  purple-2: hsla(262, 36%, 32%, 1),
+  purple-3: hsla(262, 36%, 52%, 1)
 );
 
 // Sizes for normal fonts.
@@ -97,7 +105,9 @@ $font-sizes: (
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  left: 0;
   position: absolute;
+  left: 0;
   width: 100%;
   will-change: transform;
 
@@ -166,20 +176,22 @@ h5 {
 }
 
 a {
-  //  color: color(...);
+  color: color(blue-2);
   cursor: pointer;
   text-decoration: none;
   transition: color 0.2s;
 }
 a:visited {
-  //  color: color(...);
+  color: color(purple-2);
 }
 a:hover {
-  //  color: color(...);
-  //text-decoration: underline;
+  color: color(blue-3);
+}
+a:visited:hover {
+  color: color(purple-3);
 }
 a:active {
-  //  color: color(...);
+  color: color(red-3);
 }
 
 .loading {

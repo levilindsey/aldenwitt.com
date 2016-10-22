@@ -1,6 +1,6 @@
 @import '../../css/main';
 
-$top-padding: 100px;
+$top-padding: 150px;
 $left-padding: 30px;
 $right-padding: 30px;
 
@@ -13,11 +13,11 @@ $napkin-image-aspect-ratio: 0.99404761904;
   @include page();
   margin-left: -12px;
   margin-top: -62px;
-  font-size: font-size(m);
+  font-size: font-size(l);
 }
 
 h2 {
-  margin-bottom: 8px;
+  margin-bottom: 36px;
 }
 
 .card-background-image {
@@ -35,7 +35,7 @@ h2 {
 
   :host {
     margin-left: 0;
-    margin-top: -12px;
+    margin-top: -42px;
   }
 
   .card-background-image {

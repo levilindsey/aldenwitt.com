@@ -138,7 +138,7 @@ export class SeedConfig {
    * `index.html`.
    * @type {string}
    */
-  APP_TITLE = 'Alden Witt';
+  APP_TITLE = 'Alden Witt: Songwriter';
 
   /**
    * The base folder of the application's source files.
