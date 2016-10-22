@@ -6,8 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title><%= APP_TITLE %></title>
   <meta name="description"
-        content="Alden Witt is &quot;the best unsigned writer in Nashville.&quot; He's also a
-            skilled mix engineer.">
+        content="Alden Witt is &quot;the best unsigned writer in Nashville.&quot; He's also a skilled mix engineer.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Favicons for browsers -->
@@ -25,11 +24,12 @@
 </head>
 <body>
 
-  <alden-app>
-    <div class="loading">
-      Loading...
-    </div>
-  </alden-app>
+  <alden-app></alden-app>
+
+  <div class="loading">
+    <p>Loading...</p>
+    <p class="progress"></p>
+  </div>
 
   <script>
   // Fixes undefined module function in SystemJS bundle

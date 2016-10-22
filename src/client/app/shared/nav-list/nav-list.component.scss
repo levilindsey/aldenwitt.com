@@ -74,7 +74,10 @@ a {
   h2,
   h2>img {
     height: 80px;
-    margin: -8px 0 -10px 160px;
+  }
+
+  h2 {
+    margin: -16px 0 -4px 320px;
   }
 
   .nav-text-image {
@@ -123,5 +126,28 @@ a {
 
   .horizontal-nav {
     display: flex;
+  }
+}
+
+@media(max-width: $extra-small-screen-width-threshold) {
+  .horizontal-nav {
+    h2,
+    h2 > img {
+      height: 50px;
+    }
+
+    h2 {
+      margin-left: 190px;
+    }
+
+    .nav-text-image {
+      height: 30px;
+    }
+
+    .nav-items > div,
+    .current-route-item {
+      width: 110px;
+      min-width: 110px;
+    }
   }
 }

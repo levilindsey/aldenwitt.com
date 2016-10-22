@@ -35,17 +35,15 @@ h2 {
 
   :host {
     margin-left: 0;
-    margin-top: -42px;
+    margin-top: -5%;
   }
 
   .card-background-image {
-    //max-width: $napkin-width-small-screen;
     width: $napkin-width-small-screen;
   }
 
   .page-content {
-    //max-width: $napkin-width-small-screen;
-    padding: $top-padding 100px 0 100px;
+    padding: 100px 100px 0 100px;
     width: $napkin-width-small-screen;
   }
 }
@@ -53,5 +51,9 @@ h2 {
 @media(max-width: $extra-small-screen-width-threshold) {
   :host {
     font-size: font-size(s);
+  }
+
+  .page-content {
+    padding: 70px 70px 0 70px;
   }
 }

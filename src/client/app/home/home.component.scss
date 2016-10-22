@@ -46,7 +46,7 @@ p {
   }
 
   .page-content {
-    padding: $proportional-top-padding 0 0;
+    padding: $proportional-top-padding 24px 0 24px;
   }
 
   p {
@@ -54,8 +54,14 @@ p {
   }
 }
 
+$xs-proportional-top-padding: calc(#{(1 / $polaroid-image-aspect-ratio) * 100%} + #{72px});
+
 @media(max-width: $extra-small-screen-width-threshold) {
   :host {
-    font-size: font-size(m);
+    font-size: font-size(s);
+  }
+
+  .page-content {
+    padding: $xs-proportional-top-padding 18px 0 18px;
   }
 }

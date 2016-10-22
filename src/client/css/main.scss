@@ -195,18 +195,24 @@ a:active {
 }
 
 .loading {
+  $loading-p-margin: 8px;
+
   @include helvetica-font();
   bottom: 0;
   color: color(black);
   font-size: font-size(xxl);
   line-height: font-size(xxl);
-  height: font-size(xxl);
+  height: font-size(xxl) * 2 + $loading-p-margin;
   margin: auto;
   position: absolute;
   text-align: center;
   top: 0;
   vertical-align: middle;
   width: 100%;
+
+  p {
+    margin-bottom: $loading-p-margin;
+  }
 }
 
 /deep/ .card-background-image {

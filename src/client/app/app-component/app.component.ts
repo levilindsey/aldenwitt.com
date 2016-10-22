@@ -5,37 +5,101 @@ import {
 } from '../shared/index';
 import {AnimatorService} from '../shared/animation/animator.service';
 import {PageSlideInJob} from '../shared/sliding-page/index';
-import {preCacheImages} from '../shared/utils';
 
 // In milliseconds.
 const SLIDE_IN_DURATION = 1200;
 const SLIDE_IN_DELAY = 300;
 
-const IMAGE_PATHS = [
-  'assets/images/sexy-songwriter.png',
+const imageData = [
   // TODO: Keep these up-to-date!
-  'assets/images/alden-witt-title.png',
-  'assets/images/bio-header.png',
-  'assets/images/bio-nav-arrow.png',
-  'assets/images/bio-nav-no-arrow.png',
-  'assets/images/boat.png',
-  'assets/images/contact-header.png',
-  'assets/images/contact-nav-arrow.png',
-  'assets/images/contact-nav-no-arrow.png',
-  'assets/images/envelope.png',
-  'assets/images/groceries.png',
-  'assets/images/home-nav-arrow.png',
-  'assets/images/home-nav-no-arrow.png',
-  'assets/images/napkin.png',
-  'assets/images/notebook.png',
-  'assets/images/sexy-songwriter.png',
-  'assets/images/songwriter.png',
-  'assets/images/spaceship.png',
-  'assets/images/star-bio.png',
-  'assets/images/star-contact.png',
-  'assets/images/star-home.png',
-  'assets/images/underline.png',
-  'assets/images/wood.jpg',
+  {
+    path: 'assets/images/alden-witt-title.png',
+    size: 59
+  },
+  {
+    path: 'assets/images/bio-header.png',
+    size: 3
+  },
+  {
+    path: 'assets/images/bio-nav-arrow.png',
+    size: 2
+  },
+  {
+    path: 'assets/images/bio-nav-no-arrow.png',
+    size: 2
+  },
+  {
+    path: 'assets/images/boat.png',
+    size: 4
+  },
+  {
+    path: 'assets/images/contact-header.png',
+    size: 4
+  },
+  {
+    path: 'assets/images/contact-nav-arrow.png',
+    size: 3
+  },
+  {
+    path: 'assets/images/contact-nav-no-arrow.png',
+    size: 3
+  },
+  {
+    path: 'assets/images/envelope.png',
+    size: 363
+  },
+  {
+    path: 'assets/images/groceries.png',
+    size: 12
+  },
+  {
+    path: 'assets/images/home-nav-arrow.png',
+    size: 3
+  },
+  {
+    path: 'assets/images/home-nav-no-arrow.png',
+    size: 2
+  },
+  {
+    path: 'assets/images/napkin.png',
+    size: 238
+  },
+  {
+    path: 'assets/images/notebook.png',
+    size: 762
+  },
+  {
+    path: 'assets/images/sexy-songwriter.png',
+    size: 291
+  },
+  {
+    path: 'assets/images/songwriter.png',
+    size: 18
+  },
+  {
+    path: 'assets/images/spaceship.png',
+    size: 7
+  },
+  {
+    path: 'assets/images/star-bio.png',
+    size: 2
+  },
+  {
+    path: 'assets/images/star-contact.png',
+    size: 2
+  },
+  {
+    path: 'assets/images/star-home.png',
+    size: 2
+  },
+  {
+    path: 'assets/images/underline.png',
+    size: 8
+  },
+  {
+    path: 'assets/images/wood.jpg',
+    size: 1595
+  },
 ];
 
 /**
@@ -53,12 +117,19 @@ const IMAGE_PATHS = [
 export class AppComponent {
   areAssetsLoaded: boolean = false;
   hasAnimationStarted: boolean = false;
+  loadingElement: HTMLElement;
+  loadingProgressElement: HTMLElement;
 
   constructor(private pageElementRef: ElementRef, private animator: AnimatorService,
               @Inject(ROUTE_CONFIG) routeConfig: RouteConfig, router: RouterService) {
-    preCacheImages(IMAGE_PATHS).then(() => {
+    this.loadingElement = document.querySelector('.loading') as HTMLElement;
+    this.loadingProgressElement = document.querySelector('.progress') as HTMLElement;
+
+    this.preCacheImages().then(() => {
       setTimeout(() => {
         this.areAssetsLoaded = true;
+        // Hide the loading message.
+        this.loadingElement.style.display = 'none';
         router.initialize(routeConfig);
         setTimeout(() => this.slideIn(), 0);
       }, 1000);
@@ -75,4 +146,64 @@ export class AppComponent {
     this.animator.startJob(slideJob);
     this.hasAnimationStarted = true;
   }
+
+  /**
+   * Pre-caches all images used in this app and updates a progress indicator.
+   */
+  preCacheImages(): Promise {
+    let imagePromises = imageData.map((imageDatum) =>
+        new Promise((resolve, reject) =>
+            loadImage(imageDatum, this.updateProgressIndicator.bind(this), resolve)));
+    return Promise.all(imagePromises);
+  }
+
+  updateProgressIndicator() {
+    let totalSizeToLoad: number = 0;
+    let currentSizeLoaded: number = 0;
+
+    imageData.forEach(imageDatum => {
+      totalSizeToLoad += imageDatum.size;
+      currentSizeLoaded += imageDatum.size * imageDatum.progress;
+    });
+
+    let totalProgressPercent = parseInt(currentSizeLoaded / totalSizeToLoad * 100);
+    this.loadingProgressElement.innerHTML = `(${totalProgressPercent}%)`;
+  }
+}
+
+function loadImage(imageDatum, onProgress: Function, onLoadEnd: Function) {
+  function onImageLoad(_) {
+    imageDatum.progress = 1;
+    onProgress();
+    onLoadEnd();
+  }
+
+  function onImageProgress(event) {
+    if (event.lengthComputable) {
+      imageDatum.progress = event.loaded / event.total;
+      onProgress();
+    }
+  }
+
+  function onImageError(_) {
+    console.error(`An error occurred loading image: ${imageDatum.path}`);
+    onLoadEnd();
+  }
+
+  console.debug(`Loading image: ${imageDatum.path}`);
+
+  loadWithProgress(imageDatum.path, onImageLoad, onImageProgress, onImageError);
+}
+
+function loadWithProgress(src: string, onLoad: Function, onProgress: Function, onError: Function) {
+  let xhr = new XMLHttpRequest();
+
+  xhr.addEventListener('load', onLoad);
+  xhr.addEventListener('progress', onProgress);
+  xhr.addEventListener('error', onError);
+  xhr.addEventListener('abort', onError);
+
+  xhr.open('GET', src, true);
+  xhr.responseType = 'blob';
+  xhr.send(null);
 }
