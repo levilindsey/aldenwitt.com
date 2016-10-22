@@ -171,7 +171,7 @@ export class AppComponent {
 
     imageData.forEach(imageDatum => {
       totalSizeToLoad += imageDatum.size;
-      currentSizeLoaded += imageDatum.size * imageDatum.progress;
+      currentSizeLoaded += imageDatum.size * (imageDatum.progress || 0);
     });
 
     let totalProgressPercent = parseInt(currentSizeLoaded / totalSizeToLoad * 100);
