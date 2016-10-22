@@ -32,6 +32,17 @@ a {
   }
 }
 
+.social-media-icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  img {
+    height: 40px;
+    margin: 0 13px;
+  }
+}
+
 //
 // Show a vertical alignment for wide screens.
 //
@@ -57,6 +68,10 @@ a {
   .current-route-item {
     margin-bottom: 12px;
   }
+
+  .social-media-icons {
+    margin-top: 16px;
+  }
 }
 
 .horizontal-nav {
@@ -64,6 +79,15 @@ a {
   display: none;
   position: relative;
   z-index: 10;
+
+  .top-bar {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: -16px 0 -4px;
+    width: 100%;
+  }
 
   .nav-items {
     flex-direction: row;
@@ -74,10 +98,6 @@ a {
   h2,
   h2>img {
     height: 80px;
-  }
-
-  h2 {
-    margin: -16px 0 -4px 320px;
   }
 
   .nav-text-image {
@@ -127,6 +147,15 @@ a {
   .horizontal-nav {
     display: flex;
   }
+
+  .top-bar {
+    max-width: 540px;
+  }
+
+  .social-media-icons img {
+    height: 30px;
+    margin: 0 10px;
+  }
 }
 
 @media(max-width: $extra-small-screen-width-threshold) {
@@ -134,10 +163,6 @@ a {
     h2,
     h2 > img {
       height: 50px;
-    }
-
-    h2 {
-      margin-left: 190px;
     }
 
     .nav-text-image {
@@ -149,5 +174,14 @@ a {
       width: 110px;
       min-width: 110px;
     }
+  }
+
+  .top-bar {
+    max-width: 354px;
+  }
+
+  .social-media-icons img {
+    height: 20px;
+    margin: 0 6px;
   }
 }

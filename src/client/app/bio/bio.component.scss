@@ -1,6 +1,6 @@
 @import '../../css/main';
 
-$top-padding: 64px;
+$top-padding: 62px;
 $left-padding: 20px;
 $right-padding: 20px;
 
@@ -12,16 +12,24 @@ $envelope-image-aspect-ratio: 0.75513933302;
 :host {
   @include page();
   margin-left: -6px;
-  margin-top: -44px;
-  font-size: font-size(s);
+  margin-top: -46px;
+  font-size: 23px;
 }
 
 h2 {
-  margin-bottom: -6px;
+  margin-bottom: 6px;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+blockquote {
+  margin: -14px 0 6px 40px;
 }
 
 .card-background-image {
-  max-height: 776px;
+  max-height: 780px;
   max-width: $max-envelope-width;
   width: $envelope-image-width;
 }
@@ -35,13 +43,14 @@ h2 {
   $envelope-width-small-screen: 130%;
 
   :host {
-    font-size: font-size(s);
+    font-size: 23px;
     margin-left: 0;
     margin-top: -20px;
   }
 
   .card-background-image {
     width: $envelope-width-small-screen;
+    min-height: 810px;
   }
 
   .page-content {

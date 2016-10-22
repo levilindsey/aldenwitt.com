@@ -12,7 +12,7 @@ $polaroid-image-aspect-ratio: 0.99404761904;
 :host {
   @include page();
   display: block;
-  font-size: font-size(l);
+  font-size: 31px;
   margin-left: 2px;
   margin-top: -38px;
 }
@@ -37,6 +37,7 @@ p {
   $polaroid-width-small-screen: 110%;
 
   :host {
+    font-size: 28px;
     margin-top: -12px;
     margin-left: 0;
   }

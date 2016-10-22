@@ -49,6 +49,10 @@ const imageData = [
     size: 363
   },
   {
+    path: 'assets/images/facebook-icon.png',
+    size: 1
+  },
+  {
     path: 'assets/images/groceries.png',
     size: 12
   },
@@ -75,6 +79,10 @@ const imageData = [
   {
     path: 'assets/images/songwriter.png',
     size: 18
+  },
+  {
+    path: 'assets/images/soundcloud-icon.png',
+    size: 1
   },
   {
     path: 'assets/images/spaceship.png',
