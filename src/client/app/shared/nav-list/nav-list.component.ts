@@ -11,6 +11,19 @@ import {createTransformString, randomFloatInRange} from '../utils';
 
 const MAX_STAR_ROTATION = Math.PI / 12;
 
+const SOCIAL_MEDIA_DATA = [
+  {
+    link: 'https://soundcloud.com/aldenwitt/sets/alden-witt-playlist/s-lo9Lr',
+    src: 'assets/images/soundcloud-icon.png',
+    alt: 'SoundCloud icon'
+  },
+  {
+    link: 'https://www.facebook.com/Alden-Witt-159711814127085/',
+    src: 'assets/images/facebook-icon.png',
+    alt: 'Facebook icon'
+  }
+];
+
 /**
  * This class represents navigation list component that can be styled to be shown either vertically
  * or horizontally.
@@ -24,6 +37,7 @@ const MAX_STAR_ROTATION = Math.PI / 12;
 })
 export class NavListComponent {
   starRotationStyle: {transform: string} = {transform: ''};
+  socialMediaData = SOCIAL_MEDIA_DATA;
 
   constructor(@Inject(ROUTE_CONFIG) public routeConfig: RouteConfig,
               public router: RouterService) {

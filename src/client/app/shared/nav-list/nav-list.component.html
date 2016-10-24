@@ -30,14 +30,11 @@
   </div>
 
   <div class="social-media-icons">
-    <a href="https://soundcloud.com/aldenwitt/sets/alden-witt-playlist/s-lo9Lr">
-      <img src="assets/images/soundcloud-icon.png"
-           alt="SoundCloud icon" />
-    </a>
-
-    <a href="https://www.facebook.com/Alden-Witt-159711814127085/">
-      <img src="assets/images/facebook-icon.png"
-           alt="Facebook icon" />
+    <a *ngFor="let datum of socialMediaData"
+         [href]="datum.link"
+         target="_blank">
+      <img [src]="datum.src"
+           alt="{{datum.alt}}" />
     </a>
   </div>
 </nav>
@@ -45,14 +42,11 @@
 <nav class="horizontal-nav">
   <div class="top-bar">
     <div class="social-media-icons">
-      <a href="https://soundcloud.com/aldenwitt/sets/alden-witt-playlist/s-lo9Lr">
-        <img src="assets/images/soundcloud-icon.png"
-             alt="SoundCloud icon" />
-      </a>
-
-      <a href="https://www.facebook.com/Alden-Witt-159711814127085/">
-        <img src="assets/images/facebook-icon.png"
-             alt="Facebook icon" />
+      <a *ngFor="let datum of socialMediaData"
+         [href]="datum.link"
+         target="_blank">
+        <img [src]="datum.src"
+             alt="{{datum.alt}}" />
       </a>
     </div>
 

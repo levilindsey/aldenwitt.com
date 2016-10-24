@@ -1,37 +1,42 @@
 @import '../../css/main';
 
-$top-padding: 62px;
+$top-padding: 80px;
 $left-padding: 20px;
-$right-padding: 20px;
+$right-padding: 10px;
 
 $envelope-image-width: 180%;
-$max-envelope-width: 640px;
+$max-envelope-width: 680px;
 
 $envelope-image-aspect-ratio: 0.75513933302;
 
 :host {
   @include page();
-  margin-left: -6px;
-  margin-top: -46px;
-  font-size: 23px;
+  margin-left: -20px;
+  margin-top: -52px;
+  font-size: 26px;
 }
 
+$paragraph-margin: 28px;
+$blockquote-margin: 10px;
+
 h2 {
-  margin-bottom: 6px;
+  margin-bottom: 30px;
 }
 
 p {
-  margin-bottom: 20px;
+  margin-bottom: $paragraph-margin;
 }
 
 blockquote {
-  margin: -14px 0 6px 40px;
+  font-size: 1.2em;
+  font-style: italic;
+  margin: $blockquote-margin - $paragraph-margin 0 $blockquote-margin 40px;
 }
 
 .card-background-image {
-  max-height: 780px;
   max-width: $max-envelope-width;
   width: $envelope-image-width;
+  min-height: 994px;
 }
 
 .page-content {
@@ -41,6 +46,7 @@ blockquote {
 
 @media(max-width: $small-screen-width-threshold) {
   $envelope-width-small-screen: 130%;
+  $s-envelope-height: 900px;
 
   :host {
     font-size: 23px;
@@ -50,7 +56,8 @@ blockquote {
 
   .card-background-image {
     width: $envelope-width-small-screen;
-    min-height: 810px;
+    min-height: $s-envelope-height;
+    max-height: $s-envelope-height;
   }
 
   .page-content {
@@ -60,12 +67,15 @@ blockquote {
 }
 
 @media(max-width: $extra-small-screen-width-threshold) {
+  $xs-envelope-height: 1000px;
+
   :host {
     font-size: font-size(xs);
   }
 
   .card-background-image {
-    min-height: 840px;
+    min-height: $xs-envelope-height;
+    max-height: $xs-envelope-height;
   }
 
   .page-content {

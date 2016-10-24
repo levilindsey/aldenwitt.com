@@ -147,8 +147,17 @@ alden-nav-list {
 //
 
 @media(max-width: $small-screen-width-threshold) {
+  .note-pad {
+    margin-top: -30px;
+  }
+
+  :host .note-pad>.card-background-image,
+  .card-background-image > img:not(.groceries) {
+    width: 876px;;
+  }
+
   .content-column {
-    padding: 220px 20px 0;
+    padding: 158px 20px 0;
   }
 
   header {
@@ -185,9 +194,22 @@ alden-nav-list {
     flex: 1;
     max-width: 100%;
   }
+
+  .groceries {
+    display: none;
+  }
 }
 
 @media(max-width: $extra-small-screen-width-threshold) {
+  .content-column {
+    padding-top: 145px;
+  }
+
+  :host .note-pad>.card-background-image,
+  .card-background-image > img:not(.groceries) {
+    width: 702px;
+  }
+
   header {
     h1,
     .main-title {
