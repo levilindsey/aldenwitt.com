@@ -1,5 +1,5 @@
-import {Component, Inject} from '@angular/core';
 import {NgStyle} from '@angular/common';
+import {Component, Inject} from '@angular/core';
 import {
   ROUTE_CONFIG,
   RouteConfig,
@@ -7,7 +7,6 @@ import {
   RouterLinkDirective,
   RouterService
 } from '../router/index';
-import {createTransformString, randomFloatInRange} from '../utils';
 
 const MAX_STAR_ROTATION = Math.PI / 12;
 
