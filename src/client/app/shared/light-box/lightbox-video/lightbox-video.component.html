@@ -1,0 +1,12 @@
+<div class="background-screen"></div>
+
+<div class="panel"
+     [ngStyle]="{'width': panelWidth, 'height': panelHeight}">
+  <iframe
+    width="{{videoWidth}}"
+    height="{{videoHeight}}"
+    src="{{url}}"
+    frameborder="0"
+    allowfullscreen>
+  </iframe>
+</div>
