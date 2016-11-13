@@ -11,9 +11,15 @@ export class LightboxService {
   public isLightboxShown: boolean = false;
 
   private displayChangeStream = new Subject();
+  private _url: string;
+
+  get url() : string {
+    return this._url;
+  }
 
   showLightbox(url: string) {
     this.isLightboxShown = true;
+    this._url = url;
     this.displayChangeStream.next(this.isLightboxShown);
   }
 

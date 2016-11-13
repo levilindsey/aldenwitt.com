@@ -1,0 +1,12 @@
+<!--
+TODO: programatically add/remove the element on a delay, so that I can show the gradual fade.
+-->
+<div class="background-screen"
+     [class.hidden]="!isLightboxShown"
+     *ngIf="isLightboxShown"
+     (click)="closeLightbox()"></div>
+
+<alden-lightbox-video
+  *ngIf="isLightboxShown"
+  [url]="url">
+</alden-lightbox-video>

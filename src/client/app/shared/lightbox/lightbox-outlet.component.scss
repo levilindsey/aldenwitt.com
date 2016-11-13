@@ -1,1 +1,28 @@
 @import '../../../css/main';
+
+:host {
+  display: block;
+  position: fixed;
+  pointer-events: none;
+}
+
+.background-screen {
+  background-color: hsla(0, 0%, 0%, 0.2);
+  display: block;
+  height: 100%;
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.5s;
+  z-index: 100;
+  width: 100%;
+
+  .hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+alden-lightbox-video {
+  pointer-events: auto;
+  z-index: 101;
+}

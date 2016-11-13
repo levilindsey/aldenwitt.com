@@ -1,5 +1,6 @@
 import {NgStyle} from '@angular/common';
 import {Component, Input} from '@angular/core';
+import {DomSanitizationService, SafeResourceUrl} from '@angular/platform-browser';
 
 import {debounce, getViewportSize} from '../../utils';
 
@@ -25,20 +26,24 @@ let MAX_PANEL_HEIGHT: number = MAX_VIDEO_HEIGHT + PANEL_PADDING * 2;
   directives: [NgStyle]
 })
 export class LightboxVideoComponent {
-  @Input() url: String;
+  @Input() set url(value: string) {
+    this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(value);
+  }
+
+  safeUrl: SafeResourceUrl;
 
   panelWidth: number;
   panelHeight: number;
   videoWidth: number;
   videoHeight: number;
 
-  LightboxVideoComponent() {
+  constructor(private sanitizer: DomSanitizationService) {
     this.calculateDimensions();
     let debouncedResize = debounce(this.calculateDimensions.bind(this), 200);
     window.addEventListener('resize', debouncedResize, false);
   }
 
-  calculateDimensions() {
+  private calculateDimensions() {
     let {w: viewportWidth, h: viewportHeight} = getViewportSize();
     let viewportAspectRatio = viewportWidth / viewportHeight;
 

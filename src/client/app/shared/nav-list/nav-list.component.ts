@@ -7,6 +7,7 @@ import {
   RouterLinkDirective,
   RouterService
 } from '../router/index';
+import {LightboxTriggerComponent} from '../lightbox/index';
 
 const MAX_STAR_ROTATION = Math.PI / 12;
 
@@ -32,7 +33,7 @@ const SOCIAL_MEDIA_DATA = [
   selector: 'alden-nav-list',
   templateUrl: 'nav-list.component.html',
   styleUrls: ['nav-list.component.css'],
-  directives: [RouterLinkDirective, NgStyle]
+  directives: [LightboxTriggerComponent, RouterLinkDirective, NgStyle]
 })
 export class NavListComponent {
   starRotationStyle: {transform: string} = {transform: ''};

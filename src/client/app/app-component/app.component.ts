@@ -5,6 +5,7 @@ import {
 } from '../shared/index';
 import {AnimatorService} from '../shared/animation/animator.service';
 import {PageSlideInJob} from '../shared/sliding-page/index';
+import {LightboxOutletComponent, LightboxService} from '../shared/lightbox/index';
 
 // In milliseconds.
 const SLIDE_IN_DURATION = 1200;
@@ -117,10 +118,10 @@ const imageData = [
 @Component({
   moduleId: module.id,
   selector: 'alden-app',
-  viewProviders: [AnimatorService, RouterService, HTTP_PROVIDERS],
+  viewProviders: [AnimatorService, LightboxService, RouterService, HTTP_PROVIDERS],
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
-  directives: [RouterOutletComponent, NavListComponent]
+  directives: [LightboxOutletComponent, RouterOutletComponent, NavListComponent]
 })
 export class AppComponent {
   areAssetsLoaded: boolean = false;
