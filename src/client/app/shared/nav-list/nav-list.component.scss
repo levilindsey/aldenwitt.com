@@ -70,12 +70,22 @@ a {
 
   .instagram-feed {
     margin-top: 16px;
-    padding-left: 40px;
+    padding: 0 40px;
   }
 
   .check-it-out {
     width: 200px;
     margin-left: 14px;
+  }
+
+  .buy-links {
+    display: flex;
+    font-size: font-size(m);
+    justify-content: center;
+
+    > a {
+      margin: 0 20px;
+    }
   }
 }
 

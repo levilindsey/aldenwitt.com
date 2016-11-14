@@ -177,23 +177,26 @@ h5 {
 }
 
 a {
-  color: color(blue-2);
+  //color: color(blue-2);
+  color: color(black);
   cursor: pointer;
+  opacity: 0.72;
   text-decoration: none;
   transition: color 0.2s;
 }
 a:visited {
-  color: color(purple-2);
+  //color: color(purple-2);
 }
 a:hover {
-  color: color(blue-3);
+  opacity: 1;
+  //color: color(blue-3);
 }
 a:visited:hover {
-  color: color(purple-3);
+  //color: color(purple-3);
 }
 a:active,
 a:visited:active {
-  color: color(red-3);
+  //color: color(red-3);
 }
 
 .loading {

@@ -16,11 +16,11 @@ export class LightboxTriggerComponent {
   constructor(private service: LightboxService) {}
 
   get thumbnailSrc() : string {
-    return `https://img.youtube.com/vi/${this.youtubeId}/default.jpg`;
+    return `https://img.youtube.com/vi/${this.youtubeId}/mqdefault.jpg`;
   }
 
   get videoUrl() : string {
-    return `https://www.youtube.com/embed/${this.youtubeId}?rel=0`;
+    return `https://www.youtube.com/embed/${this.youtubeId}?rel=0&autoplay=1`;
   }
 
   showLightbox() {

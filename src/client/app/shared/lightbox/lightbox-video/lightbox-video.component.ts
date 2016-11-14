@@ -1,5 +1,4 @@
-import {NgStyle} from '@angular/common';
-import {Component, Input} from '@angular/core';
+import {Component, Input, ElementRef} from '@angular/core';
 import {DomSanitizationService, SafeResourceUrl} from '@angular/platform-browser';
 
 import {debounce, getViewportSize} from '../../utils';
@@ -13,8 +12,6 @@ let MAX_VIDEO_HEIGHT: number = 720;
 let MAX_PANEL_WIDTH: number = MAX_VIDEO_WIDTH + PANEL_PADDING * 2;
 let MAX_PANEL_HEIGHT: number = MAX_VIDEO_HEIGHT + PANEL_PADDING * 2;
 
-// FIXME: url = https://www.youtube.com/embed/HFQTbvVLqII?rel=0
-
 /**
  * This class represents a lightbox that shows a YouTube video.
  */
@@ -22,8 +19,7 @@ let MAX_PANEL_HEIGHT: number = MAX_VIDEO_HEIGHT + PANEL_PADDING * 2;
   moduleId: module.id,
   selector: 'alden-lightbox-video',
   templateUrl: 'lightbox-video.component.html',
-  styleUrls: ['lightbox-video.component.css'],
-  directives: [NgStyle]
+  styleUrls: ['lightbox-video.component.css']
 })
 export class LightboxVideoComponent {
   @Input() set url(value: string) {
@@ -37,9 +33,13 @@ export class LightboxVideoComponent {
   videoWidth: number;
   videoHeight: number;
 
-  constructor(private sanitizer: DomSanitizationService) {
-    this.calculateDimensions();
-    let debouncedResize = debounce(this.calculateDimensions.bind(this), 200);
+  private element: any;
+
+  constructor(private sanitizer: DomSanitizationService, elementRef: ElementRef) {
+    this.element = elementRef.nativeElement;
+
+    this.updateDimensions();
+    let debouncedResize = debounce(this.updateDimensions.bind(this), 200);
     window.addEventListener('resize', debouncedResize, false);
   }
 
@@ -69,5 +69,11 @@ export class LightboxVideoComponent {
       this.videoWidth = MAX_VIDEO_WIDTH;
       this.videoHeight = MAX_VIDEO_HEIGHT;
     }
+  }
+
+  private updateDimensions() {
+    this.calculateDimensions();
+    this.element.style.width = `${this.panelWidth}px`;
+    this.element.style.height = `${this.panelHeight}px`;
   }
 }

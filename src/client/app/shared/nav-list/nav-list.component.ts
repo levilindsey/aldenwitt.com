@@ -24,6 +24,17 @@ const SOCIAL_MEDIA_DATA = [
   }
 ];
 
+const BUY_DATA = [
+  {
+    link: 'http://smarturl.it/ccburnthebed',
+    text: 'iTunes'
+  },
+  {
+    link: 'http://smarturl.it/ccbtbspotify',
+    text: 'Spotify'
+  }
+];
+
 /**
  * This class represents navigation list component that can be styled to be shown either vertically
  * or horizontally.
@@ -38,6 +49,7 @@ const SOCIAL_MEDIA_DATA = [
 export class NavListComponent {
   starRotationStyle: {transform: string} = {transform: ''};
   socialMediaData = SOCIAL_MEDIA_DATA;
+  buyData = BUY_DATA;
 
   constructor(@Inject(ROUTE_CONFIG) public routeConfig: RouteConfig,
               public router: RouterService) {
