@@ -2,6 +2,7 @@ import {ROUTE_CONFIG} from './shared/index';
 import {BioComponent} from './bio/index';
 import {HomeComponent} from './home/index';
 import {ContactComponent} from './contact/contact.component';
+import {NewsComponent} from './news/news.component';
 
 export const ROUTER_PROVIDERS = [
   {provide: ROUTE_CONFIG, useValue: [
@@ -15,6 +16,16 @@ export const ROUTER_PROVIDERS = [
       horizontalNavIndicatorImage: 'assets/images/underline.png',
       component: HomeComponent,
       isDefault: true
+    },
+    {
+      name: 'news',
+      path: 'news',
+      label: 'Latest news',
+      verticalNavTextImage: 'assets/images/news-nav-arrow.png',
+      horizontalNavTextImage: 'assets/images/news-nav-no-arrow.png',
+      verticalNavIndicatorImage: 'assets/images/star-news.png',
+      horizontalNavIndicatorImage: 'assets/images/underline.png',
+      component: NewsComponent
     },
     {
       name: 'bio',

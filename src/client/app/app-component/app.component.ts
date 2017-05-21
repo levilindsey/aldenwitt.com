@@ -70,6 +70,14 @@ const imageData = [
     size: 238
   },
   {
+    path: 'assets/images/news-nav-arrow.png',
+    size: 3
+  },
+  {
+    path: 'assets/images/news-nav-no-arrow.png',
+    size: 3
+  },
+  {
     path: 'assets/images/notebook.png',
     size: 762
   },
@@ -99,6 +107,10 @@ const imageData = [
   },
   {
     path: 'assets/images/star-home.png',
+    size: 2
+  },
+  {
+    path: 'assets/images/star-news.png',
     size: 2
   },
   {

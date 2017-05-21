@@ -24,7 +24,7 @@ bootstrap(AppComponent, [
 
 let APP_INFO_LOG_MESSAGES = [
   '+------------------------------------------------------------------------+',
-  '| Copyright (c) 2016 Levi Lindsey and Alden Witt: All rights reserved.   |',
+  '| Copyright (c) 2017 Levi Lindsey and Alden Witt: All rights reserved.   |',
   '| Levi Lindsey created this website (http://levi.codes).                 |',
   '| This website uses Angular2, Typescript, and a custom animation module. |',
   '+------------------------------------------------------------------------+'

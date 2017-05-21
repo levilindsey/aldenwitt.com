@@ -4,6 +4,7 @@ $colors: (
   black: #000000,
   white: #FFFFFF,
 
+  gray-0: #060606, // 87% opacity of black on white
   gray-1: #212121, // 87% opacity of black on white
   gray-2: #727272, // 54% opacity of black on white
   gray-3: #b8b8b8, // 26% opacity of black on white
@@ -221,6 +222,16 @@ a:visited:active {
 }
 
 /deep/ .card-background-image {
+  display: block;
+  left: -1000000px;
+  margin: 0 auto;
+  pointer-events: none;
+  position: absolute;
+  right: -1000000px;
+  width: 100%;
+}
+
+/deep/ .card-background-image-background {
   display: block;
   left: -1000000px;
   margin: 0 auto;

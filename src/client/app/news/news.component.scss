@@ -1,0 +1,102 @@
+@import '../../css/main';
+
+$top-padding: 80px;
+$left-padding: 20px;
+$right-padding: 10px;
+
+$tablet-image-width: 180%;
+$max-tablet-width: 680px;
+
+$tablet-image-aspect-ratio: 0.75513933302;
+
+:host {
+  @include page();
+  @include helvetica-font();
+  color: color(gray-5);
+  margin-left: -20px;
+  margin-top: -52px;
+  font-size: 26px;
+}
+
+$paragraph-margin: 28px;
+
+h2 {
+  margin-bottom: 30px;
+}
+
+p {
+  margin-bottom: $paragraph-margin;
+}
+
+.card-background-image {
+  max-width: $max-tablet-width;
+  width: $tablet-image-width;
+  min-height: 994px;
+}
+
+$tablet-width: 680px;
+$tablet-height: 1003px;
+$tablet-background-margin: 28px;
+
+.card-background-image-background {
+  background-color: color(gray-0);
+  border-radius: 16px;
+  margin-top: $tablet-background-margin - 4px;
+  width: $tablet-width - $tablet-background-margin * 2;
+  height: $tablet-height - $tablet-background-margin * 2;
+}
+
+.page-content {
+  max-width: $max-tablet-width;
+  padding: $top-padding $right-padding 0 $left-padding;
+  margin-top: 50px;
+}
+
+@media(max-width: $small-screen-width-threshold) {
+  $tablet-width-small-screen: 130%;
+  $s-tablet-height: 900px;
+
+  :host {
+    font-size: 23px;
+    margin-left: 0;
+    margin-top: -20px;
+  }
+
+  .card-background-image {
+    width: $tablet-width-small-screen;
+    min-height: $s-tablet-height;
+    max-height: $s-tablet-height;
+  }
+
+  .card-background-image-background {
+    height: $s-tablet-height - $tablet-background-margin * 2;
+  }
+
+  .page-content {
+    padding: $top-padding 80px 0 80px;
+    width: $tablet-width-small-screen;
+    margin-top: 42px;
+  }
+}
+
+@media(max-width: $extra-small-screen-width-threshold) {
+  $xs-tablet-height: 1000px;
+
+  :host {
+    font-size: font-size(xs);
+  }
+
+  .card-background-image {
+    min-height: $xs-tablet-height;
+    max-height: $xs-tablet-height;
+  }
+
+  .card-background-image-background {
+    height: $xs-tablet-height - $tablet-background-margin * 2;
+  }
+
+  .page-content {
+    padding: $top-padding 60px 0 60px;
+    margin-top: 50px;
+  }
+}
