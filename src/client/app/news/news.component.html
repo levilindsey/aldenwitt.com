@@ -11,19 +11,27 @@
   </h2>
 
   <div class="credits">
-    <h3>2017</h3>
-    <ul>
-      <li>Modern Times EP - Josh Doyle - Producer/Writer</li>
-      <li>Separate Way - w-inds - Writer</li>
-    </ul>
-
-    <h3>2016</h3>
-    <ul>
-      <li>Burn The Bed - Candi Carpenter - Writer</li>
-    </ul>
+    <div *ngFor="let creditsYear of credits"
+         class="credits-year">
+      <h3>{{creditsYear.year}}</h3>
+      <ul>
+        <li *ngFor="let credit of creditsYear.credits">
+          <span class="credit-title">{{credit.title}}</span>
+          &mdash;
+          <span class="credit-artist">{{credit.artist}}</span>
+          &mdash;
+          <span class="credit-alden-role">{{credit.aldenRole}}</span>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <div class="instagram-feed">
-    FIXME
+    <a *ngFor="let config of imageConfigs"
+       [href]="config.link"
+       target="_blank">
+      <img [src]="config.images.thumbnail.url"
+           [alt]="config.caption.text" />
+    </a>
   </div>
 </div>

@@ -5,6 +5,8 @@ $vertical-nav-min-width: 271px;
 
 $underline-width: 96px;
 
+$news-item-offset: 30px;
+
 nav,
 .nav-items {
   display: flex;
@@ -44,11 +46,22 @@ a {
 
   h2,
   h2>img {
+    display: none; // TODO: remove the element from the page and stop loading the image?
     width: 100%;
   }
 
   h2 {
-    margin: 0 0 -14px 4%;
+    //margin: 0 0 -14px 4%;
+  }
+
+  .nav-items {
+    margin-top: 20px;
+
+    > div:nth-child(2) {
+      position: relative;
+      left: -$news-item-offset;
+      margin-right: -$news-item-offset;
+    }
   }
 
   .nav-text-image {
@@ -64,11 +77,10 @@ a {
   .social-media-icons {
     justify-content: flex-start;
     margin-top: 16px;
-    //padding-left: 46px;
-    padding-left: 86px;
+    padding-left: 42px;
   }
 
-  .instagram-feed {
+  .video {
     margin-top: 16px;
     padding: 0 40px;
   }
@@ -108,7 +120,7 @@ a {
     flex-direction: row;
     justify-content: space-between;
     padding: 0 30px;
-    width: 100%;
+    width: 108%;
   }
 
   h2,

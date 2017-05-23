@@ -18,10 +18,15 @@ const SOCIAL_MEDIA_DATA = [
     alt: 'SoundCloud icon'
   },
   {
-    link: 'https://www.facebook.com/Alden-Witt-159711814127085/',
+    link: 'https://www.facebook.com/Alden-Witt-159711814127085',
     src: 'assets/images/facebook-icon.png',
     alt: 'Facebook icon'
-  }
+  },
+  {
+    link: 'https://www.instagram.com/aldenwitty',
+    src: 'assets/images/instagram-icon.png',
+    alt: 'Instagram icon'
+  },
 ];
 
 const BUY_DATA = [

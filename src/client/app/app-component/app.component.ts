@@ -1,5 +1,5 @@
 import {Component, Inject, ElementRef} from '@angular/core';
-import {HTTP_PROVIDERS} from '@angular/http';
+import {HTTP_PROVIDERS, JSONP_PROVIDERS} from '@angular/http';
 import {
   ROUTE_CONFIG, RouteConfig, RouterService, RouterOutletComponent, NavListComponent
 } from '../shared/index';
@@ -66,6 +66,10 @@ const imageData = [
     size: 2
   },
   {
+    path: 'assets/images/instagram-icon.png',
+    size: 1
+  },
+  {
     path: 'assets/images/napkin.png',
     size: 238
   },
@@ -130,7 +134,7 @@ const imageData = [
 @Component({
   moduleId: module.id,
   selector: 'alden-app',
-  viewProviders: [AnimatorService, LightboxService, RouterService, HTTP_PROVIDERS],
+  viewProviders: [AnimatorService, LightboxService, RouterService, HTTP_PROVIDERS, JSONP_PROVIDERS],
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
   directives: [LightboxOutletComponent, RouterOutletComponent, NavListComponent]

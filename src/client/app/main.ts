@@ -22,7 +22,7 @@ bootstrap(AppComponent, [
   }
 ]);
 
-let APP_INFO_LOG_MESSAGES = [
+const APP_INFO_LOG_MESSAGES = [
   '+------------------------------------------------------------------------+',
   '| Copyright (c) 2017 Levi Lindsey and Alden Witt: All rights reserved.   |',
   '| Levi Lindsey created this website (http://levi.codes).                 |',

@@ -1,11 +1,11 @@
 @import '../../css/main';
 
 $top-padding: 80px;
-$left-padding: 20px;
-$right-padding: 10px;
+$left-padding: 36px;
+$right-padding: 32px;
 
 $tablet-image-width: 180%;
-$max-tablet-width: 680px;
+$max-tablet-width: 600px;
 
 $tablet-image-aspect-ratio: 0.75513933302;
 
@@ -13,9 +13,9 @@ $tablet-image-aspect-ratio: 0.75513933302;
   @include page();
   @include helvetica-font();
   color: color(gray-5);
-  margin-left: -20px;
-  margin-top: -52px;
-  font-size: 26px;
+  margin-left: -26px;
+  margin-top: 4px;
+  font-size: 20px;
 }
 
 $paragraph-margin: 28px;
@@ -31,11 +31,12 @@ p {
 .card-background-image {
   max-width: $max-tablet-width;
   width: $tablet-image-width;
-  min-height: 994px;
+  min-height: 880px;
 }
 
-$tablet-width: 680px;
-$tablet-height: 1003px;
+// These values were hand-tuned. I should probably find a better way to calculate them.
+$tablet-width: 600px;
+$tablet-height: 832px;
 $tablet-background-margin: 28px;
 
 .card-background-image-background {
@@ -52,14 +53,19 @@ $tablet-background-margin: 28px;
   margin-top: 50px;
 }
 
+.instagram-feed {
+  margin-top: 48px;
+  min-width: 320px;
+}
+
 @media(max-width: $small-screen-width-threshold) {
-  $tablet-width-small-screen: 130%;
+  $tablet-width-small-screen: 120%;
   $s-tablet-height: 900px;
 
   :host {
-    font-size: 23px;
+    font-size: 20px;
     margin-left: 0;
-    margin-top: -20px;
+    margin-top: 12px;
   }
 
   .card-background-image {
@@ -73,30 +79,33 @@ $tablet-background-margin: 28px;
   }
 
   .page-content {
-    padding: $top-padding 80px 0 80px;
+    padding: $top-padding 64px 0 64px;
     width: $tablet-width-small-screen;
     margin-top: 42px;
   }
 }
 
 @media(max-width: $extra-small-screen-width-threshold) {
-  $xs-tablet-height: 1000px;
+  $tablet-width-small-screen: 130%;
+  $xs-tablet-height: 920px;
 
   :host {
-    font-size: font-size(xs);
+    font-size: 18px;
   }
 
   .card-background-image {
+    width: $tablet-width-small-screen;
     min-height: $xs-tablet-height;
     max-height: $xs-tablet-height;
   }
 
   .card-background-image-background {
     height: $xs-tablet-height - $tablet-background-margin * 2;
+    width: $tablet-width-small-screen - 10%;
   }
 
   .page-content {
-    padding: $top-padding 60px 0 60px;
-    margin-top: 50px;
+    padding: $top-padding 52px 0 52px;
+    margin-top: 64px;
   }
 }
