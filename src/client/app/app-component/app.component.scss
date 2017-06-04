@@ -1,10 +1,10 @@
 @import '../../css/main';
 
-$note-pad-margin-top: -74px;
-$note-pad-width: 1000px;
+$note-pad-margin-top: -28px;
+$note-pad-width: 940px;
 
-$content-column-padding-left: 40px;
-$content-column-padding-right: 100px;
+$content-column-padding-left: 10px;
+$content-column-padding-right: 70px;
 
 $nav-list-width: 320px;
 
@@ -64,18 +64,6 @@ header {
   h1>img {
     position: relative;
   }
-
-  .doodle.left {
-    bottom: 16px;
-    height: 110px;
-    right: -30px;
-  }
-
-  .doodle.right {
-    bottom: 74px;
-    height: 76px;
-    left: -30px;
-  }
 }
 
 .note-pad {
@@ -91,7 +79,7 @@ header {
 }
 
 :host .note-pad>.card-background-image,
-.card-background-image > img:not(.groceries) {
+.card-background-image {
   width: $note-pad-width;
 }
 
@@ -105,17 +93,9 @@ header {
 
 $body-area-left-offset: -140px;
 
-.groceries {
-  display: block;
-  height: 114px;
-  position: absolute;
-  top: 970px;
-  left: 200px;
-}
-
 .content-column {
   margin: 0 auto;
-  padding: 214px $content-column-padding-right 0 $content-column-padding-left;
+  padding: 170px $content-column-padding-right 0 $content-column-padding-left;
   width: 100%;
   z-index: 2;
 }
@@ -152,7 +132,7 @@ alden-nav-list {
   }
 
   :host .note-pad>.card-background-image,
-  .card-background-image > img:not(.groceries) {
+  .card-background-image {
     width: 876px;;
   }
 
@@ -166,18 +146,6 @@ alden-nav-list {
     h1,
     .main-title {
       height: 120px;
-    }
-
-    .doodle.left {
-      bottom: 4px;
-      height: 82px;
-      right: -30px;
-    }
-
-    .doodle.right {
-      bottom: 44px;
-      height: 60px;
-      left: -24px;
     }
   }
 
@@ -194,10 +162,6 @@ alden-nav-list {
     flex: 1;
     max-width: 100%;
   }
-
-  .groceries {
-    display: none;
-  }
 }
 
 @media(max-width: $extra-small-screen-width-threshold) {
@@ -206,7 +170,7 @@ alden-nav-list {
   }
 
   :host .note-pad>.card-background-image,
-  .card-background-image > img:not(.groceries) {
+  .card-background-image {
     width: 702px;
   }
 
@@ -214,18 +178,6 @@ alden-nav-list {
     h1,
     .main-title {
       height: 74px;
-    }
-
-    .doodle.left {
-      bottom: 4px;
-      height: 48px;
-      right: -22px;
-    }
-
-    .doodle.right {
-      bottom: 26px;
-      height: 38px;
-      left: -16px;
     }
   }
 }

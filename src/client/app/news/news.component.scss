@@ -1,8 +1,8 @@
 @import '../../css/main';
 
 $top-padding: 80px;
-$left-padding: 36px;
-$right-padding: 32px;
+$left-padding: 24px;
+$right-padding: 44px;
 
 $tablet-image-width: 180%;
 $max-tablet-width: 600px;
@@ -62,6 +62,7 @@ $tablet-background-margin: 28px;
   margin-top: $tablet-background-margin - 4px;
   width: $tablet-width - $tablet-background-margin * 2;
   height: $tablet-height - $tablet-background-margin * 2;
+  transform: translateX(-12px);
 }
 
 .page-content {
@@ -72,6 +73,23 @@ $tablet-background-margin: 28px;
 
 .instagram-feed {
   min-width: 320px;
+
+  a {
+    display: inline-block;
+    margin: 0 6px 1px 0;
+    opacity: 1;
+    transition: box-shadow 0.2s;
+
+    img {
+      display: block;
+    }
+  }
+  a:hover {
+    box-shadow: 0 0 10px 0 black;
+  }
+  a:active {
+    box-shadow: 0 0 3px 0 black;
+  }
 }
 
 @media(max-width: $small-screen-width-threshold) {
@@ -99,7 +117,7 @@ $tablet-background-margin: 28px;
   }
 
   .page-content {
-    padding: $top-padding 64px 0 64px;
+    padding: $top-padding 74px 0 54px;
     width: $tablet-width-small-screen;
     margin-top: 42px;
   }
@@ -107,7 +125,7 @@ $tablet-background-margin: 28px;
 
 @media(max-width: $extra-small-screen-width-threshold) {
   $tablet-width-small-screen: 130%;
-  $xs-tablet-height: 920px;
+  $xs-tablet-height: 1120px;
 
   :host,
   h4 {
@@ -126,7 +144,7 @@ $tablet-background-margin: 28px;
   }
 
   .page-content {
-    padding: $top-padding 52px 0 52px;
+    padding: $top-padding 68px 0 36px;
     margin-top: 64px;
   }
 }

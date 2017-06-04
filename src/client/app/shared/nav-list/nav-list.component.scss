@@ -44,16 +44,6 @@ a {
   display: flex;
   min-width: $vertical-nav-min-width;
 
-  h2,
-  h2>img {
-    display: none; // TODO: remove the element from the page and stop loading the image?
-    width: 100%;
-  }
-
-  h2 {
-    //margin: 0 0 -14px 4%;
-  }
-
   .nav-items {
     margin-top: 20px;
 
@@ -111,7 +101,7 @@ a {
     align-items: center;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     margin: -16px 0 -4px;
     width: 100%;
   }
@@ -121,11 +111,6 @@ a {
     justify-content: space-between;
     padding: 0 30px;
     width: 108%;
-  }
-
-  h2,
-  h2>img {
-    height: 80px;
   }
 
   .nav-text-image {
@@ -197,11 +182,6 @@ $xs-underline-width: 70px;
 
 @media(max-width: $extra-small-screen-width-threshold) {
   .horizontal-nav {
-    h2,
-    h2 > img {
-      height: 50px;
-    }
-
     .nav-text-image {
       height: 24px;
     }

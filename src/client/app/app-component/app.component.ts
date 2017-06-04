@@ -11,74 +11,34 @@ import {LightboxOutletComponent, LightboxService} from '../shared/lightbox/index
 const SLIDE_IN_DURATION = 1200;
 const SLIDE_IN_DELAY = 300;
 
-const imageData = [
-  // TODO: Keep these up-to-date!
+// TODO: Keep these up-to-date!
+const EAGER_IMAGE_DATA = [
   {
     path: 'assets/images/alden-witt-title.png',
     size: 59
-  },
-  {
-    path: 'assets/images/bio-header.png',
-    size: 3
   },
   {
     path: 'assets/images/bio-nav-arrow.png',
     size: 2
   },
   {
-    path: 'assets/images/bio-nav-no-arrow.png',
-    size: 2
-  },
-  {
-    path: 'assets/images/boat.png',
-    size: 4
-  },
-  {
-    path: 'assets/images/contact-header.png',
-    size: 4
-  },
-  {
     path: 'assets/images/contact-nav-arrow.png',
     size: 3
-  },
-  {
-    path: 'assets/images/contact-nav-no-arrow.png',
-    size: 3
-  },
-  {
-    path: 'assets/images/envelope.png',
-    size: 363
   },
   {
     path: 'assets/images/facebook-icon.png',
     size: 1
   },
   {
-    path: 'assets/images/groceries.png',
-    size: 12
-  },
-  {
     path: 'assets/images/home-nav-arrow.png',
     size: 3
-  },
-  {
-    path: 'assets/images/home-nav-no-arrow.png',
-    size: 2
   },
   {
     path: 'assets/images/instagram-icon.png',
     size: 1
   },
   {
-    path: 'assets/images/napkin.png',
-    size: 238
-  },
-  {
     path: 'assets/images/news-nav-arrow.png',
-    size: 3
-  },
-  {
-    path: 'assets/images/news-nav-no-arrow.png',
     size: 3
   },
   {
@@ -90,16 +50,50 @@ const imageData = [
     size: 291
   },
   {
-    path: 'assets/images/songwriter.png',
-    size: 18
-  },
-  {
     path: 'assets/images/soundcloud-icon.png',
     size: 1
   },
   {
-    path: 'assets/images/spaceship.png',
-    size: 7
+    path: 'assets/images/tablet.png',
+    size: 10
+  },
+  {
+    path: 'assets/images/wood.jpg',
+    size: 215
+  },
+];
+const DEFERRED_IMAGE_DATA = [
+  {
+    path: 'assets/images/bio-header.png',
+    size: 3
+  },
+  {
+    path: 'assets/images/bio-nav-no-arrow.png',
+    size: 2
+  },
+  {
+    path: 'assets/images/contact-header.png',
+    size: 4
+  },
+  {
+    path: 'assets/images/contact-nav-no-arrow.png',
+    size: 3
+  },
+  {
+    path: 'assets/images/envelope.png',
+    size: 363
+  },
+  {
+    path: 'assets/images/home-nav-no-arrow.png',
+    size: 2
+  },
+  {
+    path: 'assets/images/napkin.png',
+    size: 238
+  },
+  {
+    path: 'assets/images/news-nav-no-arrow.png',
+    size: 3
   },
   {
     path: 'assets/images/star-bio.png',
@@ -120,10 +114,6 @@ const imageData = [
   {
     path: 'assets/images/underline.png',
     size: 8
-  },
-  {
-    path: 'assets/images/wood.jpg',
-    size: 1595
   },
 ];
 
@@ -150,14 +140,13 @@ export class AppComponent {
     this.loadingElement = document.querySelector('.loading') as HTMLElement;
     this.loadingProgressElement = document.querySelector('.progress') as HTMLElement;
 
-    this.preCacheImages().then(() => {
-      setTimeout(() => {
-        this.areAssetsLoaded = true;
-        // Hide the loading message.
-        this.loadingElement.style.display = 'none';
-        router.initialize(routeConfig);
-        setTimeout(() => this.slideIn(), 0);
-      }, 1000);
+    this.preCacheEagerImages().then(() => {
+      this.areAssetsLoaded = true;
+      // Hide the loading message.
+      this.loadingElement.style.display = 'none';
+      router.initialize(routeConfig);
+      setTimeout(() => this.slideIn(), 0);
+      this.preCacheDeferredImages();
     });
   }
 
@@ -173,10 +162,11 @@ export class AppComponent {
   }
 
   /**
-   * Pre-caches all images used in this app and updates a progress indicator.
+   * Pre-caches the most important images needed for the initial render of this app and updates a
+   * progress indicator.
    */
-  preCacheImages(): Promise {
-    let imagePromises = imageData.map((imageDatum) =>
+  preCacheEagerImages(): Promise {
+    let imagePromises = EAGER_IMAGE_DATA.map((imageDatum) =>
         new Promise((resolve, reject) =>
             loadImage(imageDatum, this.updateProgressIndicator.bind(this), resolve)));
     return Promise.all(imagePromises);
@@ -186,7 +176,7 @@ export class AppComponent {
     let totalSizeToLoad: number = 0;
     let currentSizeLoaded: number = 0;
 
-    imageData.forEach(imageDatum => {
+    EAGER_IMAGE_DATA.forEach(imageDatum => {
       totalSizeToLoad += imageDatum.size;
       currentSizeLoaded += imageDatum.size * (imageDatum.progress || 0);
     });
@@ -194,9 +184,13 @@ export class AppComponent {
     let totalProgressPercent = parseInt(currentSizeLoaded / totalSizeToLoad * 100);
     this.loadingProgressElement.innerHTML = `(${totalProgressPercent}%)`;
   }
+
+  preCacheDeferredImages() {
+     DEFERRED_IMAGE_DATA.map(datum => loadImage(datum));
+  }
 }
 
-function loadImage(imageDatum, onProgress: Function, onLoadEnd: Function) {
+function loadImage(imageDatum, onProgress: Function = () => {}, onLoadEnd: Function = () => {}) {
   function onImageLoad(_) {
     imageDatum.progress = 1;
     onProgress();
