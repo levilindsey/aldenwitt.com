@@ -7,7 +7,7 @@ import {Jsonp} from '@angular/http';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-const END_ROTATION = -0.0087 * Math.PI;
+const END_ROTATION = 0.015 * Math.PI;
 
 // This shouldn't be included here on the client, but Instagram doesn't seem to support an
 // alternative system for accessing a dynamic feed from a static client.

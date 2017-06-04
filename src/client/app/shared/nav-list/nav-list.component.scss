@@ -5,7 +5,9 @@ $vertical-nav-min-width: 271px;
 
 $underline-width: 96px;
 
-$news-item-offset: 30px;
+$news-item-offset: 18px;
+$news-item-image-height: 34px;
+$news-item-star-height: 38px;
 
 nav,
 .nav-items {
@@ -36,6 +38,12 @@ a {
   }
 }
 
+a,
+.current-route-item {
+  align-items: center;
+  display: flex;
+}
+
 //
 // Show a vertical alignment for wide screens.
 //
@@ -49,8 +57,15 @@ a {
 
     > div:nth-child(2) {
       position: relative;
-      left: -$news-item-offset;
-      margin-right: -$news-item-offset;
+      left: $news-item-offset;
+
+      .nav-text-image {
+        height: $news-item-image-height;
+      }
+
+      .star {
+        height: $news-item-star-height;
+      }
     }
   }
 
@@ -60,8 +75,7 @@ a {
 
   a,
   .current-route-item {
-    height: $vertical-nav-item-height;
-    margin-bottom: 12px;
+    height: 56px;
   }
 
   .social-media-icons {
@@ -111,6 +125,13 @@ a {
     justify-content: space-between;
     padding: 0 30px;
     width: 108%;
+
+    > div:nth-child(2) {
+      .nav-text-image {
+        height: 34px;
+        margin-top: 3px;
+      }
+    }
   }
 
   .nav-text-image {
@@ -127,11 +148,13 @@ a {
     flex-direction: column;
     min-width: $underline-width;
   }
-}
 
-.current-route-item {
-  display: flex;
-  align-items: center;
+  a,
+  .current-route-item {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .route-indicator {
@@ -188,6 +211,13 @@ $xs-underline-width: 70px;
 
     .nav-items {
       padding: 0;
+
+      > div:nth-child(2) {
+        .nav-text-image {
+          height: 21px;
+          margin-top: 2px;
+        }
+      }
     }
 
     .nav-items > div,
