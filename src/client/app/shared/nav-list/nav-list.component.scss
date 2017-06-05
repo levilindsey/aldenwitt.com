@@ -44,6 +44,13 @@ a,
   display: flex;
 }
 
+.nav-items>div:nth-child(2) a {
+  opacity: 0.85;
+}
+.nav-items>div:nth-child(2) a:hover {
+  opacity: 1;
+}
+
 //
 // Show a vertical alignment for wide screens.
 //
