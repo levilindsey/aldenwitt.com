@@ -1,29 +1,27 @@
-<div class="desk"
-     *ngIf="areAssetsLoaded">
-  <div class="note-pad"
-       [class.hidden]="!hasAnimationStarted">
-    <div class="card-background-image">
-      <img src="assets/images/notebook.png"
-           alt="An notepad in the background" />
-    </div>
+<div class="note-pad"
+     *ngIf="areAssetsLoaded"
+     [class.hidden]="!hasAnimationStarted">
+  <div class="card-background-image">
+    <img src="assets/images/notebook.png"
+         alt="An notepad in the background" />
+  </div>
 
-    <div class="content-column">
-      <header>
-        <div class="title">
-          <h1>
-            <img class="main-title"
-                 src="assets/images/alden-witt-title.png"
-                 alt="Alden Witt" />
-          </h1>
-        </div>
-      </header>
+  <div class="content-column">
+    <header>
+      <div class="title">
+        <h1>
+          <img class="main-title"
+               src="assets/images/alden-witt-title.png"
+               alt="Alden Witt" />
+        </h1>
+      </div>
+    </header>
 
-      <div class="body-area">
-        <alden-nav-list></alden-nav-list>
+    <div class="body-area">
+      <alden-nav-list></alden-nav-list>
 
-        <div class="page-area">
-          <router-outlet></router-outlet>
-        </div>
+      <div class="page-area">
+        <router-outlet></router-outlet>
       </div>
     </div>
   </div>

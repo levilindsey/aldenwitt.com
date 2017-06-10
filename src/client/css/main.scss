@@ -58,24 +58,9 @@ $font-sizes: (
   xxxl: 110px,
 );
 
-@font-face {
-  font-family: 'Own Written';
-  src: url('../assets/fonts/own-written/own-written.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
 @mixin helvetica-font() {
   font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial,
-      'Lucida Grande', sans-serif;
-  font-weight: 300;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-@mixin own-written-font() {
-  font-family: 'Own Written', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',
-      Helvetica, Arial, 'Lucida Grande', sans-serif;
+  'Lucida Grande', sans-serif;
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -127,7 +112,20 @@ $medium-screen-width-threshold: 1000px;// TODO: Tweak this.
 $small-screen-width-threshold: 880px;
 $extra-small-screen-width-threshold: 540px;
 
-// --- General style reset --- //
+$note-pad-margin-top: -28px;
+$note-pad-width: 940px;
+
+$content-column-padding-left: 10px;
+$content-column-padding-right: 70px;
+
+$nav-list-width: 320px;
+
+$note-pad-image-aspect-ratio: 0.73967046894;
+$note-pad-height: $note-pad-width / $note-pad-image-aspect-ratio;
+$desk-height: $note-pad-height + $note-pad-margin-top;
+$content-column-width: $note-pad-width - $content-column-padding-left -
+    $content-column-padding-right;
+$page-area-width: $content-column-width - $nav-list-width;
 
 /deep/ * {
   box-sizing: border-box;
@@ -153,6 +151,14 @@ alden-app {
   width: 100%;
 }
 
+alden-app {
+  background: hsl(42, 100%, 9%) url('../assets/images/wood.jpg');
+  background-size: cover;
+  color: color(gray-1);
+  height: 100%;
+  min-height: $desk-height;
+}
+
 ul {
   padding-left: 0;
   list-style-type: none;
@@ -161,12 +167,6 @@ ul {
 
 html {
   font-size: font-size(l);
-}
-
-body {
-  @include own-written-font();
-  color: color(gray-1);
-  background-color: color(gray-3);
 }
 
 h1,
@@ -205,7 +205,7 @@ a:visited:active {
 
   @include helvetica-font();
   bottom: 0;
-  color: color(black);
+  color: color(gray-5);
   font-size: font-size(xxl);
   line-height: font-size(xxl);
   height: font-size(xxl) * 2 + $loading-p-margin;

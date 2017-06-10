@@ -1,23 +1,24 @@
 @import '../../css/main';
 
-$note-pad-margin-top: -28px;
-$note-pad-width: 940px;
+@font-face {
+  font-family: 'Own Written';
+  src: url('../../assets/fonts/own-written/own-written.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
-$content-column-padding-left: 10px;
-$content-column-padding-right: 70px;
-
-$nav-list-width: 320px;
-
-$note-pad-image-aspect-ratio: 0.73967046894;
-$note-pad-height: $note-pad-width / $note-pad-image-aspect-ratio;
-$desk-height: $note-pad-height + $note-pad-margin-top;
-$content-column-width: $note-pad-width - $content-column-padding-left -
-    $content-column-padding-right;
-$page-area-width: $content-column-width - $nav-list-width;
+@mixin own-written-font() {
+  font-family: 'Own Written', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',
+               Helvetica, Arial, 'Lucida Grande', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 html,
 body,
 :host {
+  @include own-written-font();
   min-height: $desk-height;
 }
 
@@ -25,17 +26,9 @@ body,
   overflow: hidden;
 }
 
-.desk,
 .note-pad,
 .page-area {
   width: 100%;
-}
-
-.desk {
-  background: #7c4a31 url('assets/images/wood.jpg');
-  background-size: cover;
-  height: 100%;
-  min-height: $desk-height;
 }
 
 header {
@@ -63,6 +56,7 @@ header {
 
   h1>img {
     position: relative;
+    max-width: 100%;
   }
 }
 
@@ -77,10 +71,10 @@ header {
   right: -100000px;
   will-change: transform;
 }
-
-:host .note-pad>.card-background-image,
-.card-background-image {
+// FIXME: Fix resizing of back ground image / tiling on large screens
+.card-background-image > img {
   width: $note-pad-width;
+  max-width: 96vw;
 }
 
 .hidden {
@@ -131,9 +125,8 @@ alden-nav-list {
     margin-top: -30px;
   }
 
-  :host .note-pad>.card-background-image,
-  .card-background-image {
-    width: 876px;;
+  .card-background-image > img {
+    margin-top: 19px
   }
 
   .content-column {
@@ -169,15 +162,20 @@ alden-nav-list {
     padding-top: 145px;
   }
 
-  :host .note-pad>.card-background-image,
-  .card-background-image {
-    width: 702px;
+  .card-background-image > img {
+    min-width: 358px;
+    margin-top: 26px;
+    margin-left: -6px;
   }
 
   header {
     h1,
     .main-title {
       height: 74px;
+    }
+
+    h1>img {
+      max-width: none;
     }
   }
 }

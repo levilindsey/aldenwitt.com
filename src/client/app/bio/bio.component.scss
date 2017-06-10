@@ -9,11 +9,28 @@ $max-envelope-width: 680px;
 
 $envelope-image-aspect-ratio: 0.75513933302;
 
+@font-face {
+  font-family: 'Alphabetized Cassette Tapes';
+  src: url('../../assets/fonts/alphabetized-cassette-tapes/alphabetized-cassette-tapes.ttf')
+       format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin alphabetized-cassette-tapes-font() {
+  font-family: 'Alphabetized Cassette Tapes', 'HelveticaNeue-Light', 'Helvetica Neue Light',
+               'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 :host {
   @include page();
+  @include alphabetized-cassette-tapes-font();
   margin-left: -20px;
   margin-top: -52px;
-  font-size: 26px;
+  font-size: 32px;
 }
 
 $paragraph-margin: 28px;
@@ -48,7 +65,7 @@ blockquote {
   $s-envelope-height: 900px;
 
   :host {
-    font-size: 23px;
+    font-size: 29px;
     margin-left: 0;
     margin-top: -20px;
   }
@@ -69,7 +86,7 @@ blockquote {
   $xs-envelope-height: 1000px;
 
   :host {
-    font-size: font-size(xs);
+    font-size: 26px;
   }
 
   .card-background-image {
