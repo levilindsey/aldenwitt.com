@@ -19,7 +19,6 @@ html,
 body,
 :host {
   @include own-written-font();
-  min-height: $desk-height;
 }
 
 :host {
@@ -52,9 +51,6 @@ header {
   h1,
   .main-title {
     height: 180px;
-  }
-
-  h1>img {
     position: relative;
     max-width: 100%;
   }
@@ -132,7 +128,8 @@ alden-nav-list {
   }
 
   .content-column {
-    padding: 158px 20px 0;
+    padding: 18vw 26px 0 14px;
+    width: 97%;
   }
 
   header {
@@ -140,7 +137,7 @@ alden-nav-list {
 
     h1,
     .main-title {
-      height: 120px;
+      height: 18vw;
     }
   }
 
@@ -161,22 +158,22 @@ alden-nav-list {
 
 @media(max-width: $extra-small-screen-width-threshold) {
   .content-column {
-    padding-top: 145px;
+    padding-top: 22vw;
   }
 
   .card-background-image > img {
-    min-width: 358px;
-    margin-top: 26px;
-    margin-left: -6px;
+    width: 104vw;
+    min-width: 0;
+    max-width: none;
+    margin-top: 20px;
+    margin-left: -2vw;
   }
 
   header {
     h1,
     .main-title {
-      height: 74px;
-    }
-
-    h1>img {
+      width: 100%;
+      height: auto;
       max-width: none;
     }
   }

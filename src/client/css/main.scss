@@ -127,6 +127,9 @@ $content-column-width: $note-pad-width - $content-column-padding-left -
     $content-column-padding-right;
 $page-area-width: $content-column-width - $nav-list-width;
 
+$s-desk-height: 159vw;
+$xs-desk-height: 369vw;
+
 /deep/ * {
   box-sizing: border-box;
 }
@@ -262,10 +265,18 @@ a:visited:active {
   html {
     font-size: font-size(m);
   }
+
+  alden-app {
+    min-height: $s-desk-height;
+  }
 }
 
 @media(max-width: $extra-small-screen-width-threshold) {
   html {
     font-size: font-size(s);
+  }
+
+  alden-app {
+    min-height: $xs-desk-height;
   }
 }

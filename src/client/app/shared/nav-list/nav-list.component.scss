@@ -135,14 +135,14 @@ a,
 
     > div:nth-child(2) {
       .nav-text-image {
-        height: 34px;
-        margin-top: 3px;
+        height: 27px;
+        margin-top: 2px;
       }
     }
   }
 
   .nav-text-image {
-    height: 40px;
+    height: 30px;
   }
 
   a {
@@ -198,6 +198,7 @@ a,
 
   .horizontal-nav {
     display: flex;
+    padding-right: 12px;
   }
 
   .top-bar,
@@ -212,10 +213,12 @@ a,
   }
 }
 
-$xs-underline-width: 70px;
-
 @media(max-width: $extra-small-screen-width-threshold) {
+  $xs-underline-width: 70px;
+
   .horizontal-nav {
+    padding: 0;
+
     .nav-text-image {
       height: 24px;
     }
@@ -249,5 +252,39 @@ $xs-underline-width: 70px;
 
   .route-indicator.underline {
     width: $xs-underline-width;
+  }
+}
+
+$xxs-screen-width-threshold: 364px;
+
+@media(max-width: $xxs-screen-width-threshold) {
+  $xxs-underline-width: 42px;
+
+  .horizontal-nav {
+    margin-top: -20px;
+
+    .nav-text-image {
+      height: 20px;
+    }
+
+    .nav-items {
+      flex-direction: column;
+
+      > div {
+        height: 28px;
+      }
+
+      > div:nth-child(2) {
+        .nav-text-image {
+          height: 16px;
+          margin-top: 2px;
+        }
+      }
+    }
+  }
+
+  .route-indicator.underline {
+    margin-top: -2px;
+    width: 50px;
   }
 }
