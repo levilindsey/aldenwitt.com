@@ -71,10 +71,11 @@ header {
   right: -100000px;
   will-change: transform;
 }
-// FIXME: Fix resizing of back ground image / tiling on large screens
+
 .card-background-image > img {
   width: $note-pad-width;
   max-width: 96vw;
+  min-width: 892px;
 }
 
 .hidden {
@@ -126,7 +127,8 @@ alden-nav-list {
   }
 
   .card-background-image > img {
-    margin-top: 19px
+    margin-top: 19px;
+    min-width: 0;
   }
 
   .content-column {
