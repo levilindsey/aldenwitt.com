@@ -33,7 +33,7 @@ $envelope-image-aspect-ratio: 0.75513933302;
   font-size: 32px;
 }
 
-$paragraph-margin: 28px;
+$paragraph-margin: 18px;
 $blockquote-margin: 10px;
 
 h2 {
@@ -83,7 +83,7 @@ blockquote {
 }
 
 @media(max-width: $extra-small-screen-width-threshold) {
-  $xs-envelope-height: 1000px;
+  $xs-envelope-height: 1126px;
 
   :host {
     font-size: 26px;
@@ -96,5 +96,22 @@ blockquote {
 
   .page-content {
     padding: $top-padding 60px 0 60px;
+  }
+}
+
+@media(max-width: $xxs-screen-width-threshold) {
+  $xxs-envelope-height: 1200px;
+
+  :host {
+    font-size: 22px;
+  }
+
+  .card-background-image {
+    min-height: $xxs-envelope-height;
+    max-height: $xxs-envelope-height;
+  }
+
+  .page-content {
+    padding: $top-padding 40px 0 40px;
   }
 }

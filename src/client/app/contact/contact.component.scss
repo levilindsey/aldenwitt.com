@@ -65,3 +65,13 @@ p {
     min-height: 500px;
   }
 }
+
+@media(max-width: $xxs-screen-width-threshold) {
+  h2 {
+    margin-bottom: 16px;
+  }
+
+  h2 > img.card-header-image {
+    height: 64px;
+  }
+}

@@ -111,6 +111,7 @@ $font-sizes: (
 $medium-screen-width-threshold: 1000px;// TODO: Tweak this.
 $small-screen-width-threshold: 880px;
 $extra-small-screen-width-threshold: 540px;
+$xxs-screen-width-threshold: 364px;
 
 $note-pad-margin-top: -28px;
 $note-pad-width: 940px;
@@ -127,8 +128,9 @@ $content-column-width: $note-pad-width - $content-column-padding-left -
     $content-column-padding-right;
 $page-area-width: $content-column-width - $nav-list-width;
 
-$s-desk-height: 159vw;
+$s-desk-height: 200vw;
 $xs-desk-height: 369vw;
+$xxs-desk-height: 444vw;
 
 /deep/ * {
   box-sizing: border-box;
@@ -278,5 +280,11 @@ a:visited:active {
 
   alden-app {
     min-height: $xs-desk-height;
+  }
+}
+
+@media(max-width: $xxs-screen-width-threshold) {
+  alden-app {
+    min-height: $xxs-desk-height;
   }
 }
